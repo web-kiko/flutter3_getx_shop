@@ -1,0 +1,22 @@
+{
+    "sourceFile": "lib/app/routes/app_pages.dart",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1708487831393,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1708488281314,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,21 +1,17 @@\n+/*\n+ * @Descripttion: \n+ * @version: \n+ * @Author: kiko\n+ * @Date: 2024-02-21 10:54:07\n+ * @LastEditors: kiko\n+ * @LastEditTime: 2024-02-21 12:04:40\n+ */\n import 'package:get/get.dart';\n \n-import '../modules/cart/bindings/cart_binding.dart';\n-import '../modules/cart/views/cart_view.dart';\n-import '../modules/category/bindings/category_binding.dart';\n-import '../modules/category/views/category_view.dart';\n-import '../modules/home/bindings/home_binding.dart';\n-import '../modules/home/views/home_view.dart';\n-import '../modules/serach/bindings/serach_binding.dart';\n-import '../modules/serach/views/serach_view.dart';\n-import '../modules/service/bindings/service_binding.dart';\n-import '../modules/service/views/service_view.dart';\n+\n import '../modules/tabs/bindings/tabs_binding.dart';\n import '../modules/tabs/views/tabs_view.dart';\n-import '../modules/user/bindings/user_binding.dart';\n-import '../modules/user/views/user_view.dart';\n-\n part 'app_routes.dart';\n \n class AppPages {\n   AppPages._();\n"
+                }
+            ],
+            "date": 1708487831393,
+            "name": "Commit-0",
+            "content": "import 'package:get/get.dart';\n\nimport '../modules/cart/bindings/cart_binding.dart';\nimport '../modules/cart/views/cart_view.dart';\nimport '../modules/category/bindings/category_binding.dart';\nimport '../modules/category/views/category_view.dart';\nimport '../modules/home/bindings/home_binding.dart';\nimport '../modules/home/views/home_view.dart';\nimport '../modules/serach/bindings/serach_binding.dart';\nimport '../modules/serach/views/serach_view.dart';\nimport '../modules/service/bindings/service_binding.dart';\nimport '../modules/service/views/service_view.dart';\nimport '../modules/tabs/bindings/tabs_binding.dart';\nimport '../modules/tabs/views/tabs_view.dart';\nimport '../modules/user/bindings/user_binding.dart';\nimport '../modules/user/views/user_view.dart';\n\npart 'app_routes.dart';\n\nclass AppPages {\n  AppPages._();\n\n  static const INITIAL = Routes.TABS;\n\n  static final routes = [\n    \n    GetPage(\n      name: _Paths.TABS,\n      page: () => const TabsView(),\n      binding: TabsBinding(),\n    ),\n  \n  ];\n}\n"
+        }
+    ]
+}

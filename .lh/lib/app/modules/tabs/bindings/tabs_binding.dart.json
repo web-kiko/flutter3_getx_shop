@@ -1,0 +1,22 @@
+{
+    "sourceFile": "lib/app/modules/tabs/bindings/tabs_binding.dart",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1708488485607,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1708488761698,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,12 @@\n+/*\n+ * @Descripttion: \n+ * @version: \n+ * @Author: kiko\n+ * @Date: 2024-02-21 11:07:38\n+ * @LastEditors: kiko\n+ * @LastEditTime: 2024-02-21 12:12:41\n+ */\n import 'package:get/get.dart';\n \n import '../controllers/tabs_controller.dart';\n import '../../cart/controllers/cart_controller.dart';\n@@ -15,6 +23,17 @@\n     );\n     Get.lazyPut<HomeController>(\n       () => HomeController(),\n     );\n+    Get.lazyPut<CartController>(\n+      () => CartController(),\n+    );\n+    Get.lazyPut<CategoryController>(\n+      () => CategoryController(),\n+    );Get.lazyPut<ServiceController>(\n+      () => ServiceController(),\n+    );\n+    Get.lazyPut<UserController>(\n+      () => UserController(),\n+    );\n   }\n }\n"
+                }
+            ],
+            "date": 1708488485607,
+            "name": "Commit-0",
+            "content": "import 'package:get/get.dart';\n\nimport '../controllers/tabs_controller.dart';\nimport '../../cart/controllers/cart_controller.dart';\nimport '../../category/controllers/category_controller.dart';\nimport '../../home/controllers/home_controller.dart';\nimport '../../service/controllers/service_controller.dart';\nimport '../../user/controllers/user_controller.dart';\n\nclass TabsBinding extends Bindings {\n  @override\n  void dependencies() {\n    Get.lazyPut<TabsController>(\n      () => TabsController(),\n    );\n    Get.lazyPut<HomeController>(\n      () => HomeController(),\n    );\n  }\n}\n"
+        }
+    ]
+}

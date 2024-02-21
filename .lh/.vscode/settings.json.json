@@ -1,0 +1,22 @@
+{
+    "sourceFile": ".vscode/settings.json",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1708482939337,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1708484155533,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,4 @@\n {\r\n-    \"java.compile.nullAnalysis.mode\": \"automatic\"\r\n+    \"java.compile.nullAnalysis.mode\": \"automatic\",\r\n+    \"cmake.sourceDirectory\": \"F:/Project/flutter/kiko_getx_xmshop/windows/flutter\"\r\n }\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1708482939337,
+            "name": "Commit-0",
+            "content": "{\r\n    \"java.compile.nullAnalysis.mode\": \"automatic\"\r\n}"
+        }
+    ]
+}
