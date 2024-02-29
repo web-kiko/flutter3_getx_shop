@@ -1,0 +1,30 @@
+{
+    "sourceFile": "lib/app/modules/tabs/views/tabs_view.dart",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1708498849289,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1708499423723,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,12 @@\n+/*\n+ * @Descripttion: \n+ * @version: \n+ * @Author: kiko\n+ * @Date: 2024-02-21 11:07:38\n+ * @LastEditors: kiko\n+ * @LastEditTime: 2024-02-21 15:10:23\n+ */\n import 'package:flutter/material.dart';\n \n import 'package:get/get.dart';\n \n@@ -12,8 +20,11 @@\n       appBar: AppBar(\n         title: const Text('TabsView'),\n         centerTitle: true,\n       ),\n-      body: const Text(\"teabs\");\n+      body:  Text(\"teabs\"),\n+      bottomNavigationBar: BottomNavigationBar(\n+      fixedColor: Colors.red,\n+      )\n     );\n   }\n }\n"
+                },
+                {
+                    "date": 1708523773246,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n  * @version: \n  * @Author: kiko\n  * @Date: 2024-02-21 11:07:38\n  * @LastEditors: kiko\n- * @LastEditTime: 2024-02-21 15:10:23\n+ * @LastEditTime: 2024-02-21 21:56:13\n  */\n import 'package:flutter/material.dart';\n \n import 'package:get/get.dart';\n@@ -22,9 +22,25 @@\n         centerTitle: true,\n       ),\n       body:  Text(\"teabs\"),\n       bottomNavigationBar: BottomNavigationBar(\n-      fixedColor: Colors.red,\n-      )\n+              fixedColor: Colors.red, //选中的颜色\n+              // currentIndex: controller.currentIndex.value, //第几个菜单选中\n+              type:\n+                  BottomNavigationBarType.fixed, //如果底部有4个或者4个以上的菜单的时候就需要配置这个参数\n+              // onTap: (index) {\n+              //   controller.setCurrentIndex(index);\n+              //   controller.pageController.jumpToPage(index);\n+              // },\n+              items: const [\n+                BottomNavigationBarItem(icon: Icon(Icons.home), label: \"首页\"),\n+                BottomNavigationBarItem(\n+                    icon: Icon(Icons.category), label: \"分类\"),\n+                BottomNavigationBarItem(\n+                    icon: Icon(Icons.room_service), label: \"服务\"),\n+                BottomNavigationBarItem(\n+                    icon: Icon(Icons.shopping_cart), label: \"购物车\"),\n+                BottomNavigationBarItem(icon: Icon(Icons.people), label: \"用户\")\n+              ]),\n     );\n   }\n }\n"
+                },
+                {
+                    "date": 1708524168704,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n  * @version: \n  * @Author: kiko\n  * @Date: 2024-02-21 11:07:38\n  * @LastEditors: kiko\n- * @LastEditTime: 2024-02-21 21:56:13\n+ * @LastEditTime: 2024-02-21 22:02:48\n  */\n import 'package:flutter/material.dart';\n \n import 'package:get/get.dart';\n@@ -20,27 +20,25 @@\n       appBar: AppBar(\n         title: const Text('TabsView'),\n         centerTitle: true,\n       ),\n-      body:  Text(\"teabs\"),\n+      body: Text(\"teabs\"),\n       bottomNavigationBar: BottomNavigationBar(\n-              fixedColor: Colors.red, //选中的颜色\n-              // currentIndex: controller.currentIndex.value, //第几个菜单选中\n-              type:\n-                  BottomNavigationBarType.fixed, //如果底部有4个或者4个以上的菜单的时候就需要配置这个参数\n-              // onTap: (index) {\n-              //   controller.setCurrentIndex(index);\n-              //   controller.pageController.jumpToPage(index);\n-              // },\n-              items: const [\n-                BottomNavigationBarItem(icon: Icon(Icons.home), label: \"首页\"),\n-                BottomNavigationBarItem(\n-                    icon: Icon(Icons.category), label: \"分类\"),\n-                BottomNavigationBarItem(\n-                    icon: Icon(Icons.room_service), label: \"服务\"),\n-                BottomNavigationBarItem(\n-                    icon: Icon(Icons.shopping_cart), label: \"购物车\"),\n-                BottomNavigationBarItem(icon: Icon(Icons.people), label: \"用户\")\n-              ]),\n+          fixedColor: Colors.red, //选中的颜色\n+          // currentIndex: controller.currentIndex.value, //第几个菜单选中\n+          type: BottomNavigationBarType.fixed, //如果底部有4个或者4个以上的菜单的时候就需要配置这个参数\n+          // onTap: (index) {\n+          //   controller.setCurrentIndex(index);\n+          //   controller.pageController.jumpToPage(index);\n+          // },\n+          items: const [\n+            BottomNavigationBarItem(icon: Icon(Icons.home), label: \"首页\"),\n+            BottomNavigationBarItem(icon: Icon(Icons.category), label: \"分类\"),\n+            BottomNavigationBarItem(\n+                icon: Icon(Icons.room_service), label: \"服务\"),\n+            BottomNavigationBarItem(\n+                icon: Icon(Icons.shopping_cart), label: \"购物车\"),\n+            BottomNavigationBarItem(icon: Icon(Icons.people), label: \"用户\")\n+          ]),\n     );\n   }\n }\n"
+                }
+            ],
+            "date": 1708498849289,
+            "name": "Commit-0",
+            "content": "import 'package:flutter/material.dart';\n\nimport 'package:get/get.dart';\n\nimport '../controllers/tabs_controller.dart';\n\nclass TabsView extends GetView<TabsController> {\n  const TabsView({Key? key}) : super(key: key);\n  @override\n  Widget build(BuildContext context) {\n    return Scaffold(\n      appBar: AppBar(\n        title: const Text('TabsView'),\n        centerTitle: true,\n      ),\n      body: const Text(\"teabs\");\n    );\n  }\n}\n"
+        }
+    ]
+}

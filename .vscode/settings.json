@@ -1,4 +1,7 @@
 {
     "java.compile.nullAnalysis.mode": "automatic",
-    "cmake.sourceDirectory": "F:/Project/flutter/kiko_getx_xmshop/windows/flutter"
+    "cmake.sourceDirectory": "F:/Project/flutter/kiko_getx_xmshop/windows/flutter",
+    "cSpell.words": [
+        "Swiper"
+    ]
 }

@@ -1,0 +1,23 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "5387432",
+      "name": "维修服务",
+      "font_class": "weixiufuwu",
+      "unicode": "ead5",
+      "unicode_decimal": 60117
+    },
+    {
+      "icon_id": "26849841",
+      "name": "小米",
+      "font_class": "XiaoMi",
+      "unicode": "e623",
+      "unicode_decimal": 58915
+    }
+  ]
+}
