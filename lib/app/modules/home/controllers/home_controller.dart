@@ -3,8 +3,8 @@
  * @version: 
  * @Author: kiko
  * @Date: 2024-02-21 10:54:07
- * @LastEditors: kiko
- * @LastEditTime: 2024-02-28 15:20:00
+ * @LastEditors: error: error: git config user.name & please set dead value or install git && error: git config user.email & please set dead value or install git & please set dead value or install git
+ * @LastEditTime: 2024-03-04 14:07:09
  */
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -22,6 +22,8 @@ class HomeController extends GetxController {
   RxList<FocusItemModel> bestSellingSwiperList = <FocusItemModel>[].obs;
   RxList<CategoryItemModel> categoryList = <CategoryItemModel>[].obs;
   RxList<PlistItemModel> sellingPlist = <PlistItemModel>[].obs;
+   RxList<PlistItemModel> bestPlist = <PlistItemModel>[].obs;
+
 
   @override
   void onInit() {
@@ -36,6 +38,8 @@ class HomeController extends GetxController {
     getSellingSwiperData();
     //获取热销臻选里面的商品
     getSellingPlistData();
+    // 获取热门商品
+    getBestPlistData();
   }
 
   @override
@@ -53,14 +57,14 @@ class HomeController extends GetxController {
     scrollController.addListener(() {
       if (scrollController.position.pixels > 10) {
         if (flag.value == false) {
-          print("position.pixels > 10");
+          //print("position.pixels > 10");
           flag.value = true;
           update();
         }
       }
       if (scrollController.position.pixels < 10) {
         if (flag.value == true) {
-          print("position.pixels < 10");
+          //print("position.pixels < 10");
           flag.value = false;
           update();
         }
@@ -103,6 +107,14 @@ class HomeController extends GetxController {
     var response = await Dio().get("https://miapp.itying.com/api/bestCate");
     var category = CategoryModel.fromJson(response.data);
     categoryList.value = category.result!;
+    update();
+  }
+
+  //获取热门商品数据
+   getBestPlistData() async {
+    var response = await Dio().get("https://miapp.itying.com/api/plist?is_best=1");
+    var plist=PlistModel.fromJson(response.data);     
+    bestPlist.value=plist.result!;
     update();
   }
 }
