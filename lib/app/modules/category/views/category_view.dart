@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../services/screenAdapter.dart'; //适配
 import '../controllers/category_controller.dart';
+import '../../../services/httpsClient.dart';
 
 class CategoryView extends GetView<CategoryController> {
   const CategoryView({Key? key}) : super(key: key);
@@ -60,14 +61,14 @@ class CategoryView extends GetView<CategoryController> {
               mainAxisSpacing: ScreenAdapter.height(20),
               childAspectRatio: 240 / 340),
           itemBuilder: ((context, index) {
-            String picUrl =
-                "https://miapp.itying.com/${controller.rightCategoryList[index].pic}";
+            // String picUrl =
+            //     "https://miapp.itying.com/${controller.rightCategoryList[index].pic}";
             return Column(
               children: [
                 Container(
                   alignment: Alignment.center,
                   width: double.infinity,
-                  child: Image.network(picUrl.replaceAll("\\", "/"),
+                  child: Image.network(HttpsClient.replaeUri(controller.rightCategoryList[index].pic),
                       fit: BoxFit.fitHeight),
                 ),
                 Padding(

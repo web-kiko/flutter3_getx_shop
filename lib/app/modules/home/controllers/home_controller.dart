@@ -3,15 +3,16 @@
  * @version: 
  * @Author: kiko
  * @Date: 2024-02-21 10:54:07
- * @LastEditors: error: error: git config user.name & please set dead value or install git && error: git config user.email & please set dead value or install git & please set dead value or install git
- * @LastEditTime: 2024-03-04 14:07:09
+ * @LastEditors: web-kiko kikoiiii@163.com
+ * @LastEditTime: 2024-03-06 16:32:40
  */
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:dio/dio.dart';
+// import 'package:dio/dio.dart';
 import '../../../models/focus_model.dart';
 import '../../../models/category_model.dart';
 import '../../../models/plist_model.dart';
+import '../../../services/httpsClient.dart';
 
 class HomeController extends GetxController {
   //浮动导航开关
@@ -23,8 +24,8 @@ class HomeController extends GetxController {
   RxList<CategoryItemModel> categoryList = <CategoryItemModel>[].obs;
   RxList<PlistItemModel> sellingPlist = <PlistItemModel>[].obs;
    RxList<PlistItemModel> bestPlist = <PlistItemModel>[].obs;
-
-
+   // ignore: unnecessary_new
+   HttpsClient httpsClient =new HttpsClient();
   @override
   void onInit() {
     super.onInit();
@@ -74,47 +75,51 @@ class HomeController extends GetxController {
 
   //获取轮播图数据
   getFocusData() async {
-    var response = await Dio().get("https://miapp.itying.com/api/focus");
-
-    var focus = FocusModel.fromJson(response.data);
-
-    swiperList.value = focus.result!;
-
-    update();
+    var response = await httpsClient.get("api/focus");
+    if (response != null) {
+      var focus = FocusModel.fromJson(response.data);
+      swiperList.value = focus.result!;
+      update();
+    }
   }
 
-  //获取热销臻选里面的轮播图
-
+ //获取热销臻选里面的轮播图
   getSellingSwiperData() async {
-    var response =
-        await Dio().get("https://miapp.itying.com/api/focus?position=2");
-    var sellingSwiper = FocusModel.fromJson(response.data);
-    bestSellingSwiperList.value = sellingSwiper.result!;
-    update();
+    var response = await httpsClient.get("api/focus?position=2");
+    if (response != null) {
+      var sellingSwiper = FocusModel.fromJson(response.data);
+      bestSellingSwiperList.value = sellingSwiper.result!;
+      update();
+    }
   }
 
 //获取热销臻选里面的商品数据
   getSellingPlistData() async {
-    var response = await Dio()
-        .get("https://miapp.itying.com/api/plist?is_hot=1&pageSize=3");
-    var plist = PlistModel.fromJson(response.data);
-    sellingPlist.value = plist.result!;
-    update();
+    var response = await httpsClient.get("api/plist?is_hot=1&pageSize=3");
+    if (response != null) {
+      var plist = PlistModel.fromJson(response.data);
+      sellingPlist.value = plist.result!;
+      update();
+    }
   }
 
-  //获取轮播图数据
+  //获取分类数据
   getCategoryData() async {
-    var response = await Dio().get("https://miapp.itying.com/api/bestCate");
-    var category = CategoryModel.fromJson(response.data);
-    categoryList.value = category.result!;
-    update();
+    var response = await httpsClient.get("api/bestCate");
+    if (response != null) {
+      var category = CategoryModel.fromJson(response.data);
+      categoryList.value = category.result!;
+      update();
+    }
   }
 
   //获取热门商品数据
-   getBestPlistData() async {
-    var response = await Dio().get("https://miapp.itying.com/api/plist?is_best=1");
-    var plist=PlistModel.fromJson(response.data);     
-    bestPlist.value=plist.result!;
-    update();
+  getBestPlistData() async {
+    var response = await httpsClient.get("api/plist?is_best=1");
+    if (response != null) {
+      var plist = PlistModel.fromJson(response.data);
+      bestPlist.value = plist.result!;
+      update();
+    }
   }
 }

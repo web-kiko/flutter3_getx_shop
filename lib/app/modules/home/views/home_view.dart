@@ -4,7 +4,7 @@
  * @Author: kiko
  * @Date: 2024-02-21 10:54:07
  * @LastEditors: web-kiko kikoiiii@163.com
- * @LastEditTime: 2024-03-06 02:51:42
+ * @LastEditTime: 2024-03-06 16:58:58
  */
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,6 +14,7 @@ import '../../../services/screenAdapter.dart'; //适配
 import '../../../services/myFonts.dart'; //引入字标库
 import 'package:flutter_swiper_view/flutter_swiper_view.dart'; //轮播图
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart'; //瀑布流
+import '../../../services/httpsClient.dart';//封装的dio
 
 class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);
@@ -82,17 +83,15 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
-  //轮播图
+ //轮播图
   Widget _focus() {
     return SizedBox(
       width: ScreenAdapter.width(1080),
       height: ScreenAdapter.height(682),
       child: Obx(() => Swiper(
-            itemBuilder: (context, index) {
-              String picUrl =
-                  "https://miapp.itying.com/${controller.swiperList[index].pic}";
+            itemBuilder: (context, index) {             
               return Image.network(
-                picUrl.replaceAll("\\", "/"),
+                HttpsClient.replaeUri(controller.swiperList[index].pic),
                 fit: BoxFit.fill,
               );
             },
@@ -104,7 +103,6 @@ class HomeView extends GetView<HomeController> {
           )),
     );
   }
-
   //banner
   Widget _banner() {
     return SizedBox(
@@ -133,15 +131,15 @@ class HomeView extends GetView<HomeController> {
                     mainAxisSpacing: ScreenAdapter.height(20),
                   ),
                   itemBuilder: (context, i) {
-                    String picUrl =
-                        "https://xiaomi.itying.com/${controller.categoryList[index * 10 + i].pic}";
+                    // String picUrl =
+                    //     "https://xiaomi.itying.com/${controller.categoryList[index * 10 + i].pic}";
                     return Column(
                       children: [
                         Container(
                           alignment: Alignment.center,
                           width: ScreenAdapter.height(120),
                           height: ScreenAdapter.height(120),
-                          child: Image.network(picUrl.replaceAll("\\", "/"),
+                          child: Image.network(HttpsClient.replaeUri(controller.categoryList[index * 10 + i].pic),
                               fit: BoxFit.fitHeight),
                         ),
                         Padding(
@@ -234,10 +232,12 @@ class HomeView extends GetView<HomeController> {
                     height: ScreenAdapter.height(800),
                     child: Obx(() => Swiper(
                         itemBuilder: (context, index) {
-                          String picUrl =
-                              "https://miapp.itying.com/${controller.bestSellingSwiperList[index].pic}";
+                          // 下面就改了2个，作对比
+                          // String picUrl =
+                          //     "https://miapp.itying.com/${controller.bestSellingSwiperList[index].pic}";
+                          
                           return Image.network(
-                            picUrl.replaceAll("\\", "/"),
+                            HttpsClient.replaeUri(controller.bestSellingSwiperList[index].pic),
                             fit: BoxFit.fill,
                           );
                         },
@@ -281,7 +281,7 @@ class HomeView extends GetView<HomeController> {
                                 .entries
                                 .map((entrie) {
                           var value = entrie.value;
-                          var picUrl = "https://miapp.itying.com/${value.pic}";
+                          // var picUrl = "https://miapp.itying.com/${value.pic}";
                           return Expanded(
                               flex: 1,
                               child: Container(
@@ -330,7 +330,8 @@ class HomeView extends GetView<HomeController> {
                                         padding: EdgeInsets.all(
                                             ScreenAdapter.height(8)),
                                         child: Image.network(
-                                            picUrl.replaceAll("\\", "/"),
+                                            // picUrl.replaceAll("\\", "/"),
+                                            HttpsClient.replaeUri(value.pic),
                                             fit: BoxFit.cover),
                                       ),
                                     )
@@ -379,7 +380,7 @@ class HomeView extends GetView<HomeController> {
             shrinkWrap: true,//收缩，让元素宽度自适应            
             physics: const NeverScrollableScrollPhysics(), //禁止滑动
             itemBuilder: (context, index) {
-              var picUrl="https://miapp.itying.com/${controller.bestPlist[index].sPic}";
+               var picUrl="https://miapp.itying.com/${controller.bestPlist[index].sPic}";
               return Container(
                 padding: EdgeInsets.all(ScreenAdapter.width(20)),
                 decoration: BoxDecoration(                 
