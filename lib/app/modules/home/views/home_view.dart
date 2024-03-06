@@ -3,8 +3,8 @@
  * @version: 
  * @Author: kiko
  * @Date: 2024-02-21 10:54:07
- * @LastEditors: error: error: git config user.name & please set dead value or install git && error: git config user.email & please set dead value or install git & please set dead value or install git
- * @LastEditTime: 2024-03-04 14:08:00
+ * @LastEditors: web-kiko kikoiiii@163.com
+ * @LastEditTime: 2024-03-06 02:51:42
  */
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -139,8 +139,8 @@ class HomeView extends GetView<HomeController> {
                       children: [
                         Container(
                           alignment: Alignment.center,
-                          width: ScreenAdapter.height(140),
-                          height: ScreenAdapter.height(140),
+                          width: ScreenAdapter.height(120),
+                          height: ScreenAdapter.height(120),
                           child: Image.network(picUrl.replaceAll("\\", "/"),
                               fit: BoxFit.fitHeight),
                         ),
