@@ -4,53 +4,19 @@ import 'package:get/get.dart';
 
 import '../controllers/product_list_controller.dart';
 import '../../../units/screenAdapter.dart';
+import '../../../units/httpsClient.dart';
 
 class ProductListView extends GetView<ProductListController> {
   const ProductListView({Key? key}) : super(key: key);
 
-  
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-       appBar: AppBar(
-        title: Container(          
-          width: ScreenAdapter.width(900),
-          height: ScreenAdapter.height(96),
-          decoration: BoxDecoration(
-            color: const Color.fromRGBO(246, 246, 246, 1),
-            borderRadius: BorderRadius.circular(30),
-          ),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Padding(
-                padding: EdgeInsets.fromLTRB(
-                    ScreenAdapter.width(34), 0, ScreenAdapter.width(10), 0),
-                child: const Icon(Icons.search),
-              ),
-              Text("手机",
-                  style: TextStyle(
-                      color: Colors.black54,
-                      fontSize: ScreenAdapter.fontSize(32)))
-            ],
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        elevation: 0,
-      ),
-      body: Stack(
-        children: [_productListWidget(), _subHeaderWidget()],
-      ),
-    );
-  }
-}
-
-Widget _productListWidget() {
-    return ListView.builder(
-        padding: EdgeInsets.fromLTRB(ScreenAdapter.width(26), ScreenAdapter.width(140),
-            ScreenAdapter.width(26), ScreenAdapter.height(26)),
-        itemCount: 10,
+  Widget _productListWidget() {
+    return Obx(() => ListView.builder(
+        padding: EdgeInsets.fromLTRB(
+            ScreenAdapter.width(26),
+            ScreenAdapter.width(140),
+            ScreenAdapter.width(26),
+            ScreenAdapter.height(26)),
+        itemCount: controller.plist.length,
         itemBuilder: (context, index) {
           return Container(
             margin: EdgeInsets.only(bottom: ScreenAdapter.height(26)),
@@ -65,7 +31,7 @@ Widget _productListWidget() {
                   width: ScreenAdapter.width(400),
                   height: ScreenAdapter.height(460),
                   child: Image.network(
-                      "https://miapp.itying.com/public/upload/5xyr9OTSK1pwJ5ng7YgpKOkd.png_200x200.png",
+                      "${HttpsClient.replaeUri(controller.plist[index].sPic)}",
                       fit: BoxFit.fitHeight),
                 ),
                 //右侧
@@ -76,7 +42,7 @@ Widget _productListWidget() {
                     Padding(
                       padding:
                           EdgeInsets.only(bottom: ScreenAdapter.height(20)),
-                      child: Text("Redmi Note 11",
+                      child: Text("${controller.plist[index].title}",
                           style: TextStyle(
                               fontSize: ScreenAdapter.fontSize(42),
                               fontWeight: FontWeight.bold)),
@@ -84,7 +50,7 @@ Widget _productListWidget() {
                     Padding(
                       padding:
                           EdgeInsets.only(bottom: ScreenAdapter.height(20)),
-                      child: Text("内外双旗舰屏幕｜徕卡专业光学镜头｜徕卡原生双画质",
+                      child: Text("${controller.plist[index].subTitle}",
                           style: TextStyle(
                             fontSize: ScreenAdapter.fontSize(34),
                           )),
@@ -145,11 +111,10 @@ Widget _productListWidget() {
               ],
             ),
           );
-        });
+        }));
   }
 
-
-Widget _subHeaderWidget() {
+  Widget _subHeaderWidget() {
     return Positioned(
         left: 0,
         right: 0,
@@ -227,3 +192,40 @@ Widget _subHeaderWidget() {
           ),
         ));
   }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Container(
+          width: ScreenAdapter.width(900),
+          height: ScreenAdapter.height(96),
+          decoration: BoxDecoration(
+            color: const Color.fromRGBO(246, 246, 246, 1),
+            borderRadius: BorderRadius.circular(30),
+          ),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Padding(
+                padding: EdgeInsets.fromLTRB(
+                    ScreenAdapter.width(34), 0, ScreenAdapter.width(10), 0),
+                child: const Icon(Icons.search),
+              ),
+              Text("手机",
+                  style: TextStyle(
+                      color: Colors.black54,
+                      fontSize: ScreenAdapter.fontSize(32)))
+            ],
+          ),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.white,
+        elevation: 0,
+      ),
+      body: Stack(
+        children: [_productListWidget(), _subHeaderWidget()],
+      ),
+    );
+  }
+}
