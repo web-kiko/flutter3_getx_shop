@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../controllers/cart_controller.dart';
-import '../../../services/screenAdapter.dart';
+import '../../../units/screenAdapter.dart';
 
 class CartView extends GetView<CartController> {
   const CartView({Key? key}) : super(key: key);

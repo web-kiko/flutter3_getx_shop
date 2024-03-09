@@ -9,12 +9,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/home_controller.dart';
-import '../../../services/keepAliveWrapper.dart'; //缓存状态
-import '../../../services/screenAdapter.dart'; //适配
-import '../../../services/myFonts.dart'; //引入字标库
+import '../../../units/keepAliveWrapper.dart'; //缓存状态
+import '../../../units/screenAdapter.dart'; //适配
+import '../../../units/myFonts.dart'; //引入字标库
 import 'package:flutter_swiper_view/flutter_swiper_view.dart'; //轮播图
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart'; //瀑布流
-import '../../../services/httpsClient.dart';//封装的dio
+import '../../../units/httpsClient.dart';//封装的dio
 
 class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);

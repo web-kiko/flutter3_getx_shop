@@ -9,7 +9,7 @@
 import 'package:get/get.dart';
 import '../../../models/category_model.dart';
 // import 'package:dio/dio.dart';
-import '../../../services/httpsClient.dart';
+import '../../../units/httpsClient.dart';
 
 class CategoryController extends GetxController {
   //TODO: Implement CategoryController

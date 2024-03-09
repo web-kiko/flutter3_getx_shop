@@ -1,9 +1,17 @@
+/*
+ * @Author: web-kiko kikoiiii@163.com
+ * @Date: 2024-03-04 11:57:43
+ * @LastEditors: web-kiko kikoiiii@163.com
+ * @LastEditTime: 2024-03-09 15:41:04
+ * @FilePath: \flutter3_getx_shop\lib\app\modules\category\views\category_view.dart
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import '../../../services/screenAdapter.dart'; //适配
+import '../../../units/screenAdapter.dart'; //适配
 import '../controllers/category_controller.dart';
-import '../../../services/httpsClient.dart';
+import '../../../units/httpsClient.dart';
 
 class CategoryView extends GetView<CategoryController> {
   const CategoryView({Key? key}) : super(key: key);
@@ -63,7 +71,13 @@ class CategoryView extends GetView<CategoryController> {
           itemBuilder: ((context, index) {
             // String picUrl =
             //     "https://miapp.itying.com/${controller.rightCategoryList[index].pic}";
-            return Column(
+            return InkWell(
+                            onTap: (){
+                Get.toNamed("/product-list",arguments: {//跳转到分类页面
+                    "cid":controller.rightCategoryList[index].sId
+                });
+              },
+              child: Column(
               children: [
                 Container(
                   alignment: Alignment.center,
@@ -78,6 +92,7 @@ class CategoryView extends GetView<CategoryController> {
                       style: TextStyle(fontSize: ScreenAdapter.fontSize(34))),
                 )
               ],
+            ),
             );
           }))),
     ));
