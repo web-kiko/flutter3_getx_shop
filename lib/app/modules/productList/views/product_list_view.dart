@@ -11,12 +11,14 @@ class ProductListView extends GetView<ProductListController> {
 
   Widget _productListWidget() {
     return Obx(() => ListView.builder(
+        controller: controller.scrollController,
         padding: EdgeInsets.fromLTRB(
             ScreenAdapter.width(26),
             ScreenAdapter.width(140),
             ScreenAdapter.width(26),
             ScreenAdapter.height(26)),
-        itemCount: controller.plist.length,
+        itemCount: controller.plist.length, //添加了長度
+
         itemBuilder: (context, index) {
           return Container(
             margin: EdgeInsets.only(bottom: ScreenAdapter.height(26)),
