@@ -10,7 +10,7 @@ class ProductListView extends GetView<ProductListController> {
   const ProductListView({Key? key}) : super(key: key);
 
   Widget _productListWidget() {
-    return Obx(() => ListView.builder(
+    return Obx(() =>controller.plist.isNotEmpty?ListView.builder(
         controller: controller.scrollController,
         padding: EdgeInsets.fromLTRB(
             ScreenAdapter.width(26),
@@ -20,7 +20,9 @@ class ProductListView extends GetView<ProductListController> {
         itemCount: controller.plist.length, //添加了長度
 
         itemBuilder: (context, index) {
-          return Container(
+          return Column(
+            children: [
+              Container(
             margin: EdgeInsets.only(bottom: ScreenAdapter.height(26)),
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(10)),
@@ -112,10 +114,13 @@ class ProductListView extends GetView<ProductListController> {
                 ))
               ],
             ),
+          ),(index==controller.plist.length-1)?_progressIndicator():const Text("")
+            ],
           );
-        }));
+        }):_progressIndicator()
+        );
   }
-
+                                   
   Widget _subHeaderWidget() {
     return Positioned(
         left: 0,
@@ -195,6 +200,19 @@ class ProductListView extends GetView<ProductListController> {
         ));
   }
 
+
+  //自定义圆圈加载组件
+  Widget _progressIndicator() {
+    if (controller.hasData.value) {
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
+    } else {
+      return const Center(
+        child: Text("没有数据了哦，我是有底线的"),
+      );
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
