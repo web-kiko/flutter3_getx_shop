@@ -2,7 +2,7 @@
  * @Author: web-kiko kikoiiii@163.com
  * @Date: 2024-03-07 16:52:11
  * @LastEditors: web-kiko kikoiiii@163.com
- * @LastEditTime: 2024-03-14 16:19:49
+ * @LastEditTime: 2024-03-15 14:44:05
  * @FilePath: \flutter3_getx_shop\lib\app\modules\productList\controllers\product_list_controller.dart
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -21,6 +21,22 @@ class ProductListController extends GetxController {
    bool flag = true;//避免重复请求
   RxBool hasData = true.obs;//没了数据就不请求了
   GlobalKey<ScaffoldState> scaffoldGlobalKey = GlobalKey<ScaffoldState>();//侧边栏
+
+  /*二级导航数据*/
+  List subHeaderList = [
+    {
+      "id": 1,
+      "title": "综合",
+      "fileds": "all",
+      "sort":-1, // 排序     升序：price_1     {price:1}        降序：price_-1   {price:-1}
+    },
+    {"id": 2, "title": "销量", "fileds": 'salecount', "sort": -1},
+    {"id": 3, "title": "价格", "fileds": 'price', "sort": -1},
+    {"id": 4, "title": "筛选"}
+  ];
+  //二级导航选中判断
+  RxInt selectHeaderId = 1.obs;
+  
   @override
   void onInit() {
     super.onInit();

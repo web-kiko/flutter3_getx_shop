@@ -10,117 +10,128 @@ class ProductListView extends GetView<ProductListController> {
   const ProductListView({Key? key}) : super(key: key);
 
   Widget _productListWidget() {
-    return Obx(() =>controller.plist.isNotEmpty?ListView.builder(
-        controller: controller.scrollController,
-        padding: EdgeInsets.fromLTRB(
-            ScreenAdapter.width(26),
-            ScreenAdapter.width(140),
-            ScreenAdapter.width(26),
-            ScreenAdapter.height(26)),
-        itemCount: controller.plist.length, //添加了長度
+    return Obx(() => controller.plist.isNotEmpty
+        ? ListView.builder(
+            controller: controller.scrollController,
+            padding: EdgeInsets.fromLTRB(
+                ScreenAdapter.width(26),
+                ScreenAdapter.width(140),
+                ScreenAdapter.width(26),
+                ScreenAdapter.height(26)),
+            itemCount: controller.plist.length, //添加了長度
 
-        itemBuilder: (context, index) {
-          return Column(
-            children: [
-              Container(
-            margin: EdgeInsets.only(bottom: ScreenAdapter.height(26)),
-            decoration: BoxDecoration(
-                color: Colors.white, borderRadius: BorderRadius.circular(10)),
-            //行
-            child: Row(
-              children: [
-                //左侧
-                Container(
-                  padding: EdgeInsets.all(ScreenAdapter.width(60)),
-                  width: ScreenAdapter.width(400),
-                  height: ScreenAdapter.height(460),
-                  child: Image.network(
-                      "${HttpsClient.replaeUri(controller.plist[index].sPic)}",
-                      fit: BoxFit.fitHeight),
-                ),
-                //右侧
-                Expanded(
-                    child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding:
-                          EdgeInsets.only(bottom: ScreenAdapter.height(20)),
-                      child: Text("${controller.plist[index].title}",
-                          style: TextStyle(
-                              fontSize: ScreenAdapter.fontSize(42),
-                              fontWeight: FontWeight.bold)),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsets.only(bottom: ScreenAdapter.height(20)),
-                      child: Text("${controller.plist[index].subTitle}",
-                          style: TextStyle(
-                            fontSize: ScreenAdapter.fontSize(34),
-                          )),
-                    ),
-                    Container(
-                      padding:
-                          EdgeInsets.only(bottom: ScreenAdapter.height(20)),
-                      child: Row(
-                        children: [
-                          Expanded(
-                              child: Column(
-                            children: [
-                              Text("CUP",
+            itemBuilder: (context, index) {
+              return Column(
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(bottom: ScreenAdapter.height(26)),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10)),
+                    //行
+                    child: Row(
+                      children: [
+                        //左侧
+                        Container(
+                          padding: EdgeInsets.all(ScreenAdapter.width(60)),
+                          width: ScreenAdapter.width(400),
+                          height: ScreenAdapter.height(460),
+                          child: Image.network(
+                              "${HttpsClient.replaeUri(controller.plist[index].sPic)}",
+                              fit: BoxFit.fitHeight),
+                        ),
+                        //右侧
+                        Expanded(
+                            child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  bottom: ScreenAdapter.height(20)),
+                              child: Text("${controller.plist[index].title}",
                                   style: TextStyle(
-                                      fontSize: ScreenAdapter.fontSize(34),
+                                      fontSize: ScreenAdapter.fontSize(42),
                                       fontWeight: FontWeight.bold)),
-                              Text("Helio G25",
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  bottom: ScreenAdapter.height(20)),
+                              child: Text("${controller.plist[index].subTitle}",
                                   style: TextStyle(
                                     fontSize: ScreenAdapter.fontSize(34),
+                                  )),
+                            ),
+                            Container(
+                              padding: EdgeInsets.only(
+                                  bottom: ScreenAdapter.height(20)),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                      child: Column(
+                                    children: [
+                                      Text("CUP",
+                                          style: TextStyle(
+                                              fontSize:
+                                                  ScreenAdapter.fontSize(34),
+                                              fontWeight: FontWeight.bold)),
+                                      Text("Helio G25",
+                                          style: TextStyle(
+                                            fontSize:
+                                                ScreenAdapter.fontSize(34),
+                                          ))
+                                    ],
+                                  )),
+                                  Expanded(
+                                      child: Column(
+                                    children: [
+                                      Text("高清拍摄",
+                                          style: TextStyle(
+                                              fontSize:
+                                                  ScreenAdapter.fontSize(34),
+                                              fontWeight: FontWeight.bold)),
+                                      Text("1300万像素",
+                                          style: TextStyle(
+                                            fontSize:
+                                                ScreenAdapter.fontSize(34),
+                                          ))
+                                    ],
+                                  )),
+                                  Expanded(
+                                      child: Column(
+                                    children: [
+                                      Text("超大屏",
+                                          style: TextStyle(
+                                              fontSize:
+                                                  ScreenAdapter.fontSize(34),
+                                              fontWeight: FontWeight.bold)),
+                                      Text("6.1寸",
+                                          style: TextStyle(
+                                            fontSize:
+                                                ScreenAdapter.fontSize(34),
+                                          ))
+                                    ],
                                   ))
-                            ],
-                          )),
-                          Expanded(
-                              child: Column(
-                            children: [
-                              Text("高清拍摄",
-                                  style: TextStyle(
-                                      fontSize: ScreenAdapter.fontSize(34),
-                                      fontWeight: FontWeight.bold)),
-                              Text("1300万像素",
-                                  style: TextStyle(
-                                    fontSize: ScreenAdapter.fontSize(34),
-                                  ))
-                            ],
-                          )),
-                          Expanded(
-                              child: Column(
-                            children: [
-                              Text("超大屏",
-                                  style: TextStyle(
-                                      fontSize: ScreenAdapter.fontSize(34),
-                                      fontWeight: FontWeight.bold)),
-                              Text("6.1寸",
-                                  style: TextStyle(
-                                    fontSize: ScreenAdapter.fontSize(34),
-                                  ))
-                            ],
-                          ))
-                        ],
-                      ),
+                                ],
+                              ),
+                            ),
+                            Text("￥8999起",
+                                style: TextStyle(
+                                    fontSize: ScreenAdapter.fontSize(38),
+                                    fontWeight: FontWeight.bold))
+                          ],
+                        ))
+                      ],
                     ),
-                    Text("￥8999起",
-                        style: TextStyle(
-                            fontSize: ScreenAdapter.fontSize(38),
-                            fontWeight: FontWeight.bold))
-                  ],
-                ))
-              ],
-            ),
-          ),(index==controller.plist.length-1)?_progressIndicator():const Text("")
-            ],
-          );
-        }):_progressIndicator()
-        );
+                  ),
+                  (index == controller.plist.length - 1)
+                      ? _progressIndicator()
+                      : const Text("")
+                ],
+              );
+            })
+        : _progressIndicator());
   }
-                                   
+
   Widget _subHeaderWidget() {
     return Positioned(
         left: 0,
@@ -136,71 +147,30 @@ class ProductListView extends GetView<ProductListController> {
                       width: ScreenAdapter.height(2),
                       color: const Color.fromRGBO(233, 233, 233, 0.9)))),
           child: Row(
-            children: [
-              Expanded(
-                flex: 1,
-                child: InkWell(
-                  child: Padding(
-                    padding: EdgeInsets.fromLTRB(0, ScreenAdapter.height(16), 0,
-                        ScreenAdapter.height(16)),
-                    child: Text(
-                      "综合",
+              children: controller.subHeaderList.map((value) {
+            return Expanded(
+              flex: 1,
+              child: InkWell(
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(
+                      0, ScreenAdapter.height(16), 0, ScreenAdapter.height(16)),
+                  child: Text("${value["title"]}",
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          color: Colors.red,
-                          fontSize: ScreenAdapter.fontSize(32)),
-                    ),
-                  ),
-                  onTap: () {},
+                        
+                        color: controller.selectHeaderId == value["id"]
+                                    ? Colors.red
+                                    : Colors.black54,fontSize: ScreenAdapter.fontSize(32))),
                 ),
+                onTap: () {
+                  //注意：旧版本中ScaffoldState新版本的currentState 为可空类型 注意判断
+                  controller.scaffoldGlobalKey.currentState!.openEndDrawer();
+                },
               ),
-              Expanded(
-                flex: 1,
-                child: InkWell(
-                  child: Padding(
-                    padding: EdgeInsets.fromLTRB(0, ScreenAdapter.height(16), 0,
-                        ScreenAdapter.height(16)),
-                    child: Text("销量",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: ScreenAdapter.fontSize(32))),
-                  ),
-                  onTap: () {},
-                ),
-              ),
-              Expanded(
-                flex: 1,
-                child: InkWell(
-                  child: Padding(
-                    padding: EdgeInsets.fromLTRB(0, ScreenAdapter.height(16), 0,
-                        ScreenAdapter.height(16)),
-                    child: Text("价格",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: ScreenAdapter.fontSize(32))),
-                  ),
-                  onTap: () {},
-                ),
-              ),
-              Expanded(
-                flex: 1,
-                child: InkWell(
-                  child: Padding(
-                    padding: EdgeInsets.fromLTRB(0, ScreenAdapter.height(16), 0,
-                        ScreenAdapter.height(16)),
-                    child: Text("筛选",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: ScreenAdapter.fontSize(32))),
-                  ),
-                  onTap: () {
-                    //注意：旧版本中ScaffoldState新版本的currentState 为可空类型 注意判断
-                    controller.scaffoldGlobalKey.currentState!.openEndDrawer();
-                  },
-                ),
-              ),
-            ],
-          ),
+            );
+          }).toList()),
         ));
   }
-
 
   //自定义圆圈加载组件
   Widget _progressIndicator() {
@@ -214,6 +184,7 @@ class ProductListView extends GetView<ProductListController> {
       );
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
