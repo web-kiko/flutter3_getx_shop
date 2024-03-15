@@ -2,7 +2,7 @@
  * @Author: web-kiko kikoiiii@163.com
  * @Date: 2024-03-04 11:57:43
  * @LastEditors: web-kiko kikoiiii@163.com
- * @LastEditTime: 2024-03-09 15:41:04
+ * @LastEditTime: 2024-03-16 01:32:24
  * @FilePath: \flutter3_getx_shop\lib\app\modules\category\views\category_view.dart
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -102,7 +102,8 @@ class CategoryView extends GetView<CategoryController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Container(
+        title: InkWell(
+          child: Container(
           width: ScreenAdapter.width(840),
           height: ScreenAdapter.height(96),
           decoration: BoxDecoration(
@@ -123,6 +124,10 @@ class CategoryView extends GetView<CategoryController> {
                       fontSize: ScreenAdapter.fontSize(32)))
             ],
           ),
+        ),
+        onTap:(){
+          Get.toNamed('/serach');
+        }
         ),
         centerTitle: true,
         backgroundColor: Colors.white,

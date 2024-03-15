@@ -222,7 +222,8 @@ class ProductListView extends GetView<ProductListController> {
         ),
       ),
       appBar: AppBar(
-        title: Container(
+        title: InkWell(
+          child: Container(
           width: ScreenAdapter.width(900),
           height: ScreenAdapter.height(96),
           decoration: BoxDecoration(
@@ -243,6 +244,10 @@ class ProductListView extends GetView<ProductListController> {
                       fontSize: ScreenAdapter.fontSize(32)))
             ],
           ),
+        ),
+        onTap: (){
+          Get.toNamed('/serach');
+        },
         ),
         centerTitle: true,
         backgroundColor: Colors.white,

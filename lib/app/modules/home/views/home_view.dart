@@ -4,7 +4,7 @@
  * @Author: kiko
  * @Date: 2024-02-21 10:54:07
  * @LastEditors: web-kiko kikoiiii@163.com
- * @LastEditTime: 2024-03-06 16:58:58
+ * @LastEditTime: 2024-03-16 01:12:15
  */
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -35,7 +35,8 @@ class HomeView extends GetView<HomeController> {
             leadingWidth: controller.flag.value
                 ? ScreenAdapter.width(40)
                 : ScreenAdapter.width(140),
-            title: AnimatedContainer(
+            title:InkWell(
+              child: AnimatedContainer(
               width: controller.flag.value
                   ? ScreenAdapter.width(800)
                   : ScreenAdapter.width(620),
@@ -59,6 +60,10 @@ class HomeView extends GetView<HomeController> {
                           fontSize: ScreenAdapter.fontSize(32)))
                 ],
               ),
+            ),
+            onTap: (){
+              Get.toNamed('/serach');
+            }
             ),
             centerTitle: true,
             backgroundColor:
