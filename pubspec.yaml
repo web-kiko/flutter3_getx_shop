@@ -34,4 +34,6 @@ flutter:
     - assets/images/xiaomiBanner2.png
     - assets/images/2.0x/xiaomiBanner2.png
     - assets/images/3.0x/xiaomiBanner2.png
-     
+    - assets/images/hot_search.png
+    - assets/images/2.0x/hot_search.png
+    - assets/images/3.0x/hot_search.png 
