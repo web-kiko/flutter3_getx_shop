@@ -2,7 +2,7 @@
  * @Author: web-kiko kikoiiii@163.com
  * @Date: 2024-03-07 16:52:11
  * @LastEditors: web-kiko kikoiiii@163.com
- * @LastEditTime: 2024-03-15 15:35:24
+ * @LastEditTime: 2024-03-15 16:16:10
  * @FilePath: \flutter3_getx_shop\lib\app\modules\productList\controllers\product_list_controller.dart
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -23,7 +23,7 @@ class ProductListController extends GetxController {
   RxBool hasData = true.obs;//没了数据就不请求了
   GlobalKey<ScaffoldState> scaffoldGlobalKey = GlobalKey<ScaffoldState>();//侧边栏
   String sort = "";//排序
-
+  RxInt subHeaderListSort=0.obs;//主要解决的问题是排序箭头无法更新
 
 
   /*二级导航数据*/
@@ -75,10 +75,10 @@ class ProductListController extends GetxController {
     } else {
       selectHeaderId.value = id;
 
-      //改变排序  sort=price_-1     sort=price_1
+      //切换排序  sort=price_-1     sort=price_1
       sort =
           "${subHeaderList[id - 1]["fileds"]}_${subHeaderList[id - 1]["sort"]}";
-      //改变状态
+      //更新箭头的状态
       subHeaderList[id - 1]["sort"]=subHeaderList[id - 1]["sort"]*-1;
       //重置page
       page = 1;

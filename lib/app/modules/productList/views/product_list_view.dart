@@ -151,7 +151,7 @@ class ProductListView extends GetView<ProductListController> {
             return Expanded(
               flex: 1,
               child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
 
                 children: [
                   InkWell(
@@ -197,10 +197,10 @@ class ProductListView extends GetView<ProductListController> {
   }
 
 
-//自定义箭头组件
+  //自定义箭头组件
   Widget _showIcon(id) {
     //controller.subHeaderListSort 作用 : 响应式状态  为了改变状态
-    if (id == 2 || id == 3 ) {
+    if (id == 2 || id == 3 || controller.subHeaderListSort.value==1 || controller.subHeaderListSort.value==-1) {
       if (controller.subHeaderList[id - 1]["sort"] == 1) {
         return const Icon(Icons.arrow_drop_down, color: Colors.black54);
       } else {
@@ -210,6 +210,7 @@ class ProductListView extends GetView<ProductListController> {
       return const Text("");
     }
   }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
