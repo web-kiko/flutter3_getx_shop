@@ -2,7 +2,7 @@
  * @Author: web-kiko kikoiiii@163.com
  * @Date: 2024-03-07 16:52:11
  * @LastEditors: web-kiko kikoiiii@163.com
- * @LastEditTime: 2024-03-15 14:44:05
+ * @LastEditTime: 2024-03-15 15:18:49
  * @FilePath: \flutter3_getx_shop\lib\app\modules\productList\controllers\product_list_controller.dart
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -60,6 +60,19 @@ class ProductListController extends GetxController {
         getPlistData();
       }
     });
+  }
+
+    //二级导航改变的时候触发的方法
+  void subHeaderChange(id) {
+    if (id == 4) {
+      selectHeaderId.value = id;
+      scaffoldGlobalKey.currentState!.openEndDrawer();
+      //弹出侧边栏
+    } else {
+      selectHeaderId.value = id;
+
+      
+    }
   }
   @override
   void onClose() {

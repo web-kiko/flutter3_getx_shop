@@ -137,7 +137,7 @@ class ProductListView extends GetView<ProductListController> {
         left: 0,
         right: 0,
         top: 0,
-        child: Container(
+        child: Obx(() => Container(
           height: ScreenAdapter.height(120),
           width: ScreenAdapter.width(1080),
           decoration: BoxDecoration(
@@ -163,13 +163,17 @@ class ProductListView extends GetView<ProductListController> {
                                     : Colors.black54,fontSize: ScreenAdapter.fontSize(32))),
                 ),
                 onTap: () {
-                  //注意：旧版本中ScaffoldState新版本的currentState 为可空类型 注意判断
-                  controller.scaffoldGlobalKey.currentState!.openEndDrawer();
+                  //注意：侧边栏旧版本中ScaffoldState新版本的currentState 为可空类型 注意判断
+                  //controller.scaffoldGlobalKey.currentState!.openEndDrawer();
+
+                  //二级导航改变的时候触发的方法
+                  controller.subHeaderChange(value["id"]);
                 },
               ),
             );
           }).toList()),
-        ));
+        ))
+        );
   }
 
   //自定义圆圈加载组件
