@@ -114,7 +114,7 @@ class ProductListView extends GetView<ProductListController> {
                                 ],
                               ),
                             ),
-                            Text("￥8999起",
+                            Text("￥${controller.plist[index].price}起",
                                 style: TextStyle(
                                     fontSize: ScreenAdapter.fontSize(38),
                                     fontWeight: FontWeight.bold))

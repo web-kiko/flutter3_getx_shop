@@ -2,7 +2,7 @@
  * @Author: web-kiko kikoiiii@163.com
  * @Date: 2024-03-07 16:52:11
  * @LastEditors: web-kiko kikoiiii@163.com
- * @LastEditTime: 2024-03-15 15:18:49
+ * @LastEditTime: 2024-03-15 15:35:24
  * @FilePath: \flutter3_getx_shop\lib\app\modules\productList\controllers\product_list_controller.dart
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -15,12 +15,16 @@ import 'package:flutter/material.dart';
 class ProductListController extends GetxController {
   RxList<PlistItemModel> plist = <PlistItemModel>[].obs;
   HttpsClient httpsClient = HttpsClient();
+
   int page = 1;
   int pageSize = 8;
   ScrollController scrollController = ScrollController();//滚动条触发数据
-   bool flag = true;//避免重复请求
+  bool flag = true;//避免重复请求
   RxBool hasData = true.obs;//没了数据就不请求了
   GlobalKey<ScaffoldState> scaffoldGlobalKey = GlobalKey<ScaffoldState>();//侧边栏
+  String sort = "";//排序
+
+
 
   /*二级导航数据*/
   List subHeaderList = [
@@ -71,6 +75,22 @@ class ProductListController extends GetxController {
     } else {
       selectHeaderId.value = id;
 
+      //改变排序  sort=price_-1     sort=price_1
+      sort =
+          "${subHeaderList[id - 1]["fileds"]}_${subHeaderList[id - 1]["sort"]}";
+      //改变状态
+      subHeaderList[id - 1]["sort"]=subHeaderList[id - 1]["sort"]*-1;
+      //重置page
+      page = 1;
+      //重置数据
+      plist.value = [];
+      //重置hasData
+      hasData.value = true;
+      //滚动条回到顶部
+      scrollController.jumpTo(0);
+      //重新请求接口
+      getPlistData();
+
       
     }
   }
@@ -83,9 +103,9 @@ class ProductListController extends GetxController {
     if (flag && hasData.value) {
       flag=false;
       print(
-          "api/plist?cid=${Get.arguments["cid"]}&page=$page&pageSize=$pageSize");
+          "api/plist?cid=${Get.arguments["cid"]}&page=$page&pageSize=$pageSize&sort=$sort");
       var response = await httpsClient.get(
-          "api/plist?cid=${Get.arguments["cid"]}&page=$page&pageSize=$pageSize");
+          "api/plist?cid=${Get.arguments["cid"]}&page=$page&pageSize=$pageSize&sort=$sort");
       if (response != null) {
         var plistTemp = PlistModel.fromJson(response.data);
         //注意:拼接数据
