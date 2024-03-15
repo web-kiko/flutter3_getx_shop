@@ -191,7 +191,8 @@ class ProductListView extends GetView<ProductListController> {
                         style: TextStyle(fontSize: ScreenAdapter.fontSize(32))),
                   ),
                   onTap: () {
-                    //注意：新版本中ScaffoldState? 为可空类型 注意判断
+                    //注意：旧版本中ScaffoldState新版本的currentState 为可空类型 注意判断
+                    controller.scaffoldGlobalKey.currentState!.openEndDrawer();
                   },
                 ),
               ),
@@ -216,6 +217,13 @@ class ProductListView extends GetView<ProductListController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //侧边栏
+      key: controller.scaffoldGlobalKey,
+      endDrawer: const Drawer(
+        child: DrawerHeader(
+          child: Text("右侧筛选"),
+        ),
+      ),
       appBar: AppBar(
         title: Container(
           width: ScreenAdapter.width(900),
@@ -242,6 +250,7 @@ class ProductListView extends GetView<ProductListController> {
         centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 0,
+        actions: const [Text("")],
       ),
       body: Stack(
         children: [_productListWidget(), _subHeaderWidget()],

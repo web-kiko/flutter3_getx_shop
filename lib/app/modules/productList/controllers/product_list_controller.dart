@@ -2,7 +2,7 @@
  * @Author: web-kiko kikoiiii@163.com
  * @Date: 2024-03-07 16:52:11
  * @LastEditors: web-kiko kikoiiii@163.com
- * @LastEditTime: 2024-03-14 15:08:46
+ * @LastEditTime: 2024-03-14 16:19:49
  * @FilePath: \flutter3_getx_shop\lib\app\modules\productList\controllers\product_list_controller.dart
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -20,6 +20,7 @@ class ProductListController extends GetxController {
   ScrollController scrollController = ScrollController();//滚动条触发数据
    bool flag = true;//避免重复请求
   RxBool hasData = true.obs;//没了数据就不请求了
+  GlobalKey<ScaffoldState> scaffoldGlobalKey = GlobalKey<ScaffoldState>();//侧边栏
   @override
   void onInit() {
     super.onInit();
