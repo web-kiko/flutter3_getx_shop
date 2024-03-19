@@ -10,8 +10,7 @@ class ProductListView extends GetView<ProductListController> {
   const ProductListView({Key? key}) : super(key: key);
 
   Widget _productListWidget() {
-    return Obx(() => controller.plist.isNotEmpty
-        ? ListView.builder(
+    return  ListView.builder(
             controller: controller.scrollController,
             padding: EdgeInsets.fromLTRB(
                 ScreenAdapter.width(26),
@@ -129,7 +128,7 @@ class ProductListView extends GetView<ProductListController> {
                 ],
               );
             })
-        : _progressIndicator());
+        ;
   }
 
   Widget _subHeaderWidget() {
@@ -254,9 +253,9 @@ class ProductListView extends GetView<ProductListController> {
         elevation: 0,
         actions: const [Text("")],
       ),
-      body: Stack(
+      body: Obx(() => controller.plist.isNotEmpty ?Stack(
         children: [_productListWidget(), _subHeaderWidget()],
-      ),
+      ): _progressIndicator()),
     );
   }
 }
