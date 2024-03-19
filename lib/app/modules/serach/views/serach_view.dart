@@ -2,15 +2,7 @@
  * @Author: web-kiko kikoiiii@163.com
  * @Date: 2024-03-15 19:32:07
  * @LastEditors: web-kiko kikoiiii@163.com
- * @LastEditTime: 2024-03-19 14:45:04
- * @FilePath: \flutter3_getx_shop\lib\app\modules\serach\views\serach_view.dart
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- */
-/*
- * @Author: web-kiko kikoiiii@163.com
- * @Date: 2024-03-15 19:32:07
- * @LastEditors: web-kiko kikoiiii@163.com
- * @LastEditTime: 2024-03-16 02:07:34
+ * @LastEditTime: 2024-03-19 16:30:57
  * @FilePath: \flutter3_getx_shop\lib\app\modules\serach\views\serach_view.dart
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -20,6 +12,7 @@ import 'package:get/get.dart';
 
 import '../controllers/serach_controller.dart';
 import '../../../units/screenAdapter.dart';
+import '../../../units/searchServices.dart';
 
 class SerachView extends GetView<SerachController> {
   const SerachView({Key? key}) : super(key: key);
@@ -55,6 +48,8 @@ class SerachView extends GetView<SerachController> {
               //替换路由
               Get.offAndToNamed("/product-list",
                   arguments: {"keywords": controller.keywords});
+              //保存搜索记录
+              SearchServices.setHistoryData(controller.keywords);
             },
           ),
         ),
@@ -67,6 +62,8 @@ class SerachView extends GetView<SerachController> {
                 //替换路由
                 Get.offAndToNamed("/product-list",
                     arguments: {"keywords": controller.keywords});
+                //保存搜索记录
+                SearchServices.setHistoryData(controller.keywords);
               },
               child: Text("搜索",
                   style: TextStyle(
@@ -91,81 +88,25 @@ class SerachView extends GetView<SerachController> {
               ],
             ),
           ),
-          Wrap(
-            children: [
-              Container(
-                padding: EdgeInsets.fromLTRB(
-                    ScreenAdapter.width(32),
-                    ScreenAdapter.width(16),
-                    ScreenAdapter.width(32),
-                    ScreenAdapter.width(16)),
-                margin: EdgeInsets.all(ScreenAdapter.height(16)),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10)),
-                child: const Text("手机"),
-              ),
-              Container(
-                padding: EdgeInsets.fromLTRB(
-                    ScreenAdapter.width(32),
-                    ScreenAdapter.width(16),
-                    ScreenAdapter.width(32),
-                    ScreenAdapter.width(16)),
-                margin: EdgeInsets.all(ScreenAdapter.height(16)),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10)),
-                child: const Text("笔记本"),
-              ),
-              Container(
-                padding: EdgeInsets.fromLTRB(
-                    ScreenAdapter.width(32),
-                    ScreenAdapter.width(16),
-                    ScreenAdapter.width(32),
-                    ScreenAdapter.width(16)),
-                margin: EdgeInsets.all(ScreenAdapter.height(16)),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10)),
-                child: const Text("电脑"),
-              ),
-              Container(
-                padding: EdgeInsets.fromLTRB(
-                    ScreenAdapter.width(32),
-                    ScreenAdapter.width(16),
-                    ScreenAdapter.width(32),
-                    ScreenAdapter.width(16)),
-                margin: EdgeInsets.all(ScreenAdapter.height(16)),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10)),
-                child: const Text("电脑"),
-              ),
-              Container(
-                padding: EdgeInsets.fromLTRB(
-                    ScreenAdapter.width(32),
-                    ScreenAdapter.width(16),
-                    ScreenAdapter.width(32),
-                    ScreenAdapter.width(16)),
-                margin: EdgeInsets.all(ScreenAdapter.height(16)),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10)),
-                child: const Text("路由器"),
-              ),
-              Container(
-                padding: EdgeInsets.fromLTRB(
-                    ScreenAdapter.width(32),
-                    ScreenAdapter.width(16),
-                    ScreenAdapter.width(32),
-                    ScreenAdapter.width(16)),
-                margin: EdgeInsets.all(ScreenAdapter.height(16)),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10)),
-                child: const Text("电脑"),
-              ),
-            ],
+          Obx(
+            () => Wrap(
+              children: controller.historyList
+                  .map(
+                    (value) => Container(
+                      padding: EdgeInsets.fromLTRB(
+                          ScreenAdapter.width(32),
+                          ScreenAdapter.width(16),
+                          ScreenAdapter.width(32),
+                          ScreenAdapter.width(16)),
+                      margin: EdgeInsets.all(ScreenAdapter.height(16)),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10)),
+                      child:  Text(value),
+                    )
+                  )
+                  .toList(),
+            ),
           ),
           const SizedBox(height: 20),
           Padding(
