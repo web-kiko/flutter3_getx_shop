@@ -2,7 +2,7 @@
  * @Author: web-kiko kikoiiii@163.com
  * @Date: 2024-03-07 16:52:11
  * @LastEditors: web-kiko kikoiiii@163.com
- * @LastEditTime: 2024-03-15 16:16:10
+ * @LastEditTime: 2024-03-19 14:40:02
  * @FilePath: \flutter3_getx_shop\lib\app\modules\productList\controllers\product_list_controller.dart
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -24,7 +24,10 @@ class ProductListController extends GetxController {
   GlobalKey<ScaffoldState> scaffoldGlobalKey = GlobalKey<ScaffoldState>();//侧边栏
   String sort = "";//排序
   RxInt subHeaderListSort=0.obs;//主要解决的问题是排序箭头无法更新
-
+//获取传值
+  String? keywords=Get.arguments['keywords'];
+  String? cid=Get.arguments['cid'];
+  String apiUri="";
 
   /*二级导航数据*/
   List subHeaderList = [
@@ -102,10 +105,17 @@ class ProductListController extends GetxController {
   void getPlistData() async {
     if (flag && hasData.value) {
       flag=false;
-      print(
-          "api/plist?cid=${Get.arguments["cid"]}&page=$page&pageSize=$pageSize&sort=$sort");
-      var response = await httpsClient.get(
-          "api/plist?cid=${Get.arguments["cid"]}&page=$page&pageSize=$pageSize&sort=$sort");
+      if(cid!=null){
+        apiUri="api/plist?cid=$cid&page=$page&pageSize=$pageSize&sort=$sort";
+      }else{
+        apiUri="api/plist?search=$keywords&page=$page&pageSize=$pageSize&sort=$sort";
+      }
+      print(apiUri);
+      // print(
+      //     "api/plist?cid=${Get.arguments["cid"]}&page=$page&pageSize=$pageSize&sort=$sort");
+      // var response = await httpsClient.get(
+      //     "api/plist?cid=${Get.arguments["cid"]}&page=$page&pageSize=$pageSize&sort=$sort");
+      var response = await httpsClient.get(apiUri);
       if (response != null) {
         var plistTemp = PlistModel.fromJson(response.data);
         //注意:拼接数据

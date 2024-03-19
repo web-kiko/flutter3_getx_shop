@@ -2,6 +2,14 @@
  * @Author: web-kiko kikoiiii@163.com
  * @Date: 2024-03-15 19:32:07
  * @LastEditors: web-kiko kikoiiii@163.com
+ * @LastEditTime: 2024-03-19 14:45:04
+ * @FilePath: \flutter3_getx_shop\lib\app\modules\serach\views\serach_view.dart
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
+/*
+ * @Author: web-kiko kikoiiii@163.com
+ * @Date: 2024-03-15 19:32:07
+ * @LastEditors: web-kiko kikoiiii@163.com
  * @LastEditTime: 2024-03-16 02:07:34
  * @FilePath: \flutter3_getx_shop\lib\app\modules\serach\views\serach_view.dart
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
@@ -35,11 +43,19 @@ class SerachView extends GetView<SerachController> {
             decoration: InputDecoration(
                 //配置padding值
                 contentPadding: const EdgeInsets.all(0),
-
                 prefixIcon: const Icon(Icons.search),
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
                     borderSide: BorderSide.none)),
+            onChanged: (value) {
+              controller.keywords = value;
+            },
+            //监听键盘的回车事件
+            onSubmitted: (value) {
+              //替换路由
+              Get.offAndToNamed("/product-list",
+                  arguments: {"keywords": controller.keywords});
+            },
           ),
         ),
         centerTitle: true,
@@ -48,6 +64,9 @@ class SerachView extends GetView<SerachController> {
           TextButton(
               onPressed: () {
                 print("搜索");
+                //替换路由
+                Get.offAndToNamed("/product-list",
+                    arguments: {"keywords": controller.keywords});
               },
               child: Text("搜索",
                   style: TextStyle(
@@ -57,7 +76,7 @@ class SerachView extends GetView<SerachController> {
         elevation: 0,
       ),
       body: ListView(
-         padding: EdgeInsets.all(ScreenAdapter.height(20)),
+        padding: EdgeInsets.all(ScreenAdapter.height(20)),
         children: [
           Padding(
             padding: EdgeInsets.only(bottom: ScreenAdapter.height(20)),
@@ -110,7 +129,6 @@ class SerachView extends GetView<SerachController> {
                     borderRadius: BorderRadius.circular(10)),
                 child: const Text("电脑"),
               ),
-              
               Container(
                 padding: EdgeInsets.fromLTRB(
                     ScreenAdapter.width(32),
@@ -135,7 +153,6 @@ class SerachView extends GetView<SerachController> {
                     borderRadius: BorderRadius.circular(10)),
                 child: const Text("路由器"),
               ),
-             
               Container(
                 padding: EdgeInsets.fromLTRB(
                     ScreenAdapter.width(32),
@@ -148,11 +165,10 @@ class SerachView extends GetView<SerachController> {
                     borderRadius: BorderRadius.circular(10)),
                 child: const Text("电脑"),
               ),
-            
             ],
           ),
           const SizedBox(height: 20),
-           Padding(
+          Padding(
             padding: EdgeInsets.only(bottom: ScreenAdapter.height(20)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -167,7 +183,6 @@ class SerachView extends GetView<SerachController> {
           ),
           Wrap(
             children: [
-              
               Container(
                 padding: EdgeInsets.fromLTRB(
                     ScreenAdapter.width(32),
@@ -290,63 +305,60 @@ class SerachView extends GetView<SerachController> {
               ),
             ],
           ),
- const SizedBox(height: 20),
+          const SizedBox(height: 20),
           //热销商品
 
           Container(
             decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10)
-            ),
-            child:Column(
+                color: Colors.white, borderRadius: BorderRadius.circular(10)),
+            child: Column(
               children: [
                 Container(
                   width: double.infinity,
                   height: ScreenAdapter.height(138),
                   decoration: const BoxDecoration(
-                    color: Colors.white,
+                      color: Colors.white,
                       image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: AssetImage("assets/images/hot_search.png")
-                      )
-                  ),
+                          fit: BoxFit.cover,
+                          image: AssetImage("assets/images/hot_search.png"))),
                 ),
-                Container(      
-                   padding: EdgeInsets.all(ScreenAdapter.width(20)),          
+                Container(
+                  padding: EdgeInsets.all(ScreenAdapter.width(20)),
                   child: GridView.builder(
-                   shrinkWrap: true,  //收缩
-                   itemCount: 8,   //必须设置
-                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            crossAxisSpacing: ScreenAdapter.width(40),
-                            mainAxisSpacing: ScreenAdapter.height(20),
-                            childAspectRatio: 3 / 1),
-                    itemBuilder: ((context, index) {
+                      shrinkWrap: true, //收缩
+                      itemCount: 8, //必须设置
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: ScreenAdapter.width(40),
+                          mainAxisSpacing: ScreenAdapter.height(20),
+                          childAspectRatio: 3 / 1),
+                      itemBuilder: ((context, index) {
                         return Row(
-                            children: [
-                              Container(
-                                alignment: Alignment.center,
-                                width: ScreenAdapter.width(120),
-                                padding: EdgeInsets.all(ScreenAdapter.width(10)),
-                                child: Image.network("https://www.itying.com/images/shouji.png",fit: BoxFit.fitHeight,),
+                          children: [
+                            Container(
+                              alignment: Alignment.center,
+                              width: ScreenAdapter.width(120),
+                              padding: EdgeInsets.all(ScreenAdapter.width(10)),
+                              child: Image.network(
+                                "https://www.itying.com/images/shouji.png",
+                                fit: BoxFit.fitHeight,
                               ),
-                              Expanded(child: Container(
-                                padding: EdgeInsets.all(ScreenAdapter.width(10)),
-                                alignment: Alignment.topLeft,
-                                child: const Text("小米净化器 热水器 小米净化器"),
-                              ))
-                            ],
+                            ),
+                            Expanded(
+                                child: Container(
+                              padding: EdgeInsets.all(ScreenAdapter.width(10)),
+                              alignment: Alignment.topLeft,
+                              child: const Text("小米净化器 热水器 小米净化器"),
+                            ))
+                          ],
                         );
-                    })),
+                      })),
                 )
               ],
-            ) ,
+            ),
           )
-        
-        
         ],
       ),
     );
   }
 }
-

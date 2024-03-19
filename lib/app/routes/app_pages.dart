@@ -35,6 +35,9 @@ class AppPages {
       binding: ProductListBinding(),
     ),
     GetPage(
+      //淡入淡出的动画
+      transition: Transition.fadeIn,
+      transitionDuration: const Duration(milliseconds: 100),
       name: _Paths.SERACH,
       page: () => const SerachView(),
       binding: SerachBinding(),

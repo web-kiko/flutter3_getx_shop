@@ -1,7 +1,8 @@
 import 'package:get/get.dart';
 
 class SerachController extends GetxController {
-  //TODO: Implement SerachController
+  //TODO: Implement SerachController、
+  String keywords="";
 
   final count = 0.obs;
   @override

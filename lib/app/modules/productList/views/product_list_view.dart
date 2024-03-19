@@ -238,7 +238,7 @@ class ProductListView extends GetView<ProductListController> {
                     ScreenAdapter.width(34), 0, ScreenAdapter.width(10), 0),
                 child: const Icon(Icons.search),
               ),
-              Text("手机",
+              Text(controller.keywords!=null?"${controller.keywords}":"",
                   style: TextStyle(
                       color: Colors.black54,
                       fontSize: ScreenAdapter.fontSize(32)))
@@ -246,7 +246,7 @@ class ProductListView extends GetView<ProductListController> {
           ),
         ),
         onTap: (){
-          Get.toNamed('/serach');
+          Get.offAndToNamed("/search");
         },
         ),
         centerTitle: true,
