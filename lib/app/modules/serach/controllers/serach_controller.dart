@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import '../../../units/searchServices.dart';
+import '../../../units/storage.dart';
 
 class SerachController extends GetxController {
   //TODO: Implement SerachController、
@@ -29,6 +30,26 @@ class SerachController extends GetxController {
     if (tempList.isNotEmpty) {
       historyList.addAll(tempList);
       update();
+    }
+  }
+
+//删除全部历史记录
+  clearHistoryData() async{
+    await SearchServices.clearHistoryData();
+    historyList.clear();
+    update();
+  }
+
+
+//长按删除单个历史记录
+  removeHistoryData(keywords) async{
+    var tempList=await SearchServices.getHistoryData();
+    if(tempList.isNotEmpty){
+       tempList.remove(keywords);
+       await Storage.setData("searchList", tempList);
+       //注意当前历史数据
+       historyList.remove(keywords);
+       update();
     }
   }
 }
