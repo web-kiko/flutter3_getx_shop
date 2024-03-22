@@ -4,7 +4,7 @@
  * @Author: kiko
  * @Date: 2024-02-21 10:54:07
  * @LastEditors: web-kiko kikoiiii@163.com
- * @LastEditTime: 2024-03-16 01:12:15
+ * @LastEditTime: 2024-03-22 14:41:40
  */
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,7 +14,7 @@ import '../../../units/screenAdapter.dart'; //适配
 import '../../../units/myFonts.dart'; //引入字标库
 import 'package:flutter_swiper_view/flutter_swiper_view.dart'; //轮播图
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart'; //瀑布流
-import '../../../units/httpsClient.dart';//封装的dio
+import '../../../units/httpsClient.dart'; //封装的dio
 
 class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);
@@ -35,36 +35,35 @@ class HomeView extends GetView<HomeController> {
             leadingWidth: controller.flag.value
                 ? ScreenAdapter.width(40)
                 : ScreenAdapter.width(140),
-            title:InkWell(
-              child: AnimatedContainer(
-              width: controller.flag.value
-                  ? ScreenAdapter.width(800)
-                  : ScreenAdapter.width(620),
-              height: ScreenAdapter.height(96),
-              decoration: BoxDecoration(
-                color: const Color.fromARGB(230, 252, 243, 236),
-                borderRadius: BorderRadius.circular(30),
-              ),
-              duration: const Duration(milliseconds: 600),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(
-                        ScreenAdapter.width(34), 0, ScreenAdapter.width(10), 0),
-                    child: const Icon(Icons.search),
+            title: InkWell(
+                child: AnimatedContainer(
+                  width: controller.flag.value
+                      ? ScreenAdapter.width(800)
+                      : ScreenAdapter.width(620),
+                  height: ScreenAdapter.height(96),
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(230, 252, 243, 236),
+                    borderRadius: BorderRadius.circular(30),
                   ),
-                  Text("手机",
-                      style: TextStyle(
-                          color: Colors.black54,
-                          fontSize: ScreenAdapter.fontSize(32)))
-                ],
-              ),
-            ),
-            onTap: (){
-              Get.toNamed('/serach');
-            }
-            ),
+                  duration: const Duration(milliseconds: 600),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(ScreenAdapter.width(34), 0,
+                            ScreenAdapter.width(10), 0),
+                        child: const Icon(Icons.search),
+                      ),
+                      Text("手机",
+                          style: TextStyle(
+                              color: Colors.black54,
+                              fontSize: ScreenAdapter.fontSize(32)))
+                    ],
+                  ),
+                ),
+                onTap: () {
+                  Get.toNamed('/serach');
+                }),
             centerTitle: true,
             backgroundColor:
                 controller.flag.value ? Colors.white : Colors.transparent,
@@ -84,17 +83,18 @@ class HomeView extends GetView<HomeController> {
                           ? Colors.black87
                           : Colors.white))
             ],
-          )),
+          )
+          ),
     );
   }
 
- //轮播图
+  //轮播图
   Widget _focus() {
     return SizedBox(
       width: ScreenAdapter.width(1080),
       height: ScreenAdapter.height(682),
       child: Obx(() => Swiper(
-            itemBuilder: (context, index) {             
+            itemBuilder: (context, index) {
               return Image.network(
                 HttpsClient.replaeUri(controller.swiperList[index].pic),
                 fit: BoxFit.fill,
@@ -108,6 +108,7 @@ class HomeView extends GetView<HomeController> {
           )),
     );
   }
+
   //banner
   Widget _banner() {
     return SizedBox(
@@ -144,7 +145,9 @@ class HomeView extends GetView<HomeController> {
                           alignment: Alignment.center,
                           width: ScreenAdapter.height(120),
                           height: ScreenAdapter.height(120),
-                          child: Image.network(HttpsClient.replaeUri(controller.categoryList[index * 10 + i].pic),
+                          child: Image.network(
+                              HttpsClient.replaeUri(
+                                  controller.categoryList[index * 10 + i].pic),
                               fit: BoxFit.fitHeight),
                         ),
                         Padding(
@@ -240,9 +243,10 @@ class HomeView extends GetView<HomeController> {
                           // 下面就改了2个，作对比
                           // String picUrl =
                           //     "https://miapp.itying.com/${controller.bestSellingSwiperList[index].pic}";
-                          
+
                           return Image.network(
-                            HttpsClient.replaeUri(controller.bestSellingSwiperList[index].pic),
+                            HttpsClient.replaeUri(
+                                controller.bestSellingSwiperList[index].pic),
                             fit: BoxFit.fill,
                           );
                         },
@@ -353,7 +357,7 @@ class HomeView extends GetView<HomeController> {
   }
 
 //瀑佈流商品
-   Widget _bestGoods() {
+  Widget _bestGoods() {
     return Column(
       children: [
         Padding(
@@ -374,70 +378,81 @@ class HomeView extends GetView<HomeController> {
                     style: TextStyle(fontSize: ScreenAdapter.fontSize(38)))
               ],
             )),
-        Obx(()=>Container(
-          padding: EdgeInsets.all(ScreenAdapter.width(26)),
-          color: const Color.fromRGBO(246, 246, 246, 1),
-          child: MasonryGridView.count(
-            crossAxisCount: 2,
-            mainAxisSpacing: ScreenAdapter.width(26),
-            crossAxisSpacing: ScreenAdapter.width(26),
-            itemCount: controller.bestPlist.length,   //注意
-            shrinkWrap: true,//收缩，让元素宽度自适应            
-            physics: const NeverScrollableScrollPhysics(), //禁止滑动
-            itemBuilder: (context, index) {
-               var picUrl="https://miapp.itying.com/${controller.bestPlist[index].sPic}";
-              return Container(
-                padding: EdgeInsets.all(ScreenAdapter.width(20)),
-                decoration: BoxDecoration(                 
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.white,
-                ),
-                child: Column(
-                  children: [
-                    Container(
-                      padding: EdgeInsets.all(ScreenAdapter.width(10)),                     
-                      child: Image.network(
-                        picUrl.replaceAll("\\", "/"),
-                        fit: BoxFit.cover,
+        Obx(() => Container(
+              padding: EdgeInsets.all(ScreenAdapter.width(26)),
+              color: const Color.fromRGBO(246, 246, 246, 1),
+              child: MasonryGridView.count(
+                crossAxisCount: 2,
+                mainAxisSpacing: ScreenAdapter.width(26),
+                crossAxisSpacing: ScreenAdapter.width(26),
+                itemCount: controller.bestPlist.length, //注意
+                shrinkWrap: true, //收缩，让元素宽度自适应
+                physics: const NeverScrollableScrollPhysics(), //禁止滑动
+                itemBuilder: (context, index) {
+                  var picUrl =
+                      "https://miapp.itying.com/${controller.bestPlist[index].sPic}";
+                  return InkWell(
+                    onTap: () {
+                      Get.toNamed("/product-content",
+                          arguments: {"id": controller.bestPlist[index].sId});
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(ScreenAdapter.width(20)),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.white,
+                      ),
+                      child: Column(
+                        children: [
+                          Container(
+                            padding: EdgeInsets.all(ScreenAdapter.width(10)),
+                            child: Image.network(
+                              picUrl.replaceAll("\\", "/"),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(ScreenAdapter.width(10)),
+                            width: double.infinity,
+                            child: Text(
+                              "${controller.bestPlist[index].title}",
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                  fontSize: ScreenAdapter.fontSize(42),
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(ScreenAdapter.width(10)),
+                            width: double.infinity,
+                            child: Text(
+                              "${controller.bestPlist[index].subTitle}",
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                  fontSize: ScreenAdapter.fontSize(32)),
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(ScreenAdapter.width(10)),
+                            width: double.infinity,
+                            child: Text(
+                              "¥${controller.bestPlist[index].price}",
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                  fontSize: ScreenAdapter.fontSize(32),
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                    Container(
-                      padding: EdgeInsets.all(ScreenAdapter.width(10)),
-                      width: double.infinity,
-                      child: Text(
-                        "${controller.bestPlist[index].title}",
-                        textAlign: TextAlign.start,
-                        style: TextStyle(fontSize: ScreenAdapter.fontSize(42),fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.all(ScreenAdapter.width(10)),
-                      width: double.infinity,
-                      child: Text(
-                        "${controller.bestPlist[index].subTitle}",
-                        textAlign: TextAlign.start,
-                        style: TextStyle(fontSize: ScreenAdapter.fontSize(32)),
-                      ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.all(ScreenAdapter.width(10)),
-                      width: double.infinity,
-                      child: Text(
-                        "¥${controller.bestPlist[index].price}",
-                        textAlign: TextAlign.start,
-                        style: TextStyle(fontSize: ScreenAdapter.fontSize(32),fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            },
-          ),
-        ))
+                  );
+                },
+              ),
+            ))
       ],
     );
   }
-
 
   //内容区域
   Widget _homePage() {
