@@ -11,7 +11,7 @@ class ThreeTabView extends GetView {
   @override
   Widget build(BuildContext context) {
    return Container(
-      key: controller.gk2,
+      key: controller.gk3,
       alignment: Alignment.center,
       width: ScreenAdapter.width(1080),
       height: ScreenAdapter.height(2200),

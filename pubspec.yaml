@@ -37,3 +37,6 @@ flutter:
     - assets/images/hot_search.png
     - assets/images/2.0x/hot_search.png
     - assets/images/3.0x/hot_search.png 
+    - assets/images/service.png
+    - assets/images/2.0x/service.png
+    - assets/images/3.0x/service.png

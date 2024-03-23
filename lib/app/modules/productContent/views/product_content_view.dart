@@ -2,7 +2,7 @@
  * @ Author: kiko
  * @ Create Time: 2024-03-21 02:39:33
  * @ Modified by: kiko
- * @ Modified time: 2024-03-24 01:19:39
+ * @ Modified time: 2024-03-24 05:38:00
  * @ Description:
  */
 
@@ -162,7 +162,7 @@ class ProductContentView extends GetView<ProductContentController> {
                 },
                 style: ButtonStyle(
                     //注意
-                    padding: MaterialStateProperty.all(EdgeInsets.all(0)),
+                    padding: MaterialStateProperty.all(const EdgeInsets.all(0)),
                     alignment: Alignment.center,
                     backgroundColor: MaterialStateProperty.all(Colors.black12),
                     foregroundColor: MaterialStateProperty.all(Colors.white),
@@ -235,7 +235,7 @@ class ProductContentView extends GetView<ProductContentController> {
                               RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10)))),
                       onPressed: () {},
-                      child: Text("加入购物车"),
+                      child: const Text("加入购物车"),
                     ),
                   )),
               Expanded(
@@ -254,7 +254,7 @@ class ProductContentView extends GetView<ProductContentController> {
                               RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10)))),
                       onPressed: () {},
-                      child: Text("立即购买"),
+                      child: const Text("立即购买"),
                     ),
                   ))
             ],
