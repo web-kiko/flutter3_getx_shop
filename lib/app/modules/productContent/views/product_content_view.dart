@@ -1,9 +1,20 @@
+/*
+ * @ Author: kiko
+ * @ Create Time: 2024-03-21 02:39:33
+ * @ Modified by: kiko
+ * @ Modified time: 2024-03-24 01:19:39
+ * @ Description:
+ */
+
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
 import '../controllers/product_content_controller.dart';
 import '../../../units/screenAdapter.dart';
+import '../views/frist_tab_view.dart';
+import '../views/two_tab_view.dart';
+import '../views/three_tab_view.dart';
 
 class ProductContentView extends GetView<ProductContentController> {
   const ProductContentView({Key? key}) : super(key: key);
@@ -123,25 +134,25 @@ class ProductContentView extends GetView<ProductContentController> {
                           ScreenAdapter.width(20),
                           0),
                       items: [
-                        PopupMenuItem(
+                        const PopupMenuItem(
                           child: Row(
-                            children: const [
+                            children: [
                               Icon(Icons.home, color: Colors.white),
                               Text("首页", style: TextStyle(color: Colors.white))
                             ],
                           ),
                         ),
-                        PopupMenuItem(
+                        const PopupMenuItem(
                           child: Row(
-                            children: const [
+                            children:  [
                               Icon(Icons.message, color: Colors.white),
                               Text("消息", style: TextStyle(color: Colors.white))
                             ],
                           ),
                         ),
-                        PopupMenuItem(
+                       const PopupMenuItem(
                           child: Row(
-                            children: const [
+                            children:  [
                               Icon(Icons.star, color: Colors.white),
                               Text("收藏", style: TextStyle(color: Colors.white))
                             ],
@@ -171,30 +182,10 @@ class ProductContentView extends GetView<ProductContentController> {
       controller: controller.scrollController,
       child: Column(
         children: [
-          Container(
-            key: controller.gk1,
-            alignment: Alignment.center,
-            width: ScreenAdapter.width(1080),
-            height: ScreenAdapter.height(1800),
-            color: Colors.orange,
-            child: const Text("商品", style: TextStyle(fontSize: 100)),
-          ),
-          Container(
-            key: controller.gk2,
-            alignment: Alignment.center,
-            width: ScreenAdapter.width(1080),
-            height: ScreenAdapter.height(2900),
-            color: Colors.blue,
-            child: const Text("详情", style: TextStyle(fontSize: 100)),
-          ),
-          Container(
-            key: controller.gk3,
-            alignment: Alignment.center,
-            width: ScreenAdapter.width(1080),
-            height: ScreenAdapter.height(2200),
-            color: Colors.red,
-            child: const Text("推荐", style: TextStyle(fontSize: 100)),
-          ),
+         FristTabView(),
+         TwoTabView(),
+         ThreeTabView()
+         
         ],
       ),
     );
