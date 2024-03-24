@@ -2,7 +2,7 @@
  * @ Author: kiko
  * @ Create Time: 2024-03-21 02:39:33
  * @ Modified by: kiko
- * @ Modified time: 2024-03-24 05:38:00
+ * @ Modified time: 2024-03-25 02:27:14
  * @ Description:
  */
 
@@ -19,6 +19,59 @@ import '../views/three_tab_view.dart';
 class ProductContentView extends GetView<ProductContentController> {
   const ProductContentView({Key? key}) : super(key: key);
 
+  //showBottomAttr
+  void showBottomAttr(){
+    Get.bottomSheet(
+      Container(
+                  color: Colors.white,
+                  padding: EdgeInsets.all(ScreenAdapter.width(20)),
+                  width: double.infinity,
+                  height: ScreenAdapter.height(1200),
+                  child: ListView(
+                    children: 
+                    controller.pcontent.value.attr!.map((v){
+                      return Wrap(
+                        children: [
+                          Container(
+                            padding: EdgeInsets.only(
+                                top: ScreenAdapter.height(20),
+                                left: ScreenAdapter.width(20)),
+                            width: ScreenAdapter.width(1040),
+                            child: Text("${v.cate}",
+                                style: const TextStyle(fontWeight: FontWeight.bold)),
+                          ),
+                          Container(
+                            padding: EdgeInsets.only(
+                                top: ScreenAdapter.height(20),
+                                left: ScreenAdapter.width(20)),
+                            width: ScreenAdapter.width(1040),
+                            child: Wrap(
+                              children: v.list!.map((value){
+                                  return  Container(
+                                  margin: EdgeInsets.all(ScreenAdapter.width(20)),
+                                  child: Chip(
+                                      padding: EdgeInsets.only(left: ScreenAdapter.width(20),right: ScreenAdapter.width(20)),
+                                    backgroundColor:  const Color.fromARGB(31, 223, 213, 213),
+                                    label: Text(value)
+                                  ),
+                                );
+                              }).toList()                              
+                             
+                            ),
+                          )
+                          
+                        
+                        ],
+                      );                      
+                    
+                    }).toList()
+                    
+                  
+                  ),
+                ));
+              
+  }
+
   Widget _appBar(BuildContext context) {
     return Obx(
       () => AppBar(
@@ -27,6 +80,7 @@ class ProductContentView extends GetView<ProductContentController> {
           child: SizedBox(
               width: ScreenAdapter.width(88),
               height: ScreenAdapter.width(88),
+              //返回按钮
               child: ElevatedButton(
                 onPressed: () {
                   Get.back();
@@ -182,7 +236,7 @@ class ProductContentView extends GetView<ProductContentController> {
       controller: controller.scrollController,
       child: Column(
         children: [
-         FristTabView(),
+         FristTabView(showBottomAttr),
          TwoTabView(),
          ThreeTabView()
          
@@ -234,7 +288,9 @@ class ProductContentView extends GetView<ProductContentController> {
                               // CircleBorder()
                               RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10)))),
-                      onPressed: () {},
+                      onPressed: () { 
+                          showBottomAttr();
+                       },
                       child: const Text("加入购物车"),
                     ),
                   )),

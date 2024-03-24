@@ -1,3 +1,11 @@
+/*
+ * @ Author: kiko
+ * @ Create Time: 2024-03-24 00:42:32
+ * @ Modified by: kiko
+ * @ Modified time: 2024-03-25 02:19:24
+ * @ Description:
+ */
+
 
 
 import 'package:flutter/material.dart';
@@ -5,14 +13,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../units/screenAdapter.dart';
 import '../controllers/product_content_controller.dart';
+import '../../../units/httpsClient.dart';
 
 class FristTabView extends GetView {
    @override
     final ProductContentController controller = Get.find();
-   FristTabView({Key? key}) : super(key: key);
+    final Function showBottomAttr;
+   FristTabView(this.showBottomAttr, {Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-      return Container(
+       return Obx(() => controller.pcontent.value.sId!=null? Container(
       padding: EdgeInsets.all(ScreenAdapter.width(20)),
       key: controller.gk1,
       width: ScreenAdapter.width(1080),
@@ -21,21 +31,23 @@ class FristTabView extends GetView {
           //图片
           AspectRatio(
             aspectRatio: 1 / 1,
-            child: Image.network("https://www.itying.com/images/flutter/p1.jpg",
+            child: Image.network(HttpsClient.replaeUri(controller.pcontent.value.pic),
                 fit: BoxFit.cover),
           ),
           //标题
           Container(
+            alignment: Alignment.centerLeft,
             padding: EdgeInsets.only(top: ScreenAdapter.height(20)),
-            child: Text("联想ThinkPad 翼480（0VCD） 英特尔酷睿i5 14英寸轻薄窄边框笔记本电脑",
+            child: Text("${controller.pcontent.value.title}",
                 style: TextStyle(
                     color: Colors.black87,
                     fontSize: ScreenAdapter.fontSize(46))),
           ),
           Container(
+            alignment: Alignment.centerLeft,
             padding: EdgeInsets.only(top: ScreenAdapter.height(20)),
             child: Text(
-                "震撼首发，15.9毫米全金属外观，4.9毫米轻薄窄边框，指纹电源按钮，杜比音效，2G独显，预装正版office软件",
+                "${controller.pcontent.value.subTitle}",
                 style: TextStyle(
                     color: Colors.black87,
                     fontSize: ScreenAdapter.fontSize(34))),
@@ -50,7 +62,7 @@ class FristTabView extends GetView {
                   children: [
                     const Text("价格: ",
                         style: TextStyle(fontWeight: FontWeight.bold)),
-                    Text("¥128",
+                    Text("¥${controller.pcontent.value.price}",
                         style: TextStyle(
                             color: Colors.red,
                             fontSize: ScreenAdapter.fontSize(86)))
@@ -60,7 +72,7 @@ class FristTabView extends GetView {
                   children: [
                     const Text("原价: ",
                         style: TextStyle(fontWeight: FontWeight.bold)),
-                    Text("¥158",
+                    Text("${controller.pcontent.value.oldPrice}",
                         style: TextStyle(
                             color: Colors.black26,
                             fontSize: ScreenAdapter.fontSize(46),
@@ -74,124 +86,16 @@ class FristTabView extends GetView {
           Container(
             height: ScreenAdapter.height(140),
             padding: EdgeInsets.only(top: ScreenAdapter.height(20)),
-            child: GestureDetector(
+            child: InkWell(
               onTap: () {
-                Get.bottomSheet(Container(
-                  color: Colors.white,
-                  padding: EdgeInsets.all(ScreenAdapter.width(20)),
-                  width: double.infinity,
-                  height: ScreenAdapter.height(1200),
-                  child: ListView(
-                    children: [
-                      Wrap(
-                        children: [
-                          Container(
-                            padding: EdgeInsets.only(
-                                top: ScreenAdapter.height(20),
-                                left: ScreenAdapter.width(20)),
-                            width: ScreenAdapter.width(1040),
-                            child: const Text("版本",
-                                style: TextStyle(fontWeight: FontWeight.bold)),
-                          ),
-                          Container(
-                            padding: EdgeInsets.only(
-                                top: ScreenAdapter.height(20),
-                                left: ScreenAdapter.width(20)),
-                            width: ScreenAdapter.width(1040),
-                            child: Wrap(
-                              children: [
-                                Container(
-                                  margin: EdgeInsets.all(ScreenAdapter.width(20)),
-                                  child: Chip(
-                                      padding: EdgeInsets.only(left: ScreenAdapter.width(20),right: ScreenAdapter.width(20)),
-                                    backgroundColor:  const Color.fromARGB(31, 223, 213, 213),
-                                    label: const Text("8GB+128GB")
-                                  ),
-                                ),
-                                 Container(
-                                   margin: EdgeInsets.all(ScreenAdapter.width(20)),
-                                  child: Chip(
-                                    padding: EdgeInsets.only(left: ScreenAdapter.width(20),right: ScreenAdapter.width(20)),
-                                    backgroundColor:  const Color.fromARGB(31, 223, 213, 213),
-                                    label: const Text("16GB+256GB")
-                                  ),
-                                ),
-                                 Container(
-                                   margin: EdgeInsets.all(ScreenAdapter.width(20)),
-                                  child: Chip(
-                                      padding: EdgeInsets.only(left: ScreenAdapter.width(20),right: ScreenAdapter.width(20)),
-                                    backgroundColor:  const Color.fromARGB(31, 223, 213, 213),
-                                    label: const Text("8GB+128GB")
-                                  ),
-                                ),
-                              ],
-                            ),
-                          )
-                          ,
-                           Container(
-                            padding: EdgeInsets.only(
-                                top: ScreenAdapter.height(20),
-                                left: ScreenAdapter.width(20)),
-                            width: ScreenAdapter.width(1040),
-                            child: const Text("颜色",
-                                style: TextStyle(fontWeight: FontWeight.bold)),
-                          ),
-                          Container(
-                            padding: EdgeInsets.only(
-                                top: ScreenAdapter.height(20),
-                                left: ScreenAdapter.width(20)),
-                            width: ScreenAdapter.width(1040),
-                            child: Wrap(
-                              children: [
-                                Container(
-                                  margin: EdgeInsets.all(ScreenAdapter.width(20)),
-                                  child: Chip(
-                                      padding: EdgeInsets.only(left: ScreenAdapter.width(20),right: ScreenAdapter.width(20)),
-                                    backgroundColor:  const Color.fromARGB(31, 223, 213, 213),
-                                   label: const Text("幻银"),
-                                  ),
-                                ),
-                                 Container(
-                                   margin: EdgeInsets.all(ScreenAdapter.width(20)),
-                                  child: Chip(
-                                    padding: EdgeInsets.only(left: ScreenAdapter.width(20),right: ScreenAdapter.width(20)),
-                                    backgroundColor:  const Color.fromARGB(31, 223, 213, 213),
-                                     label: const Text("红色"),
-                                  ),
-                                ),
-                                 Container(
-                                   margin: EdgeInsets.all(ScreenAdapter.width(20)),
-                                  child: Chip(
-                                      padding: EdgeInsets.only(left: ScreenAdapter.width(20),right: ScreenAdapter.width(20)),
-                                    backgroundColor:  const Color.fromARGB(31, 223, 213, 213),
-                                      label: const Text("黑色"),
-                                  ),                                  
-                                ),
-                                Container(
-                                   margin: EdgeInsets.all(ScreenAdapter.width(20)),
-                                  child: Chip(
-                                      padding: EdgeInsets.only(left: ScreenAdapter.width(20),right: ScreenAdapter.width(20)),
-                                    backgroundColor:  const Color.fromARGB(31, 223, 213, 213),
-                                      label: const Text("蓝色"),
-                                  ),
-                                  
-                                ),
-                              ],
-                            ),
-                          )
-                        
-                        ],
-                      )
-                    ],
-                  ),
-                ));
+                showBottomAttr();
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
                     children: [
-                      Text("已选", style: TextStyle(fontWeight: FontWeight.bold)),
+                      const Text("已选", style: TextStyle(fontWeight: FontWeight.bold)),
                       Padding(
                         padding: EdgeInsets.only(left: ScreenAdapter.width(20)),
                         child: const Text("115，黑色，XL，1件"),
@@ -357,7 +261,7 @@ class FristTabView extends GetView {
                 children: [
                   Row(
                     children: [
-                      Text("门店", style: TextStyle(fontWeight: FontWeight.bold)),
+                      const Text("门店", style: TextStyle(fontWeight: FontWeight.bold)),
                       Padding(
                         padding: EdgeInsets.only(left: ScreenAdapter.width(20)),
                         child: const Text("小米之家万达专卖店"),
@@ -385,7 +289,7 @@ class FristTabView extends GetView {
                   width: double.infinity,
                   height: ScreenAdapter.height(1200),
                   child: ListView(
-                    children: [
+                    children: const [
                       Text('''
 
     小米科技有限责任公司成立于2010年3月3日，是专注于智能硬件和电子产品研发的全球化移动互联网企业，同时也是一家专注于智能手机、智能电动汽车 [385]  、互联网电视及智能家居生态链建设的创新型科技企业。 [2-3]  小米公司创造了用互联网模式开发手机操作系统、发烧友参与开发改进的模式。
@@ -404,7 +308,7 @@ class FristTabView extends GetView {
                 children: [
                   Row(
                     children: [
-                      Text("服务 ",
+                      const Text("服务 ",
                           style: TextStyle(fontWeight: FontWeight.bold)),
                       Image.asset("assets/images/service.png")
                     ],
@@ -420,8 +324,11 @@ class FristTabView extends GetView {
           )
         ],
       ),
-    );
+    ):SizedBox(
+      height: ScreenAdapter.height(2400),
+      child: const Center(
+        child: CircularProgressIndicator(),
+      ),
+    ));
   }
 }
-
- 
