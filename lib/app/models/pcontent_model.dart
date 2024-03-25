@@ -28,6 +28,7 @@ class PcontentItemModel {
   int? status;
   String? pic;
   String? content;
+  String? specs;  
   String? cname;
   List<PcontentAttrModel>? attr;
   String? subTitle;
@@ -45,6 +46,7 @@ class PcontentItemModel {
       this.status,
       this.pic,
       this.content,
+      this.specs,
       this.cname,
       this.attr,
       this.subTitle,
@@ -62,6 +64,7 @@ class PcontentItemModel {
     status = json['status'];
     pic = json['pic'];
     content = json['content'];
+    specs = json['specs'];    
     cname = json['cname'];
     if (json['attr'] != null) {
       attr = <PcontentAttrModel>[];
@@ -86,6 +89,7 @@ class PcontentItemModel {
     data['status'] = status;
     data['pic'] = pic;
     data['content'] = content;
+    data['specs'] = specs;
     data['cname'] = cname;
     if (attr != null) {
       data['attr'] = attr?.map((v) => v.toJson()).toList();
@@ -99,8 +103,7 @@ class PcontentItemModel {
 class PcontentAttrModel {
   String? cate;
   List<String>? list;
-//添加了attrMap
-  List<Map>? attrList;
+  List<Map>? attrList;  //新增
   PcontentAttrModel({this.cate, this.list});
 
   PcontentAttrModel.fromJson(Map<String, dynamic> json) {
@@ -116,5 +119,3 @@ class PcontentAttrModel {
     return data;
   }
 }
-
-

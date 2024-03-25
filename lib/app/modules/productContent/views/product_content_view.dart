@@ -2,7 +2,7 @@
  * @ Author: kiko
  * @ Create Time: 2024-03-21 02:39:33
  * @ Modified by: kiko
- * @ Modified time: 2024-03-26 04:06:21
+ * @ Modified time: 2024-03-26 04:47:06
  * @ Description:
  */
 
@@ -19,7 +19,7 @@ import '../views/three_tab_view.dart';
 class ProductContentView extends GetView<ProductContentController> {
   const ProductContentView({Key? key}) : super(key: key);
 
-  //商品 showBottomAttr多个嵌套渲染不出来的问题把他抽离了出来
+  //tab中商品 showBottomAttr多个嵌套渲染不出来的问题把他抽离了出来
   void showBottomAttr() {
     Get.bottomSheet(
       //bottomSheet更新流数据obx（）不行，需要使用 GetBuilder 来渲染数据
@@ -234,29 +234,30 @@ class ProductContentView extends GetView<ProductContentController> {
     );
   }
 
-//详情
- Widget _subHeader() {
-    return Container(
-      color: Colors.white,
-      child: Row(
-        children: [
-          Expanded(
+//tab中详情
+  Widget _subHeader() {
+    return Obx(() => Container(
+          color: Colors.white,
+          child: Row(
+              children: controller.subTabsList.map((value) {
+            return Expanded(
+                child: InkWell(
+              onTap: () {
+                controller.changeSelectedSubTabsIndex(value["id"]);
+              },
               child: Container(
-            height: ScreenAdapter.height(120),
-            alignment: Alignment.center,
-            child: const Text("商品介绍", style: TextStyle(color: Colors.red)),
-          )),
-          Expanded(
-              child: Container(
-            height: ScreenAdapter.height(120),
-            alignment: Alignment.center,
-            child: const Text("规格参数"),
-          ))
-        ],
-      ),
-    );
+                height: ScreenAdapter.height(120),
+                alignment: Alignment.center,
+                child: Text("${value["title"]}",
+                    style: TextStyle(
+                        color: controller.selectedSubTabsIndex == value["id"]
+                            ? Colors.red
+                            : Colors.black87)),
+              ),
+            ));
+          }).toList()),
+        ));
   }
-
 
   Widget _body() {
     //singlechildScerollView锚点 controller.gk1.currentContext as BuildContext实现tab跳转

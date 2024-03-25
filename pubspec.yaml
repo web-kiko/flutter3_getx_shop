@@ -13,6 +13,7 @@ dependencies:
   dio: ^4.0.6 #网络请求
   flutter_staggered_grid_view: ^0.6.2 #瀑布流
   shared_preferences: ^2.0.15 #本地历史记录
+  flutter_html: ^3.0.0-alpha.6 #html
   flutter: 
     sdk: flutter
 
