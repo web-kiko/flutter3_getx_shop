@@ -2,9 +2,11 @@
  * @ Author: kiko
  * @ Create Time: 2024-03-21 02:39:33
  * @ Modified by: kiko
- * @ Modified time: 2024-03-26 04:47:06
+ * @ Modified time: 2024-03-26 05:39:08
  * @ Description:
  */
+
+import 'dart:async';
 
 import 'package:flutter/material.dart';
 
@@ -122,10 +124,26 @@ class ProductContentView extends GetView<ProductContentController> {
                             Scrollable.ensureVisible(
                                 controller.gk2.currentContext as BuildContext,
                                 duration: const Duration(milliseconds: 100));
+                                 //修正
+                            Timer.periodic(const Duration(milliseconds: 101),
+                                (timer) {
+                              controller.scrollController.jumpTo(
+                                  controller.scrollController.position.pixels -
+                                      ScreenAdapter.height(120));
+                                         timer.cancel();
+                            });
                           } else {
                             Scrollable.ensureVisible(
                                 controller.gk3.currentContext as BuildContext,
-                                duration: const Duration(milliseconds: 500));
+                                duration: const Duration(milliseconds: 100));
+                                        //修正
+                            Timer.periodic(const Duration(milliseconds: 101),
+                                (timer) {
+                              controller.scrollController.jumpTo(
+                                  controller.scrollController.position.pixels -
+                                      ScreenAdapter.height(120));
+                                         timer.cancel();
+                            });
                           }
                         },
                         child: Column(

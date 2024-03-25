@@ -2,7 +2,7 @@
  * @ Author: kiko
  * @ Create Time: 2024-03-21 02:39:33
  * @ Modified by: kiko
- * @ Modified time: 2024-03-26 04:47:00
+ * @ Modified time: 2024-03-26 05:23:09
  * @ Description:
  */
 
@@ -86,35 +86,44 @@ class ProductContentController extends GetxController {
   void scrollControllerListener() {
     scrollController.addListener(() {
       //获取渲染后的元素的位置
-      if (gk2Position == 0 && gk3Position == 0) {
-        print(scrollController.position.pixels);
+      if(gk2Position==0&& gk3Position==0){
+        print(scrollController.position.pixels);  
         //获取Container高度的时候获取的是距离顶部的高度，如果要从0开始计算要加下滚动条下拉的高度
         getContainerPosition(scrollController.position.pixels);
       }
       //显示隐藏详情 subHeader tab切换
-      if (scrollController.position.pixels > gk2Position &&
-          scrollController.position.pixels < gk3Position) {
-        if (showSubHeaderTabs.value == false) {
-          showSubHeaderTabs.value = true;
-        }
-      } else {
-        if (showSubHeaderTabs.value == true) {
-          showSubHeaderTabs.value = false;
-        }
+      if(scrollController.position.pixels>gk2Position&& scrollController.position.pixels<gk3Position){
+          if(showSubHeaderTabs.value==false){
+            showSubHeaderTabs.value=true;
+            selectedTabsIndex.value=2;
+            update();
+          }
+      }else if(scrollController.position.pixels>0&& scrollController.position.pixels<gk2Position){
+          if( showSubHeaderTabs.value==true){
+            showSubHeaderTabs.value=false;
+             selectedTabsIndex.value=1;
+             update();
+          }
+      }else if(scrollController.position.pixels>gk2Position){
+         if( showSubHeaderTabs.value==true){
+            showSubHeaderTabs.value=false;
+             selectedTabsIndex.value=3;
+             update();
+          }
       }
 
       //显示隐藏顶部tab切换
       if (scrollController.position.pixels <= 100) {
-        opcity.value = scrollController.position.pixels / 100;
-        if (opcity.value > 0.96) {
-          opcity.value = 1;
+        opcity.value = scrollController.position.pixels / 100;    
+        if(opcity.value> 0.96){
+          opcity.value=1;
         }
         if (showTabs.value == true) {
           showTabs.value = false;
         }
         update();
       } else {
-        if (showTabs.value == false) {
+        if (showTabs.value == false) {        
           showTabs.value = true;
           update();
         }

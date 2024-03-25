@@ -14,7 +14,7 @@ class ThreeTabView extends GetView {
       key: controller.gk3,
       alignment: Alignment.center,
       width: ScreenAdapter.width(1080),
-      height: ScreenAdapter.height(2200),
+      height: ScreenAdapter.height(3600),
       color: Colors.yellow,
       child: const Text("推荐", style: TextStyle(fontSize: 100)),
     );
