@@ -2,7 +2,7 @@
  * @ Author: kiko
  * @ Create Time: 2024-03-24 00:42:32
  * @ Modified by: kiko
- * @ Modified time: 2024-03-25 02:19:24
+ * @ Modified time: 2024-03-25 16:39:57
  * @ Description:
  */
 
@@ -324,7 +324,7 @@ class FristTabView extends GetView {
           )
         ],
       ),
-    ):SizedBox(
+    ):SizedBox(//加载圈圈
       height: ScreenAdapter.height(2400),
       child: const Center(
         child: CircularProgressIndicator(),
