@@ -2,7 +2,7 @@
  * @ Author: kiko
  * @ Create Time: 2024-03-21 02:39:33
  * @ Modified by: kiko
- * @ Modified time: 2024-03-26 03:28:19
+ * @ Modified time: 2024-03-26 04:06:21
  * @ Description:
  */
 
@@ -19,7 +19,7 @@ import '../views/three_tab_view.dart';
 class ProductContentView extends GetView<ProductContentController> {
   const ProductContentView({Key? key}) : super(key: key);
 
-  //showBottomAttr多个嵌套渲染不出来的问题把他抽离了出来
+  //商品 showBottomAttr多个嵌套渲染不出来的问题把他抽离了出来
   void showBottomAttr() {
     Get.bottomSheet(
       //bottomSheet更新流数据obx（）不行，需要使用 GetBuilder 来渲染数据
@@ -234,6 +234,30 @@ class ProductContentView extends GetView<ProductContentController> {
     );
   }
 
+//详情
+ Widget _subHeader() {
+    return Container(
+      color: Colors.white,
+      child: Row(
+        children: [
+          Expanded(
+              child: Container(
+            height: ScreenAdapter.height(120),
+            alignment: Alignment.center,
+            child: const Text("商品介绍", style: TextStyle(color: Colors.red)),
+          )),
+          Expanded(
+              child: Container(
+            height: ScreenAdapter.height(120),
+            alignment: Alignment.center,
+            child: const Text("规格参数"),
+          ))
+        ],
+      ),
+    );
+  }
+
+
   Widget _body() {
     //singlechildScerollView锚点 controller.gk1.currentContext as BuildContext实现tab跳转
     return SingleChildScrollView(
@@ -241,7 +265,7 @@ class ProductContentView extends GetView<ProductContentController> {
       child: Column(
         children: [
          FristTabView(showBottomAttr),
-         TwoTabView(),
+         TwoTabView(_subHeader),
          ThreeTabView()
          
         ],
@@ -333,6 +357,14 @@ class ProductContentView extends GetView<ProductContentController> {
         children: [
           _body(),
           _bottom(),
+          Obx(() => controller.showSubHeaderTabs.value
+              ? Positioned(
+                  left: 0,
+                  top: ScreenAdapter.getStatusBarHeight() +
+                      ScreenAdapter.height(118),
+                  right: 0,
+                  child: _subHeader())
+              : const Text("")),
         ],
       ),
     );

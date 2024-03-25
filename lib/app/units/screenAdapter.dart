@@ -19,5 +19,10 @@ class ScreenAdapter{
       // return  ScreenUtil().screenHeight;
       return 1.sh;
   }
+  
+
+  static getStatusBarHeight (){
+    return ScreenUtil().statusBarHeight;  //状态栏高度 刘海屏会更高
+  }
 
 }

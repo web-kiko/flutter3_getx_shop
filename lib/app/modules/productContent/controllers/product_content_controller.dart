@@ -2,7 +2,7 @@
  * @ Author: kiko
  * @ Create Time: 2024-03-21 02:39:33
  * @ Modified by: kiko
- * @ Modified time: 2024-03-26 03:16:25
+ * @ Modified time: 2024-03-26 04:17:48
  * @ Description:
  */
 
@@ -10,6 +10,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import '../../../models/pcontent_model.dart';
 import '../../../units/httpsClient.dart';
+import '../../../units/screenAdapter.dart';
 
 class ProductContentController extends GetxController {
   final ScrollController scrollController = ScrollController();
@@ -35,9 +36,14 @@ class ProductContentController extends GetxController {
   //详情数据
   var pcontent = PcontentItemModel().obs;
 
-  //attr
+  //attr属性筛选
   RxList<PcontentAttrModel> pcontentAttr = <PcontentAttrModel>[].obs;
 
+  //详情 container的位置
+  double gk2Position=0;
+  double gk3Position=0;
+  //是否显示详情tab切换
+  RxBool showSubHeaderTabs=false.obs;
 
   @override
   void onInit() {
@@ -51,17 +57,50 @@ class ProductContentController extends GetxController {
     super.onReady();
   }
 
+//获取元素位置   globalKey.currentContext!.findRenderObject()可以获取渲染的属性。
+  getContainerPosition(pixels){
+     RenderBox box2=gk2.currentContext!.findRenderObject() as RenderBox;
+     gk2Position=box2.localToGlobal(Offset.zero).dy+pixels-(ScreenAdapter.getStatusBarHeight()+ScreenAdapter.height(120));
+
+     RenderBox box3=gk3.currentContext!.findRenderObject() as RenderBox;
+     gk3Position=box3.localToGlobal(Offset.zero).dy+pixels-(ScreenAdapter.getStatusBarHeight()+ScreenAdapter.height(120));
+     print(gk2Position);
+
+     print(gk3Position);
+
+  }
   //监听滚动条滚动事件
   void scrollControllerListener() {
     scrollController.addListener(() {
+      //获取渲染后的元素的位置
+      if(gk2Position==0&& gk3Position==0){
+        print(scrollController.position.pixels);  
+        //获取Container高度的时候获取的是距离顶部的高度，如果要从0开始计算要加下滚动条下拉的高度
+        getContainerPosition(scrollController.position.pixels);
+      }
+      //显示隐藏详情 subHeader tab切换
+      if(scrollController.position.pixels>gk2Position&& scrollController.position.pixels<gk3Position){
+          if(showSubHeaderTabs.value==false){
+            showSubHeaderTabs.value=true;
+          }
+      }else{
+          if( showSubHeaderTabs.value==true){
+            showSubHeaderTabs.value=false;
+          }
+      }
+
+      //显示隐藏顶部tab切换
       if (scrollController.position.pixels <= 100) {
-        opcity.value = scrollController.position.pixels / 100;
+        opcity.value = scrollController.position.pixels / 100;    
+        if(opcity.value> 0.96){
+          opcity.value=1;
+        }
         if (showTabs.value == true) {
           showTabs.value = false;
         }
         update();
       } else {
-        if (showTabs.value == false) {
+        if (showTabs.value == false) {        
           showTabs.value = true;
           update();
         }
