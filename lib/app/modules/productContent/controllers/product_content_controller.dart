@@ -2,7 +2,7 @@
  * @ Author: kiko
  * @ Create Time: 2024-03-21 02:39:33
  * @ Modified by: kiko
- * @ Modified time: 2024-03-27 02:09:50
+ * @ Modified time: 2024-03-27 02:27:19
  * @ Description:
  */
 
@@ -48,7 +48,8 @@ class ProductContentController extends GetxController {
   //保存筛选属性值
   RxString selectedAttr = "".obs;
 
-
+  //购买的数量
+  RxInt buyNum = 1.obs;
 
   List subTabsList = [
     {
@@ -248,6 +249,18 @@ class ProductContentController extends GetxController {
     update();
   }
 
-  
+  //增加数量
+  incBuyNum() {
+    buyNum.value++;
+    update();
+  }
+  //减少数量
+
+  decBuyNum() {
+    if (buyNum.value > 1) {
+      buyNum.value--;
+      update();
+    }
+  }
 
 }

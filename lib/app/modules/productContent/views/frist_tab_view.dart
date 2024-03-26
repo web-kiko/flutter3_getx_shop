@@ -57,7 +57,7 @@ class FristTabView extends GetView {
             padding: EdgeInsets.only(top: ScreenAdapter.height(20)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
+              children: [ 
                 Row(
                   children: [
                     const Text("价格: ",
