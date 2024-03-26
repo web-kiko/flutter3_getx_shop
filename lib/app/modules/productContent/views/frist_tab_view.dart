@@ -2,7 +2,7 @@
  * @ Author: kiko
  * @ Create Time: 2024-03-24 00:42:32
  * @ Modified by: kiko
- * @ Modified time: 2024-03-27 01:36:38
+ * @ Modified time: 2024-03-27 02:08:11
  * @ Description:
  */
 
@@ -98,7 +98,7 @@ class FristTabView extends GetView {
                       const Text("已选", style: TextStyle(fontWeight: FontWeight.bold)),
                       Padding(
                         padding: EdgeInsets.only(left: ScreenAdapter.width(20)),
-                        child: const Text("115，黑色，XL，1件"),
+                        child:  Text(controller.selectedAttr.value),
                       )
                     ],
                   ),

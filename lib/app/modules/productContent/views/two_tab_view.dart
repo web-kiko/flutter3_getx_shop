@@ -2,7 +2,7 @@
  * @ Author: kiko
  * @ Create Time: 2024-03-24 00:43:39
  * @ Modified by: kiko
- * @ Modified time: 2024-03-26 05:01:34
+ * @ Modified time: 2024-03-27 01:48:29
  * @ Description:
  */
 
@@ -25,11 +25,11 @@ class TwoTabView extends GetView {
       key: controller.gk2,
       alignment: Alignment.center,
       width: ScreenAdapter.width(1080),
-     child: Column(
+    child: Obx(()=> controller.pcontent.value.content!=null?Column(
         children: [
           subHeader(),
 
-          Obx(()=>controller.selectedSubTabsIndex==1?SizedBox(
+          controller.selectedSubTabsIndex.value==1?SizedBox(
               width: ScreenAdapter.width(1080),
               child: Html(
                     data: controller.pcontent.value.content,
@@ -55,10 +55,9 @@ class TwoTabView extends GetView {
                       ),
                     },
                   ),
-          ))
+          )
         ],
-      ),
+      ):const Text("")),
     );
   }
 }
-
