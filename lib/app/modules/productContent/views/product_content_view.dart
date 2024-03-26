@@ -2,7 +2,7 @@
  * @ Author: kiko
  * @ Create Time: 2024-03-21 02:39:33
  * @ Modified by: kiko
- * @ Modified time: 2024-03-26 05:39:08
+ * @ Modified time: 2024-03-27 01:39:03
  * @ Description:
  */
 
@@ -22,7 +22,8 @@ class ProductContentView extends GetView<ProductContentController> {
   const ProductContentView({Key? key}) : super(key: key);
 
   //tab中商品 showBottomAttr多个嵌套渲染不出来的问题把他抽离了出来
-  void showBottomAttr() {
+  //action 1点击的是筛选属性   2 点击的是加入购物车   3 表示点击的是立即购买
+  void showBottomAttr(int action) {
     Get.bottomSheet(
       //bottomSheet更新流数据obx（）不行，需要使用 GetBuilder 来渲染数据
     GetBuilder<ProductContentController>(
@@ -33,7 +34,10 @@ class ProductContentView extends GetView<ProductContentController> {
           padding: EdgeInsets.all(ScreenAdapter.width(20)),
           width: double.infinity,
           height: ScreenAdapter.height(1200),
-          child: ListView(
+          child: Stack(
+
+            children: [
+              ListView(
               children: controller.pcontent.value.attr!.map((v) {
             return Wrap(
               children: [
@@ -73,6 +77,104 @@ class ProductContentView extends GetView<ProductContentController> {
               ],
             );
           }).toList()),
+          Positioned(
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  child: action == 1
+                      ? Row(
+                          children: [
+                            Expanded(
+                                flex: 1,
+                                child: Container(
+                                  height: ScreenAdapter.height(120),
+                                  margin: EdgeInsets.only(
+                                      right: ScreenAdapter.width(20)),
+                                  child: ElevatedButton(
+                                    style: ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStateProperty.all(
+                                                const Color.fromRGBO(
+                                                    255, 165, 0, 0.9)),
+                                        foregroundColor:
+                                            MaterialStateProperty.all(
+                                                Colors.white),
+                                        shape: MaterialStateProperty.all(
+                                            // CircleBorder()
+                                            RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        10)))),
+                                    onPressed: () {
+                                      showBottomAttr(2);
+                                      
+                                    },
+                                    child: const Text("加入购物车"),
+                                  ),
+                                )),
+                            Expanded(
+                                flex: 1,
+                                child: Container(
+                                  height: ScreenAdapter.height(120),
+                                  margin: EdgeInsets.only(
+                                      right: ScreenAdapter.width(20)),
+                                  child: ElevatedButton(
+                                    style: ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStateProperty.all(
+                                                const Color.fromRGBO(
+                                                    253, 1, 0, 0.9)),
+                                        foregroundColor:
+                                            MaterialStateProperty.all(
+                                                Colors.white),
+                                        shape: MaterialStateProperty.all(
+                                            // CircleBorder()
+                                            RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        10)))),
+                                    onPressed: () {
+                                      showBottomAttr(3);
+                                      
+                                    },
+                                    child: const Text("立即购买"),
+                                  ),
+                                ))
+                          ],
+                        )
+                      : Row(
+                          children: [
+                            Expanded(
+                                flex: 1,
+                                child: Container(
+                                  height: ScreenAdapter.height(120),
+                                  margin: EdgeInsets.only(
+                                      right: ScreenAdapter.width(20)),
+                                  child: ElevatedButton(
+                                    style: ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStateProperty.all(
+                                                const Color.fromRGBO(
+                                                    253, 1, 0, 0.9)),
+                                        foregroundColor:
+                                            MaterialStateProperty.all(
+                                                Colors.white),
+                                        shape: MaterialStateProperty.all(
+                                            // CircleBorder()
+                                            RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        10)))),
+                                    onPressed: () {
+                                      
+                                    },
+                                    child: const Text("确定"),
+                                  ),
+                                ))
+                          ],
+                        ))
+            ],
+          )
         );
       },
     ));
@@ -336,7 +438,7 @@ class ProductContentView extends GetView<ProductContentController> {
                               RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10)))),
                       onPressed: () { 
-                          showBottomAttr();
+                          showBottomAttr(2);
                        },
                       child: const Text("加入购物车"),
                     ),
@@ -356,7 +458,9 @@ class ProductContentView extends GetView<ProductContentController> {
                               // CircleBorder()
                               RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10)))),
-                      onPressed: () {},
+                      onPressed: () {
+                        showBottomAttr(3);
+                      },
                       child: const Text("立即购买"),
                     ),
                   ))

@@ -2,7 +2,7 @@
  * @ Author: kiko
  * @ Create Time: 2024-03-24 00:42:32
  * @ Modified by: kiko
- * @ Modified time: 2024-03-25 16:39:57
+ * @ Modified time: 2024-03-27 01:36:38
  * @ Description:
  */
 
@@ -88,7 +88,7 @@ class FristTabView extends GetView {
             padding: EdgeInsets.only(top: ScreenAdapter.height(20)),
             child: InkWell(
               onTap: () {
-                showBottomAttr();
+                showBottomAttr(1);
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
