@@ -2,7 +2,7 @@
  * @ Author: kiko
  * @ Create Time: 2024-03-21 02:39:33
  * @ Modified by: kiko
- * @ Modified time: 2024-03-27 02:27:19
+ * @ Modified time: 2024-03-28 16:39:56
  * @ Description:
  */
 
@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import '../../../models/pcontent_model.dart';
 import '../../../units/httpsClient.dart';
 import '../../../units/screenAdapter.dart';
+import '../../../units/cartServices.dart';
 
 class ProductContentController extends GetxController {
   final ScrollController scrollController = ScrollController();
@@ -92,44 +93,46 @@ class ProductContentController extends GetxController {
   void scrollControllerListener() {
     scrollController.addListener(() {
       //获取渲染后的元素的位置
-      if(gk2Position==0&& gk3Position==0){
-        print(scrollController.position.pixels);  
+      if (gk2Position == 0 && gk3Position == 0) {
+        print(scrollController.position.pixels);
         //获取Container高度的时候获取的是距离顶部的高度，如果要从0开始计算要加下滚动条下拉的高度
         getContainerPosition(scrollController.position.pixels);
       }
       //显示隐藏详情 subHeader tab切换
-      if(scrollController.position.pixels>gk2Position&& scrollController.position.pixels<gk3Position){
-          if(showSubHeaderTabs.value==false){
-            showSubHeaderTabs.value=true;
-            selectedTabsIndex.value=2;
-            update();
-          }
-      }else if(scrollController.position.pixels>0&& scrollController.position.pixels<gk2Position){
-          if( showSubHeaderTabs.value==true){
-            showSubHeaderTabs.value=false;
-             selectedTabsIndex.value=1;
-             update();
-          }
-      }else if(scrollController.position.pixels>gk2Position){
-         if( showSubHeaderTabs.value==true){
-            showSubHeaderTabs.value=false;
-             selectedTabsIndex.value=3;
-             update();
-          }
+      if (scrollController.position.pixels > gk2Position &&
+          scrollController.position.pixels < gk3Position) {
+        if (showSubHeaderTabs.value == false) {
+          showSubHeaderTabs.value = true;
+          selectedTabsIndex.value = 2;
+          update();
+        }
+      } else if (scrollController.position.pixels > 0 &&
+          scrollController.position.pixels < gk2Position) {
+        if (showSubHeaderTabs.value == true) {
+          showSubHeaderTabs.value = false;
+          selectedTabsIndex.value = 1;
+          update();
+        }
+      } else if (scrollController.position.pixels > gk2Position) {
+        if (showSubHeaderTabs.value == true) {
+          showSubHeaderTabs.value = false;
+          selectedTabsIndex.value = 3;
+          update();
+        }
       }
 
       //显示隐藏顶部tab切换
       if (scrollController.position.pixels <= 100) {
-        opcity.value = scrollController.position.pixels / 100;    
-        if(opcity.value> 0.96){
-          opcity.value=1;
+        opcity.value = scrollController.position.pixels / 100;
+        if (opcity.value > 0.96) {
+          opcity.value = 1;
         }
         if (showTabs.value == true) {
           showTabs.value = false;
         }
         update();
       } else {
-        if (showTabs.value == false) {        
+        if (showTabs.value == false) {
           showTabs.value = true;
           update();
         }
@@ -148,7 +151,7 @@ class ProductContentController extends GetxController {
     update();
   }
 
-   //改变内容区域的tab切换
+  //改变内容区域的tab切换
   void changeSelectedSubTabsIndex(index) {
     selectedSubTabsIndex.value = index;
     //跳转到指定位置
@@ -254,8 +257,8 @@ class ProductContentController extends GetxController {
     buyNum.value++;
     update();
   }
-  //减少数量
 
+  //减少数量
   decBuyNum() {
     if (buyNum.value > 1) {
       buyNum.value--;
@@ -263,4 +266,21 @@ class ProductContentController extends GetxController {
     }
   }
 
+  //加入购物车
+  void addCart() {
+    setSelectedAttr();
+    print("加入购物车");
+    CartServices.addCart(pcontent.value, selectedAttr.value, buyNum.value);
+    //把back放在上面不然不显示
+    Get.back();
+    Get.snackbar("提示", "加入购物车成功");
+
+  }
+
+//立即购买
+  void buy() {
+    setSelectedAttr();
+    print("立即购买");
+    Get.back();
+  }
 }

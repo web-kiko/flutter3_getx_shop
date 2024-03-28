@@ -2,7 +2,7 @@
  * @ Author: kiko
  * @ Create Time: 2024-03-21 02:39:33
  * @ Modified by: kiko
- * @ Modified time: 2024-03-27 02:52:42
+ * @ Modified time: 2024-03-28 16:24:21
  * @ Description:
  */
 
@@ -22,18 +22,6 @@ import '../views/three_tab_view.dart';
 
 class ProductContentView extends GetView<ProductContentController> {
   const ProductContentView({Key? key}) : super(key: key);
-
-   void _addCart() {
-    controller.setSelectedAttr();
-    print("加入购物车");
-    Get.back();
-  }
-
-  void _buy() {
-    controller.setSelectedAttr();
-    print("立即购买");
-    Get.back();
-  }
 
   //tab中商品 showBottomAttr多个嵌套渲染不出来的问题把他抽离了出来
   //action 1点击的是筛选属性   2 点击的是加入购物车   3 表示点击的是立即购买
@@ -139,9 +127,9 @@ class ProductContentView extends GetView<ProductContentController> {
                                                     BorderRadius.circular(
                                                         10)))),
                                     onPressed: () {
-                                      _addCart();
+                                      controller.addCart();
                                     },
-                                    child: Text("加入购物车"),
+                                    child: const Text("加入购物车"),
                                   ),
                                 )),
                             Expanded(
@@ -166,9 +154,9 @@ class ProductContentView extends GetView<ProductContentController> {
                                                     BorderRadius.circular(
                                                         10)))),
                                     onPressed: () {
-                                      _buy();
+                                       controller.buy();
                                     },
-                                    child: Text("立即购买"),
+                                    child: const Text("立即购买"),
                                   ),
                                 ))
                           ],
@@ -198,12 +186,12 @@ class ProductContentView extends GetView<ProductContentController> {
                                                         10)))),
                                     onPressed: () {
                                       if (action == 2) {
-                                        _addCart();
+                                        controller.addCart();
                                       } else {
-                                        _buy();
+                                        controller.buy();
                                       }
                                     },
-                                    child: Text("确定"),
+                                    child: const Text("确定"),
                                   ),
                                 ))
                           ],

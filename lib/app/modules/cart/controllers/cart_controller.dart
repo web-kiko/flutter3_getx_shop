@@ -1,12 +1,16 @@
 import 'package:get/get.dart';
 
+import '../../../units/cartServices.dart';
+
 class CartController extends GetxController {
   //TODO: Implement CartController
 
-  final count = 0.obs;
+  RxList cartList=[].obs;
   @override
   void onInit() {
     super.onInit();
+    // CartServices.clearCartData();
+    getCartListData();
   }
 
   @override
@@ -18,6 +22,10 @@ class CartController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
-  void increment() => count.value++;
+//获取购物车里的数据
+   void getCartListData()async {
+    var tempList =await CartServices.getCartList();
+    cartList.value=tempList;
+    update();
+  }
 }

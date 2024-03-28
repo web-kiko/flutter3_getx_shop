@@ -1,3 +1,12 @@
+/*
+ * @ Author: kiko
+ * @ Create Time: 2024-03-26 06:34:32
+ * @ Modified by: kiko
+ * @ Modified time: 2024-03-28 16:18:31
+ * @ Description:
+ */
+
+
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -5,8 +14,10 @@ import 'package:get/get.dart';
 import '../../../units/screenAdapter.dart';
 import '../views/cart_item_mun_view.dart';
 
+
 class CartItemView extends GetView {
-  const CartItemView({Key? key}) : super(key: key);
+  final Map cartItem;
+   const CartItemView(this.cartItem,{Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -37,24 +48,24 @@ class CartItemView extends GetView {
                 crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "小米11",
+                "${cartItem["title"]}",
                 style: TextStyle(
                     fontSize: ScreenAdapter.fontSize(36),
                     fontWeight: FontWeight.bold),
               ),
               SizedBox(height: ScreenAdapter.height(20)),
-              const Row(
-                children: [Chip(label: Text("黑色"))],
+               Row(
+                children: [Chip(label: Text("${cartItem["selectedAttr"]}"))],
               ),
               SizedBox(height: ScreenAdapter.height(20)),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("¥98.9",
+                  Text("¥${cartItem["price"]}",
                       style: TextStyle(
                           fontSize: ScreenAdapter.fontSize(38),
                           color: Colors.red)),
-                  const CartItemMunView()
+                   CartItemMunView(cartItem)
                 ],
               )
             ],
