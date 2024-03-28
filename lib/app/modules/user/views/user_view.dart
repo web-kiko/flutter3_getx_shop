@@ -2,7 +2,7 @@
  * @ Author: kiko
  * @ Create Time: 2024-03-04 11:57:43
  * @ Modified by: kiko
- * @ Modified time: 2024-03-29 04:46:47
+ * @ Modified time: 2024-03-29 04:58:15
  * @ Description:
  */
 
@@ -337,7 +337,7 @@ class UserView extends GetView<UserController> {
                     Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Icon(MyFonts.anzhuangyewu, color: Colors.orange),
+                        Icon(MyFonts.anzhuang, color: Colors.orange),
                         Text("一键退换")
                       ],
                     ),

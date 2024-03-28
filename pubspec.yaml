@@ -28,6 +28,9 @@ flutter:
     - family: MyIcon   #指定一个字体名 根据自己的需求定义
       fonts:
         - asset: assets/fonts/iconfont.ttf 
+    - family: userIcon   #指定一个字体名 根据自己的需求定义
+      fonts:
+        - asset: assets/fonts/userIconfont.ttf   
   assets:
     - assets/images/xiaomiBanner.png
     - assets/images/2.0x/xiaomiBanner.png

@@ -1,0 +1,79 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1376",
+      "name": "充电",
+      "font_class": "chongdian",
+      "unicode": "f01bf",
+      "unicode_decimal": 983487
+    },
+    {
+      "icon_id": "2076258",
+      "name": "客服",
+      "font_class": "kefu",
+      "unicode": "e88f",
+      "unicode_decimal": 59535
+    },
+    {
+      "icon_id": "3858839",
+      "name": "维修",
+      "font_class": "weixiu",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
+      "icon_id": "5387432",
+      "name": "维修服务",
+      "font_class": "weixiufuwu",
+      "unicode": "ead5",
+      "unicode_decimal": 60117
+    },
+    {
+      "icon_id": "7287091",
+      "name": "退换货",
+      "font_class": "tuihuanhuo",
+      "unicode": "e624",
+      "unicode_decimal": 58916
+    },
+    {
+      "icon_id": "11064389",
+      "name": "进度",
+      "font_class": "schedule",
+      "unicode": "e634",
+      "unicode_decimal": 58932
+    },
+    {
+      "icon_id": "12319699",
+      "name": " 建筑安装业",
+      "font_class": "anzhuangyewu",
+      "unicode": "e63c",
+      "unicode_decimal": 58940
+    },
+    {
+      "icon_id": "21233105",
+      "name": "兑换",
+      "font_class": "duihuan",
+      "unicode": "f4b0",
+      "unicode_decimal": 62640
+    },
+    {
+      "icon_id": "22724211",
+      "name": "icon-小米归属",
+      "font_class": "icon-xiaomiguishu",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "26849841",
+      "name": "小米",
+      "font_class": "XiaoMi",
+      "unicode": "e623",
+      "unicode_decimal": 58915
+    }
+  ]
+}
