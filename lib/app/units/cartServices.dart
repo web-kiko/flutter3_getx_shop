@@ -2,7 +2,7 @@
  * @ Author: kiko
  * @ Create Time: 2024-03-28 15:07:14
  * @ Modified by: kiko
- * @ Modified time: 2024-03-28 16:28:27
+ * @ Modified time: 2024-03-29 03:03:30
  * @ Description:
  */
 
@@ -123,5 +123,9 @@ class CartServices {
   //清空购物车
   static clearCartData() async {
     await Storage.clear('cartList');
+  }
+//保存+-数据
+   static void setCartList(cartListData) async {
+      await Storage.setData("cartList", cartListData);
   }
 }

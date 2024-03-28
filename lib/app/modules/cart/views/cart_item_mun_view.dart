@@ -3,18 +3,27 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../units/screenAdapter.dart';
+import '../controllers/cart_controller.dart';
 
 class CartItemMunView extends GetView {
+
+  @override
+  final CartController controller = Get.find();
   final Map cartItem;
-  const CartItemMunView(this.cartItem,{Key? key}) : super(key: key);
+   CartItemMunView(this.cartItem,{Key? key}) : super(key: key);
 
     Widget _left(){
-      return Container(
+      return InkWell(
+        onTap: (){
+            controller.decCartNum(cartItem);
+        },
+        child: Container(
             alignment: Alignment.center,
             width:ScreenAdapter.width(80) ,
-            height: ScreenAdapter.height(64),
+            height: ScreenAdapter.height(80),
             child: const Text("-"),
-          );
+          ),
+      );
   }
     Widget _center(){
       return Container(
@@ -27,18 +36,24 @@ class CartItemMunView extends GetView {
       ),
             alignment: Alignment.center,
             width:ScreenAdapter.width(80) ,
-            height: ScreenAdapter.height(64),
-            child:  Text("${cartItem["count"]}"),
+            height: ScreenAdapter.height(80),
+            child: Text("${cartItem["count"]}"),
           );
   }
     Widget _right(){
-      return Container(
+      return InkWell(
+        onTap: (){
+          controller.incCartNum(cartItem);
+        },
+        child: Container(
             alignment: Alignment.center,
             width:ScreenAdapter.width(80) ,
-             height: ScreenAdapter.height(64),
+             height: ScreenAdapter.height(80),
             child: const Text("+"),
-          );
+          ),
+      );
   }
+
   @override
   Widget build(BuildContext context) {
      return Container(
