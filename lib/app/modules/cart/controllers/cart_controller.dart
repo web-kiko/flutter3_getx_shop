@@ -10,7 +10,8 @@ class CartController extends GetxController {
   void onInit() {
     super.onInit();
     // CartServices.clearCartData();
-    getCartListData();
+   print("cart init");
+
   }
 
   @override

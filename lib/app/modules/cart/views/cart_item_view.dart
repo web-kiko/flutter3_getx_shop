@@ -2,7 +2,7 @@
  * @ Author: kiko
  * @ Create Time: 2024-03-26 06:34:32
  * @ Modified by: kiko
- * @ Modified time: 2024-03-28 16:18:31
+ * @ Modified time: 2024-03-28 16:50:04
  * @ Description:
  */
 
@@ -13,6 +13,7 @@ import 'package:get/get.dart';
 
 import '../../../units/screenAdapter.dart';
 import '../views/cart_item_mun_view.dart';
+import '../../../units/httpsClient.dart';
 
 
 class CartItemView extends GetView {
@@ -40,7 +41,7 @@ class CartItemView extends GetView {
             width: ScreenAdapter.width(260),
             padding: EdgeInsets.all(ScreenAdapter.height(24)),
             margin: EdgeInsets.only(right: ScreenAdapter.width(20)),
-            child: Image.network("https://www.itying.com/images/shouji.png",
+            child: Image.network(HttpsClient.replaeUri(cartItem["pic"]),
                 fit: BoxFit.fitHeight),
           ),
           Expanded(
