@@ -6,6 +6,7 @@ class CartController extends GetxController {
   //TODO: Implement CartController
 
   RxList cartList=[].obs;
+  RxBool checkedAllBox=false.obs;
   @override
   void onInit() {
     super.onInit();
@@ -27,6 +28,7 @@ class CartController extends GetxController {
    void getCartListData()async {
     var tempList =await CartServices.getCartList();
     cartList.value=tempList;
+    checkedAllBox.value=isCheckedAll(); 
     update();
   }
 
@@ -60,4 +62,45 @@ class CartController extends GetxController {
       CartServices.setCartList(tempList);
       update();
   }
+
+   //选中item
+  void checkCartItem(cartItem){
+     var tempList=[];
+      for (var i = 0; i < cartList.length; i++) {
+          if(cartList[i]["_id"]==cartItem["_id"]&&cartList[i]["selectedAttr"]==cartItem["selectedAttr"]){
+            cartList[i]["checked"]=!cartList[i]["checked"];
+          }
+          tempList.add(cartList[i]);
+      }
+      cartList.value=tempList;     
+      CartServices.setCartList(tempList);
+      checkedAllBox.value=isCheckedAll();
+      update();
+  }
+  //全选 反选
+  void checkedAllFunc(value){
+     checkedAllBox.value=value;
+      var tempList=[];
+      for (var i = 0; i < cartList.length; i++) {
+         cartList[i]["checked"]=value;
+         tempList.add(cartList[i]);
+      }
+      cartList.value=tempList;
+      CartServices.setCartList(tempList);
+      update();
+  }
+   //判断是否全选
+   bool isCheckedAll(){
+    if(cartList.isNotEmpty){
+      for (var i = 0; i < cartList.length; i++) {
+          if(cartList[i]["checked"]==false){
+            return false;
+          }
+      }
+      return true;
+    }
+    return false;
+   }
+
+  
 }
