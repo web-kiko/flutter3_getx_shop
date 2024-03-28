@@ -9,7 +9,8 @@
 import 'package:get/get.dart';
 
 import '../controllers/tabs_controller.dart';
-import '../../cart/controllers/cart_controller.dart';
+
+
 import '../../category/controllers/category_controller.dart';
 import '../../home/controllers/home_controller.dart';
 import '../../service/controllers/service_controller.dart';
@@ -24,9 +25,9 @@ class TabsBinding extends Bindings {
     Get.lazyPut<HomeController>(
       () => HomeController(),
     );
-    Get.lazyPut<CartController>(
-      () => CartController(),
-    );
+    // Get.lazyPut<CartController>(
+    //   () => CartController(),
+    // );
     Get.lazyPut<CategoryController>(
       () => CategoryController(),
     );Get.lazyPut<ServiceController>(

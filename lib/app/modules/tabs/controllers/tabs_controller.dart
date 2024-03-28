@@ -16,12 +16,12 @@ import '../../home/views/home_view.dart';
 
 class TabsController extends GetxController {
   //TODO: Implement TabsController
-  final List<Widget> pages = const [
-    HomeView(),
-    CategoryView(),
-    ServiceView(),
+  final List<Widget> pages =  [
+    const HomeView(),
+    const CategoryView(),
+    const ServiceView(),
     CartView(),
-    UserView()
+    const UserView()
   ];
 
   RxInt currentIndex = 0.obs;

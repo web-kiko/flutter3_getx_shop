@@ -14,8 +14,12 @@ import '../controllers/cart_controller.dart';
 import '../../../units/screenAdapter.dart';
 import '../views/cart_item_view.dart';
 
-class CartView extends GetView<CartController> {
-  const CartView({Key? key}) : super(key: key);
+//注意CartView在多个地方调用了  需要手动获取CartController
+class CartView extends GetView {
+//手动添加cartController不然直接直接building有bug
+  @override
+  final CartController controller=Get.put(CartController()); 
+   CartView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
