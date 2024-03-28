@@ -15,6 +15,8 @@ abstract class Routes {
   static const PRODUCT_LIST = _Paths.PRODUCT_LIST;
   static const SERACH = _Paths.SERACH;
   static const PRODUCT_CONTENT = _Paths.PRODUCT_CONTENT;
+  static const Cart = _Paths.Cart;
+
 }
 
 abstract class _Paths {
@@ -24,4 +26,6 @@ abstract class _Paths {
   static const PRODUCT_LIST = '/product-list';
   static const SERACH = '/serach';
   static const PRODUCT_CONTENT = '/product-content';
+   static const Cart = '/cart';
+
 }

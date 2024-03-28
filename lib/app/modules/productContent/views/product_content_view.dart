@@ -2,7 +2,7 @@
  * @ Author: kiko
  * @ Create Time: 2024-03-21 02:39:33
  * @ Modified by: kiko
- * @ Modified time: 2024-03-28 16:24:21
+ * @ Modified time: 2024-03-29 03:23:53
  * @ Description:
  */
 
@@ -435,7 +435,11 @@ class ProductContentView extends GetView<ProductContentController> {
               SizedBox(
                 width: ScreenAdapter.width(200),
                 height: ScreenAdapter.height(160),
-                child: Column(
+               child: InkWell(
+                  onTap: (){
+                    Get.toNamed("/cart");
+                  },
+                  child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Icon(Icons.shopping_cart),
@@ -444,6 +448,7 @@ class ProductContentView extends GetView<ProductContentController> {
                       style: TextStyle(fontSize: ScreenAdapter.fontSize(32)),
                     )
                   ],
+                ),
                 ),
               ),
               Expanded(
