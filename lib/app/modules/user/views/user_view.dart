@@ -2,7 +2,7 @@
  * @ Author: kiko
  * @ Create Time: 2024-03-04 11:57:43
  * @ Modified by: kiko
- * @ Modified time: 2024-03-29 04:58:15
+ * @ Modified time: 2024-03-30 01:00:57
  * @ Description:
  */
 
@@ -58,8 +58,16 @@ class UserView extends GetView<UserController> {
                   ),
                 ),
                 SizedBox(width: ScreenAdapter.width(40)),
-                Text("登录/注册", 
+                InkWell(
+                  onTap: (){
+                    Get.toNamed("/code-login-step-one");
+                    Get.snackbar("提示", "跳转到登录页");
+                    print("跳转到登录页");
+
+                  },
+                  child: Text("登录/注册", 
                     style: TextStyle(fontSize: ScreenAdapter.fontSize(46))),
+                ),
                 SizedBox(width: ScreenAdapter.width(40)),
                 Icon(
                   Icons.arrow_forward_ios,
@@ -321,6 +329,7 @@ class UserView extends GetView<UserController> {
                 ),
                 GridView.count(
                   shrinkWrap: true, //收缩
+                  physics: const NeverScrollableScrollPhysics() ,    //禁止滑动
                   crossAxisCount: 4,
                   childAspectRatio: 1.253,
                   children: const [

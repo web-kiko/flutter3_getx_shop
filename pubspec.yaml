@@ -52,5 +52,8 @@ flutter:
     - assets/images/3.0x/user_ad1.png    
     - assets/images/user_ad2.png
     - assets/images/2.0x/user_ad2.png
-    - assets/images/3.0x/user_ad2.png    
+    - assets/images/3.0x/user_ad2.png 
+    - assets/images/logo.png
+    - assets/images/2.0x/logo.png
+    - assets/images/3.0x/logo.png   
     
