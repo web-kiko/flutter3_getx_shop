@@ -18,7 +18,7 @@ class CodeLoginStepOneView extends GetView<CodeLoginStepOneController> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        actions: [TextButton(onPressed: () {}, child: const Text("帮助"))],
+        actions: [TextButton(onPressed: () {}, child: Text("帮助"))],
       ),
       body: ListView(
         padding: EdgeInsets.all(ScreenAdapter.width(40)),
@@ -31,17 +31,13 @@ class CodeLoginStepOneView extends GetView<CodeLoginStepOneController> {
               onChanged: (value) {
                 print(value);
               }),
-          
-           PassTextFiled(
-              hintText: "密码",
-              onChanged: (value) {
-                print(value);
-              }),
+                    
           //用户协议
           const UserAgreement(),
           //登录按钮
           PassButton(text: "获取验证码", onPressed: (){
             print("获取验证码");
+            Get.toNamed("/code-login-step-two");
           })
         
         ],
