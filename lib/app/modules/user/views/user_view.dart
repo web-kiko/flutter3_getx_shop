@@ -2,7 +2,7 @@
  * @ Author: kiko
  * @ Create Time: 2024-03-04 11:57:43
  * @ Modified by: kiko
- * @ Modified time: 2024-03-30 01:00:57
+ * @ Modified time: 2024-04-01 01:12:18
  * @ Description:
  */
 
@@ -45,7 +45,40 @@ class UserView extends GetView<UserController> {
         padding: EdgeInsets.all(ScreenAdapter.height(28)),
         children: [
           //用户头像 登录注册
-          SizedBox (
+           Obx(()=>
+          controller.isLogin.value?
+          SizedBox(
+            child: Row(
+              children: [
+                SizedBox(width: ScreenAdapter.width(40)),
+                SizedBox(
+                  height: ScreenAdapter.height(150),
+                  width: ScreenAdapter.height(150),
+                  child: CircleAvatar(
+                    radius: ScreenAdapter.width(75),
+                    backgroundImage: const AssetImage("assets/images/user.png"),
+                  ),
+                ),
+                SizedBox(width: ScreenAdapter.width(40)),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("${controller.userList[0]["username"]}",
+                    style: TextStyle(fontSize: ScreenAdapter.fontSize(46))),
+                    SizedBox(height: ScreenAdapter.height(20)),
+                      Text("普通会员",
+                    style: TextStyle(fontSize: ScreenAdapter.fontSize(46)))
+                  ],
+                ),
+                SizedBox(width: ScreenAdapter.width(40)),
+                Icon(
+                  Icons.arrow_forward_ios,
+                  size: ScreenAdapter.fontSize(34),
+                  color: Colors.black54,
+                )
+              ],
+            ),
+          ):SizedBox(
             child: Row(
               children: [
                 SizedBox(width: ScreenAdapter.width(40)),
@@ -61,11 +94,8 @@ class UserView extends GetView<UserController> {
                 InkWell(
                   onTap: (){
                     Get.toNamed("/code-login-step-one");
-                    Get.snackbar("提示", "跳转到登录页");
-                    print("跳转到登录页");
-
                   },
-                  child: Text("登录/注册", 
+                  child: Text("登录/注册",
                     style: TextStyle(fontSize: ScreenAdapter.fontSize(46))),
                 ),
                 SizedBox(width: ScreenAdapter.width(40)),
@@ -76,7 +106,8 @@ class UserView extends GetView<UserController> {
                 )
               ],
             ),
-          ),
+          ))
+          ,
           // 用户资金信息
           Container(
             height: ScreenAdapter.height(210),

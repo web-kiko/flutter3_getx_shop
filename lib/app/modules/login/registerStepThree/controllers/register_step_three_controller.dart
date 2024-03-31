@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../../models/message.dart';
 import '../../../../units/httpsClient.dart';
-
+import '../../../../units/storage.dart';
 
 class RegisterStepThreeController extends GetxController {
   //TODO: Implement RegisterStepThreeController
@@ -39,7 +39,8 @@ class RegisterStepThreeController extends GetxController {
       if (response != null) {
          print(response);
          if(response.data["success"]){        
-         
+          //执行登录 保存用户信息
+           Storage.setData("userinfo",response.data["userinfo"]);
            return MessageModel(message: "注册成功", success: true);
          }
         

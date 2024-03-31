@@ -24,10 +24,16 @@ class TabsController extends GetxController {
     const UserView()
   ];
 
+   //用于控制默认加载的tabs选项
   RxInt currentIndex = 0.obs;
-  PageController pageController = PageController(initialPage: 0);
+  PageController pageController=Get.arguments!=null?PageController(initialPage:Get.arguments["initialPage"]): PageController(initialPage:0);
   @override
   void onInit() {
+     if(Get.arguments!=null){
+      currentIndex.value=Get.arguments["initialPage"];
+      update();
+    }
+    
     super.onInit();
   }
 
