@@ -26,7 +26,7 @@ class RegisterStepOneController extends GetxController {
       if (response != null) {
          print(response);
          if(response.data["success"]){
-          //测试：把验证码复制到剪切板上面，正式上线不需要这句话,这个为了方便测试
+          //测试：把验证码复制到键盘上面，正式上线需要粘贴才用这句话,这个为了方便测试
           Clipboard.setData(ClipboardData(text: response.data["code"]));
           return true;
          }

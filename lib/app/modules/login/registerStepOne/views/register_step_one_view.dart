@@ -41,7 +41,7 @@ class RegisterStepOneView extends GetView<RegisterStepOneController> {
                   var flag = await controller.sendCode();
                   if (flag) {
                     Get.toNamed("/register-step-two",arguments: {
-                      "tel":controller.editingController.text
+                      "tel":controller.editingController.text//把手机号传到下个页面以便验证
                     });
                   } else {
                     Get.snackbar("提示信息!", "网络异常");
