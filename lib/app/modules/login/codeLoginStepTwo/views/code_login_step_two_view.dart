@@ -22,7 +22,7 @@ class CodeLoginStepTwoView extends GetView<CodeLoginStepTwoController> {
       ),
      
 /**
- * 自定义的六格验证码(做不到粘贴验证码)
+ * 自定义的六格验证码(粘贴验证码试了几次没成功太麻烦了直接换成第三方的pin_code_fields)
  * 
  *  body: ListView(
         children: [

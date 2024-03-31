@@ -12,9 +12,9 @@ dependencies:
   flutter_swiper_view: ^1.1.8 #轮播图
   dio: ^4.0.6 #网络请求
   flutter_staggered_grid_view: ^0.6.2 #瀑布流
-  shared_preferences: ^2.0.15 #本地历史记录
+  shared_preferences: ^2.0.15 #本地储存历史记录
   flutter_html: ^3.0.0-alpha.6 #html
-  pin_code_fields: ^7.4.0
+  pin_code_fields: ^7.4.0 #验证码
   flutter: 
     sdk: flutter
 
