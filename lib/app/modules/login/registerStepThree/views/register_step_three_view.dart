@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../../models/message.dart';
 import '../../../../units/screenAdapter.dart';
 import '../../../../widget/logo.dart';
 import '../../../../widget/passButton.dart';
@@ -27,6 +28,7 @@ class RegisterStepThreeView extends GetView<RegisterStepThreeController> {
           const Logo(),
           //输入手机号
           PassTextFiled(
+            controller: controller.passController,
               isPassWord: true,
               hintText: "请输入密码",
               keyboardType:TextInputType.text,
@@ -35,6 +37,7 @@ class RegisterStepThreeView extends GetView<RegisterStepThreeController> {
               }),
 
           PassTextFiled(
+            controller: controller.confirmPassController,
               isPassWord: true,
               keyboardType:TextInputType.text,
               hintText: "请输入确认密码",
@@ -45,8 +48,23 @@ class RegisterStepThreeView extends GetView<RegisterStepThreeController> {
           SizedBox(height: ScreenAdapter.height(20)),
           PassButton(
               text: "完成注册",
-              onPressed: () {
-                print("完成注册");
+              onPressed: () async{
+                if(controller.passController.text!=controller.confirmPassController.text){
+                  Get.snackbar("提示信息！","密码和确认密码不一致");
+                }else if(controller.passController.text.length<6){
+                   Get.snackbar("提示信息！","密码长度不能小于6位");
+                }else{
+                  //model类你也可以用map表示返回的各种多个信息
+                    MessageModel result= await controller.doRegister();
+                    if(result.success){
+                      //执行跳转  回到根
+                      Get.offAllNamed("/tabs",arguments: {
+                        "initialPage":4   //注册完成后会加载tabs第五个页面
+                      });
+                    }else{
+                      Get.snackbar("提示信息！",result.message);
+                    }
+                }
               
               }),         
         ],
@@ -54,4 +72,3 @@ class RegisterStepThreeView extends GetView<RegisterStepThreeController> {
     );
   }
 }
-

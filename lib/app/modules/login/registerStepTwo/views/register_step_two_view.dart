@@ -2,7 +2,7 @@
  * @ Author: kiko
  * @ Create Time: 2024-03-29 22:35:34
  * @ Modified by: kiko
- * @ Modified time: 2024-03-31 17:15:58
+ * @ Modified time: 2024-03-31 23:11:13
  * @ Description:
  */
 
@@ -81,7 +81,10 @@ class RegisterStepTwoView extends GetView<RegisterStepTwoController> {
               onCompleted: (v) async{
                 var flag = await controller.validateCode();
                 if (flag) {
-                  Get.toNamed("/register-step-three");
+                   Get.toNamed("/register-step-three",arguments: {
+                    "tel":controller.tel,
+                    "code":controller.editingController.text
+                  });
                 } else {
                   Get.snackbar("提示信息!", "验证码输入错误");
                 }
@@ -119,7 +122,10 @@ class RegisterStepTwoView extends GetView<RegisterStepTwoController> {
                 //验证验证码要加上await 因为他是异步
                 var flag = await controller.validateCode();
                 if (flag) {
-                  Get.toNamed("/register-step-three");
+                   Get.toNamed("/register-step-three",arguments: {
+                    "tel":controller.tel,
+                    "code":controller.editingController.text
+                  });
                 } else {
                   Get.snackbar("提示信息!", "验证码输入错误");
                 }
