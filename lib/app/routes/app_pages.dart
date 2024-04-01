@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 
 import '../modules/cart/views/cart_view.dart';
+import '../modules/checkout/bindings/checkout_binding.dart';
+import '../modules/checkout/views/checkout_view.dart';
 import '../modules/login/codeLoginStepOne/bindings/code_login_step_one_binding.dart';
 import '../modules/login/codeLoginStepOne/views/code_login_step_one_view.dart';
 import '../modules/login/codeLoginStepTwo/bindings/code_login_step_two_binding.dart';
@@ -102,6 +104,11 @@ class AppPages {
       name: _Paths.REGISTER_STEP_THREE,
       page: () => const RegisterStepThreeView(),
       binding: RegisterStepThreeBinding(),
+    ),
+    GetPage(
+      name: _Paths.CHECKOUT,
+      page: () => const CheckoutView(),
+      binding: CheckoutBinding(),
     ),
   ];
 }

@@ -23,6 +23,7 @@ abstract class Routes {
   static const REGISTER_STEP_ONE = _Paths.REGISTER_STEP_ONE;
   static const REGISTER_STEP_TWO = _Paths.REGISTER_STEP_TWO;
   static const REGISTER_STEP_THREE = _Paths.REGISTER_STEP_THREE;
+  static const CHECKOUT = _Paths.CHECKOUT;
 }
 
 abstract class _Paths {
@@ -40,4 +41,5 @@ abstract class _Paths {
   static const REGISTER_STEP_ONE = '/register-step-one';
   static const REGISTER_STEP_TWO = '/register-step-two';
   static const REGISTER_STEP_THREE = '/register-step-three';
+  static const CHECKOUT = '/checkout';
 }

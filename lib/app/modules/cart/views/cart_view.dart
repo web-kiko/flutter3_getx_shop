@@ -107,7 +107,11 @@ class CartView extends GetView {
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               10)))),
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            //判断用户有没有登录
+
+                                            Get.toNamed("/checkout");
+                                          },
                                           child: const Text("结算"))
                                     ],
                                   )
