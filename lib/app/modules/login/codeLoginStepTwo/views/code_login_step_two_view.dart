@@ -13,14 +13,14 @@ class CodeLoginStepTwoView extends GetView<CodeLoginStepTwoController> {
   const CodeLoginStepTwoView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-     return Scaffold(
-       appBar: AppBar(
-         backgroundColor: Colors.white,
-         elevation: 0,        
-         title: const Text('手机号快速登录'),
-         centerTitle: true,
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        title: const Text('手机号快速登录'),
+        centerTitle: true,
       ),
-     
+
 /**
  * 自定义的六格验证码(粘贴验证码试了几次没成功太麻烦了直接换成第三方的pin_code_fields)
  * 
@@ -63,7 +63,7 @@ class CodeLoginStepTwoView extends GetView<CodeLoginStepTwoController> {
  * 
  */
 
-     body: ListView(
+      body: ListView(
         padding: EdgeInsets.all(ScreenAdapter.width(40)),
         children: [
           const Logo(),
@@ -101,12 +101,12 @@ class CodeLoginStepTwoView extends GetView<CodeLoginStepTwoController> {
               animationDuration: const Duration(milliseconds: 300),
               enableActiveFill: true,
               controller: controller.editingController, //TextFiled控制器
-              onCompleted: (v)async {
-                 // 隐藏键盘
+              onCompleted: (v) async {
+                // 隐藏键盘
                 FocusScope.of(context).requestFocus(FocusNode());
                 MessageModel result = await controller.doLogin();
                 if (result.success) {
-                   Get.offAllNamed("/tabs", arguments: {"initialPage": 4});
+                  Get.offAllNamed("/tabs", arguments: {"initialPage": 4});
                 } else {
                   Get.snackbar("提示信息", result.message);
                 }
@@ -125,17 +125,19 @@ class CodeLoginStepTwoView extends GetView<CodeLoginStepTwoController> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Obx(()=>controller.seconds.value==0?
-                TextButton(onPressed: () {
-                  controller.sendCode();
-                }, child: const Text("重新发送验证码")):
-                TextButton(onPressed: null, child: Text("${controller.seconds.value}秒后重发送"))
-                
-                ),               
+                Obx(() => controller.seconds.value == 0
+                    ? TextButton(
+                        onPressed: () {
+                          controller.sendCode();
+                        },
+                        child: const Text("重新发送验证码"))
+                    : TextButton(
+                        onPressed: null,
+                        child: Text("${controller.seconds.value}秒后重发送"))),
                 TextButton(onPressed: () {}, child: const Text("帮助")),
               ],
             ),
-          ),          
+          ),
         ],
       ),
     );

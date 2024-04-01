@@ -23,10 +23,11 @@ class CodeLoginStepTwoController extends GetxController {
 
   HttpsClient httpsClient = HttpsClient();
   String tel=Get.arguments["tel"];
-  RxInt seconds = 10.obs;
+  RxInt seconds = 60.obs;
   @override
   void onInit() {
     super.onInit();
+    countDown();
   } 
   @override
   void onClose() {

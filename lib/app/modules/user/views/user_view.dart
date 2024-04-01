@@ -2,7 +2,7 @@
  * @ Author: kiko
  * @ Create Time: 2024-03-04 11:57:43
  * @ Modified by: kiko
- * @ Modified time: 2024-04-01 14:01:27
+ * @ Modified time: 2024-04-01 15:32:40
  * @ Description:
  */
 
@@ -46,7 +46,7 @@ class UserView extends GetView<UserController> {
         padding: EdgeInsets.all(ScreenAdapter.height(28)),
         children: [
           //用户头像 登录注册
-           Obx(()=>
+          Obx(()=>
           controller.isLogin.value?
           SizedBox(
             child: Row(
@@ -64,7 +64,7 @@ class UserView extends GetView<UserController> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("${controller.userList[0]["username"]}",
+                    Text("${controller.userInfo.value.username}",
                     style: TextStyle(fontSize: ScreenAdapter.fontSize(46))),
                     SizedBox(height: ScreenAdapter.height(20)),
                       Text("普通会员",
@@ -110,8 +110,92 @@ class UserView extends GetView<UserController> {
           ))
           ,
           // 用户资金信息
-          Container(
-            height: ScreenAdapter.height(210),
+          Obx(()=>controller.isLogin.value==true?Container(
+            height: ScreenAdapter.height(160),
+            margin: EdgeInsets.only(top: ScreenAdapter.height(50)),
+            child: Row(
+              children: [
+               
+                Expanded(
+                    flex: 1,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "${controller.userInfo.value.gold}",
+                          style: TextStyle(
+                              fontSize: ScreenAdapter.fontSize(52),
+                              ),
+                        ),
+                        Text("米金",
+                            style: TextStyle(
+                                fontSize: ScreenAdapter.fontSize(34),
+                                color: Colors.black45)),
+                      ],
+                    )),
+                Expanded(
+                    flex: 1,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "${controller.userInfo.value.coupon}",
+                          style: TextStyle(
+                              fontSize: ScreenAdapter.fontSize(52)
+                              ),
+                        ),
+                        Text("优惠券",
+                            style: TextStyle(
+                                fontSize: ScreenAdapter.fontSize(34),
+                                color: Colors.black45))
+                      ],
+                    )),
+                Expanded(
+                    flex: 1,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("${controller.userInfo.value.redPacket}",
+                            style: TextStyle(
+                                fontSize: ScreenAdapter.fontSize(52)
+                               )),
+                        Text("红包",
+                            style: TextStyle(
+                                fontSize: ScreenAdapter.fontSize(34),
+                                color: Colors.black45))
+                      ],
+                    )),
+                Expanded(
+                    flex: 1,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("${controller.userInfo.value.quota}",
+                            style: TextStyle(
+                                fontSize: ScreenAdapter.fontSize(52)
+                                )),
+                        Text("最高额度",
+                            style: TextStyle(
+                                fontSize: ScreenAdapter.fontSize(34),
+                                color: Colors.black45))
+                      ],
+                    )),
+                Expanded(
+                    flex: 1,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Icon(Icons.bookmarks_outlined),
+                        Text("钱包",
+                            style: TextStyle(
+                                fontSize: ScreenAdapter.fontSize(34),
+                                color: Colors.black45))
+                      ],
+                    ))
+              ],
+            ),
+          ):Container(
+            height: ScreenAdapter.height(160),
             margin: EdgeInsets.only(top: ScreenAdapter.height(50)),
             child: Row(
               children: [
@@ -194,14 +278,14 @@ class UserView extends GetView<UserController> {
                     ))
               ],
             ),
-          ),
+          )),
           //广告
           Container(
             alignment: Alignment.center,
-            margin: EdgeInsets.only(top: ScreenAdapter.height(50)),
+            margin: EdgeInsets.only(top: ScreenAdapter.height(60)),
             child: Container(
               width: ScreenAdapter.width(1008),
-              height: ScreenAdapter.height(300),
+              height: ScreenAdapter.height(400),
               decoration: BoxDecoration(
                   image: const DecorationImage(
                       image: AssetImage("assets/images/user_ad1.png"),
@@ -361,7 +445,7 @@ class UserView extends GetView<UserController> {
                 ),
                 GridView.count(
                   shrinkWrap: true, //收缩
-                  physics: const NeverScrollableScrollPhysics() ,    //禁止滑动
+                  physics: const NeverScrollableScrollPhysics() ,    //禁止滑动                
                   crossAxisCount: 4,
                   childAspectRatio: 1.253,
                   children: const [
@@ -378,7 +462,7 @@ class UserView extends GetView<UserController> {
                     Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Icon(MyFonts.anzhuang, color: Colors.orange),
+                        Icon(MyFonts.anzhuangyewu, color: Colors.orange),
                         Text("一键退换")
                       ],
                     ),
@@ -443,7 +527,7 @@ class UserView extends GetView<UserController> {
                   borderRadius: BorderRadius.circular(ScreenAdapter.width(20))),
             ),
           ),
-          PassButton(
+           PassButton(
               text: "退出登录",onPressed: (){
                 controller.loginOut();
               },)
