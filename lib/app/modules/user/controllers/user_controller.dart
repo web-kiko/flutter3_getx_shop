@@ -26,7 +26,7 @@ class UserController extends GetxController {
       userList.value=tempList;
     }
   }
-
+//退出登录
   loginOut(){
     UserServices.loginOut();
      isLogin.value=false;

@@ -2,7 +2,7 @@
  * @ Author: kiko
  * @ Create Time: 2024-03-04 11:57:43
  * @ Modified by: kiko
- * @ Modified time: 2024-04-01 01:12:18
+ * @ Modified time: 2024-04-01 14:01:27
  * @ Description:
  */
 
@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../units/screenAdapter.dart';
+import '../../../widget/passButton.dart';
 import '../controllers/user_controller.dart';
 import '../../../units/myFonts.dart';
 
@@ -442,6 +443,10 @@ class UserView extends GetView<UserController> {
                   borderRadius: BorderRadius.circular(ScreenAdapter.width(20))),
             ),
           ),
+          PassButton(
+              text: "退出登录",onPressed: (){
+                controller.loginOut();
+              },)
         ],
       ),
     );
