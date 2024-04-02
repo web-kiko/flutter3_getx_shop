@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import '../../../../models/message.dart';
 import '../../../../units/httpsClient.dart';
 import '../../../../units/storage.dart';
+import '../../../user/controllers/user_controller.dart';
 class CodeLoginStepTwoController extends GetxController {
   //TODO: Implement CodeLoginStepTwoController
 
@@ -24,6 +25,7 @@ class CodeLoginStepTwoController extends GetxController {
   HttpsClient httpsClient = HttpsClient();
   String tel=Get.arguments["tel"];
   RxInt seconds = 60.obs;
+  UserController userController =Get.find<UserController>();
   @override
   void onInit() {
     super.onInit();
@@ -31,6 +33,9 @@ class CodeLoginStepTwoController extends GetxController {
   } 
   @override
   void onClose() {
+    //更新用户状态
+    print("更新用户状态");
+    userController.getUserInfo();
     super.onClose();
   }
  //倒计时的方法

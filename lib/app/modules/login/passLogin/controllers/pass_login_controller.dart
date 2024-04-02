@@ -4,15 +4,17 @@ import 'package:get/get.dart';
 import '../../../../models/message.dart';
 import '../../../../units/httpsClient.dart';
 import '../../../../units/storage.dart';
-
+import '../../../user/controllers/user_controller.dart';
 class PassLoginController extends GetxController {
   //TODO: Implement PassLoginController
 
   TextEditingController telController=TextEditingController();
  TextEditingController passController=TextEditingController();
-  HttpsClient httpsClient = HttpsClient();  
+  HttpsClient httpsClient = HttpsClient(); 
+  UserController userController =Get.find<UserController>(); 
   @override
   void onInit() {
+    
     super.onInit();
   }
 
@@ -23,6 +25,9 @@ class PassLoginController extends GetxController {
 
   @override
   void onClose() {
+    //更新用户状态
+    print("更新用户状态");
+    userController.getUserInfo();
     super.onClose();
   }
 

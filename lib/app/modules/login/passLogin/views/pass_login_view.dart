@@ -57,9 +57,10 @@ class PassLoginView extends GetView<PassLoginController> {
                   MessageModel result = await controller.doLogin();
                   if(result.success){
                       //执行跳转  回到根
-                      Get.offAllNamed("/tabs",arguments: {
-                        "initialPage":4   //注册完成后会加载tabs第五个页面
-                      });
+                      // Get.offAllNamed("/tabs",arguments: {
+                      //   "initialPage":4   //注册完成后会加载tabs第五个页面
+                      // });
+                       Get.back();
                   }else{
                     Get.snackbar("提示信息!",result.message);
                   }

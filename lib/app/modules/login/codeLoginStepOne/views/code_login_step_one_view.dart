@@ -43,10 +43,12 @@ class CodeLoginStepOneView extends GetView<CodeLoginStepOneController> {
                 Get.snackbar("提示信息!", "手机号格式不合法");
             }else{
                 MessageModel result=await controller.sendCode();
-                if(result.success){                   
-                  Get.toNamed("/code-login-step-two",arguments: {
+                if(result.success){   
+                  //替换路由                
+                  Get.offAndToNamed("/code-login-step-two",arguments: {
                     "tel":controller.telController.text
                   });
+                
                 }else{
                   Get.snackbar("提示信息!", result.message);
                 }
@@ -61,7 +63,9 @@ class CodeLoginStepOneView extends GetView<CodeLoginStepOneController> {
                 Get.toNamed("/register-step-one");
               }, child: const Text("新用户注册")),
               TextButton(onPressed: (){
-                  Get.toNamed("/pass-login");
+                  // Get.toNamed("/pass-login");
+                   //替换路由
+                   Get.offAndToNamed("/pass-login");
               }, child: const Text("账户密码登录"))
             ],
           )

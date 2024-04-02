@@ -2,7 +2,7 @@
  * @ Author: kiko
  * @ Create Time: 2024-03-04 11:57:43
  * @ Modified by: kiko
- * @ Modified time: 2024-04-01 15:32:40
+ * @ Modified time: 2024-04-02 22:46:32
  * @ Description:
  */
 
@@ -208,7 +208,7 @@ class UserView extends GetView<UserController> {
                         Text(
                           "-",
                           style: TextStyle(
-                              fontSize: ScreenAdapter.fontSize(80),
+                              fontSize: ScreenAdapter.fontSize(34),
                               ),
                         ),
                         Text("米金",
@@ -225,7 +225,7 @@ class UserView extends GetView<UserController> {
                         Text(
                           "-",
                           style: TextStyle(
-                              fontSize: ScreenAdapter.fontSize(80)
+                              fontSize: ScreenAdapter.fontSize(34)
                               ),
                         ),
                         Text("优惠券",
@@ -241,7 +241,7 @@ class UserView extends GetView<UserController> {
                       children: [
                         Text("-",
                             style: TextStyle(
-                                fontSize: ScreenAdapter.fontSize(80)
+                                fontSize: ScreenAdapter.fontSize(34)
                                )),
                         Text("红包",
                             style: TextStyle(
@@ -256,7 +256,7 @@ class UserView extends GetView<UserController> {
                       children: [
                         Text("-",
                             style: TextStyle(
-                                fontSize: ScreenAdapter.fontSize(80)
+                                fontSize: ScreenAdapter.fontSize(34)
                                 )),
                         Text("最高额度",
                             style: TextStyle(
