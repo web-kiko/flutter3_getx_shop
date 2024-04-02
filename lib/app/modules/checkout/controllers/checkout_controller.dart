@@ -1,12 +1,13 @@
 import 'package:get/get.dart';
 
-class CheckoutController extends GetxController {
-  //TODO: Implement CheckoutController
+import '../../../units/storage.dart';
 
-  final count = 0.obs;
+class CheckoutController extends GetxController {
+  RxList checkoutList = [].obs;
   @override
   void onInit() {
     super.onInit();
+    getCheckoutData();
   }
 
   @override
@@ -19,5 +20,10 @@ class CheckoutController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
+  //获取要结算的商品
+  getCheckoutData() async {
+    List tempList = await Storage.getData("checkoutList");
+    checkoutList.value = tempList;
+    update();
+  }
 }

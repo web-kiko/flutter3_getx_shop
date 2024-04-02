@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 
 import '../../../units/cartServices.dart';
+import '../../../units/storage.dart';
 import '../../../units/userServices.dart';
 
 class CartController extends GetxController {
@@ -126,6 +127,8 @@ class CartController extends GetxController {
     if (loginState) {
       //判断购物车里面有没有要结算的商品
       if(checkListData.isNotEmpty){
+         //保存要结算的商品
+        Storage.setData("checkoutList", checkListData);
             Get.toNamed("/checkout");
       }else{
         Get.snackbar("提示信息!", "购物车中没有要结算的商品");
