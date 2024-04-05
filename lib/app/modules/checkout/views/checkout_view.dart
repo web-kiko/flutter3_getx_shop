@@ -2,7 +2,7 @@
  * @ Author: kiko
  * @ Create Time: 2024-04-01 15:41:33
  * @ Modified by: kiko
- * @ Modified time: 2024-04-03 02:41:55
+ * @ Modified time: 2024-04-05 16:32:31
  * @ Description:
  */
 
@@ -83,10 +83,13 @@ class CheckoutView extends GetView<CheckoutController> {
           decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(ScreenAdapter.width(20))),
-          child: const ListTile(
-            leading: Icon(Icons.add_location),
-            title: Text("增加收货地址"),
-            trailing: Icon(Icons.navigate_next),
+          child:  ListTile(
+            leading: const Icon(Icons.add_location),
+            onTap: (){
+              Get.toNamed("/address-list");
+            },
+            title: const Text("增加收货地址"),
+            trailing: const Icon(Icons.navigate_next),
           ),
         ),
         SizedBox(

@@ -1,5 +1,11 @@
 import 'package:get/get.dart';
 
+import '../modules/address/addressAdd/bindings/address_add_binding.dart';
+import '../modules/address/addressAdd/views/address_add_view.dart';
+import '../modules/address/addressEdit/bindings/address_edit_binding.dart';
+import '../modules/address/addressEdit/views/address_edit_view.dart';
+import '../modules/address/addressList/bindings/address_list_binding.dart';
+import '../modules/address/addressList/views/address_list_view.dart';
 import '../modules/cart/views/cart_view.dart';
 import '../modules/checkout/bindings/checkout_binding.dart';
 import '../modules/checkout/views/checkout_view.dart';
@@ -109,6 +115,21 @@ class AppPages {
       name: _Paths.CHECKOUT,
       page: () => const CheckoutView(),
       binding: CheckoutBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADDRESS_ADD,
+      page: () => const AddressAddView(),
+      binding: AddressAddBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADDRESS_LIST,
+      page: () => const AddressListView(),
+      binding: AddressListBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADDRESS_EDIT,
+      page: () => const AddressEditView(),
+      binding: AddressEditBinding(),
     ),
   ];
 }

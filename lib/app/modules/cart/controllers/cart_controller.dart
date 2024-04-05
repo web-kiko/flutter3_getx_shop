@@ -94,7 +94,7 @@ class CartController extends GetxController {
   }
    //判断是否全选
    bool isCheckedAll(){
-    if(cartList.isNotEmpty){
+    if(cartList.isNotEmpty){ 
       for (var i = 0; i < cartList.length; i++) {
           if(cartList[i]["checked"]==false){
             return false;
@@ -159,6 +159,5 @@ class CartController extends GetxController {
     cartList.value = tempList;
     CartServices.setCartList(tempList);
     update();
-
   }
 }

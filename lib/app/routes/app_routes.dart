@@ -24,6 +24,9 @@ abstract class Routes {
   static const REGISTER_STEP_TWO = _Paths.REGISTER_STEP_TWO;
   static const REGISTER_STEP_THREE = _Paths.REGISTER_STEP_THREE;
   static const CHECKOUT = _Paths.CHECKOUT;
+  static const ADDRESS_ADD =  _Paths.ADDRESS_ADD;
+  static const ADDRESS_LIST = _Paths.ADDRESS_LIST;
+  static const ADDRESS_EDIT = _Paths.ADDRESS_EDIT;
 }
 
 abstract class _Paths {
@@ -42,4 +45,7 @@ abstract class _Paths {
   static const REGISTER_STEP_TWO = '/register-step-two';
   static const REGISTER_STEP_THREE = '/register-step-three';
   static const CHECKOUT = '/checkout';
+  static const ADDRESS_ADD = '/address-add';
+  static const ADDRESS_LIST = '/address-list';
+  static const ADDRESS_EDIT = '/address-edit';
 }
