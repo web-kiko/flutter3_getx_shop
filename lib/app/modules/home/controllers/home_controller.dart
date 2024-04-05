@@ -14,6 +14,7 @@ import '../../../models/category_model.dart';
 import '../../../models/plist_model.dart';
 import '../../../units/httpsClient.dart';
 
+
 class HomeController extends GetxController {
   //浮动导航开关
   RxBool flag = false.obs;
@@ -28,6 +29,7 @@ class HomeController extends GetxController {
    HttpsClient httpsClient =new HttpsClient();
   @override
   void onInit() {
+    
     super.onInit();
     //滑动监听
     scrollControllerListener();

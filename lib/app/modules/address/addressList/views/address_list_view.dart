@@ -9,7 +9,7 @@ class AddressListView extends GetView<AddressListController> {
   const AddressListView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-     return Scaffold(
+    return Scaffold(
         appBar: AppBar(
           title: const Text('收货地址'),
           centerTitle: true,
@@ -20,149 +20,42 @@ class AddressListView extends GetView<AddressListController> {
           padding: EdgeInsets.all(ScreenAdapter.width(40)),
           child: Stack(
             children: [
-              ListView(
-                children: [
-                  ListTile(
-                    leading: const Icon(
-                      Icons.check,
-                      color: Colors.red,
-                    ),
-                    title: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          "北京市 海淀区",
-                          style: TextStyle(
-                             color: Colors.black54),
-                        ),
-                        SizedBox(height: ScreenAdapter.height(24)),
-                        Text(
-                          "西二旗 盈创动力大厦",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: ScreenAdapter.fontSize(48)),
-                        ),
-                        SizedBox(height: ScreenAdapter.height(24)),
-                        const Text("张三  15201681234"),
-                      ],
-                    ),
-                    trailing: const Icon(
-                      Icons.edit,
-                      color: Colors.blue,
-                    ),
-                  ),
-                  const Divider(),
-                  SizedBox(height: ScreenAdapter.height(30)),
-                   ListTile(                  
-                    title: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          "北京市 海淀区",
-                          style: TextStyle(
-                             color: Colors.black54),
-                        ),
-                        SizedBox(height: ScreenAdapter.height(24)),
-                        Text(
-                          "西二旗 盈创动力大厦",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: ScreenAdapter.fontSize(48)),
-                        ),
-                        SizedBox(height: ScreenAdapter.height(24)),
-                        const Text("张三  15201681234"),
-                      ],
-                    ),
-                    trailing: const Icon(
-                      Icons.edit,
-                      color: Colors.blue,
-                    ),
-                  ),
-                  const Divider(),
-                  SizedBox(height: ScreenAdapter.height(30)),
-                  ListTile(                  
-                    title: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          "北京市 海淀区",
-                          style: TextStyle(
-                             color: Colors.black54),
-                        ),
-                        SizedBox(height: ScreenAdapter.height(24)),
-                        Text(
-                          "西二旗 盈创动力大厦",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: ScreenAdapter.fontSize(48)),
-                        ),
-                        SizedBox(height: ScreenAdapter.height(24)),
-                        const Text("张三  15201681234"),
-                      ],
-                    ),
-                    trailing: const Icon(
-                      Icons.edit,
-                      color: Colors.blue,
-                    ),
-                  ),
-                  const Divider(),
-                  SizedBox(height: ScreenAdapter.height(30)),
-                  ListTile(                  
-                    title: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          "北京市 海淀区",
-                          style: TextStyle(
-                             color: Colors.black54),
-                        ),
-                        SizedBox(height: ScreenAdapter.height(24)),
-                        Text(
-                          "西二旗 盈创动力大厦",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: ScreenAdapter.fontSize(48)),
-                        ),
-                        SizedBox(height: ScreenAdapter.height(24)),
-                        const Text("张三  15201681234"),
-                      ],
-                    ),
-                    trailing: const Icon(
-                      Icons.edit,
-                      color: Colors.blue,
-                    ),
-                  ),
-                  const Divider(),
-                  SizedBox(height: ScreenAdapter.height(30)),
-                  ListTile(                  
-                    title: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          "北京市 海淀区",
-                          style: TextStyle(
-                             color: Colors.black54),
-                        ),
-                        SizedBox(height: ScreenAdapter.height(24)),
-                        Text(
-                          "西二旗 盈创动力大厦",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: ScreenAdapter.fontSize(48)),
-                        ),
-                        SizedBox(height: ScreenAdapter.height(24)),
-                        const Text("张三  15201681234"),
-                      ],
-                    ),
-                    trailing: const Icon(
-                      Icons.edit,
-                      color: Colors.blue,
-                    ),
-                  ),
-                  const Divider(),
-                  SizedBox(height: ScreenAdapter.height(30))
-                ],
-              ),
+              Obx(() => controller.addressList.isNotEmpty
+                  ? ListView(
+                      children: controller.addressList.map((value) {
+                      return Column(
+                        children: [
+                          ListTile(
+                            leading: const Icon(
+                              Icons.check,
+                              color: Colors.red,
+                            ),
+                            title: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "${value.address}",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: ScreenAdapter.fontSize(48)),
+                                ),
+                                SizedBox(height: ScreenAdapter.height(24)),
+                                Text("${value.name}  ${value.phone}"),
+                              ],
+                            ),
+                            trailing: const Icon(
+                              Icons.edit,
+                              color: Colors.blue,
+                            ),
+                          ),
+                          Divider(),
+                          SizedBox(height: ScreenAdapter.height(30))
+                        ],
+                      );
+                    }).toList())
+                  : const Center(
+                      child: Text("请添加收货地址哦"),
+                    )),
               Positioned(
                   bottom: 0,
                   left: 0,
@@ -173,7 +66,7 @@ class AddressListView extends GetView<AddressListController> {
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                          color: const Color.fromRGBO(251, 72, 5, 0.9),
+                          color: Color.fromRGBO(251, 72, 5, 0.9),
                           borderRadius: BorderRadius.circular(20)),
                       height: ScreenAdapter.height(140),
                       alignment: Alignment.center,

@@ -10,7 +10,7 @@ class AddressAddView extends GetView<AddressAddController> {
   const AddressAddView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-      return Scaffold(
+    return Scaffold(
       appBar: AppBar(
         title: const Text('新建收货地址'),
         centerTitle: true,
@@ -34,6 +34,7 @@ class AddressAddView extends GetView<AddressAddController> {
                     Expanded(
                         flex: 1,
                         child: TextField(
+                          controller: controller.nameController,
                           decoration: InputDecoration(
                               hintStyle: TextStyle(
                                   fontSize: ScreenAdapter.fontSize(42)),
@@ -52,6 +53,7 @@ class AddressAddView extends GetView<AddressAddController> {
                     Expanded(
                         flex: 1,
                         child: TextField(
+                          controller: controller.phoneController,
                           decoration: InputDecoration(
                               hintStyle: TextStyle(
                                   fontSize: ScreenAdapter.fontSize(42)),
@@ -81,11 +83,7 @@ class AddressAddView extends GetView<AddressAddController> {
                       // Result? result = await CityPickers.showFullPageCityPicker(
                       //   context: context,
                       // );
-
                       if (result != null) {
-                        print(
-                            "${result.provinceName} ${result.cityName} ${result.areaName}");
-
                         controller.setArea(
                             "${result.provinceName} ${result.cityName} ${result.areaName}");
                       }
@@ -120,6 +118,7 @@ class AddressAddView extends GetView<AddressAddController> {
                     Expanded(
                         flex: 1,
                         child: TextField(
+                          controller: controller.addressController,
                           decoration: InputDecoration(
                               hintStyle: TextStyle(
                                   fontSize: ScreenAdapter.fontSize(42)),
@@ -135,7 +134,9 @@ class AddressAddView extends GetView<AddressAddController> {
           Padding(
             padding: EdgeInsets.all(ScreenAdapter.width(40)),
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                controller.doAddAddress();
+              },
               child: Container(
                 decoration: BoxDecoration(
                     color: Color.fromRGBO(251, 72, 5, 0.9),
