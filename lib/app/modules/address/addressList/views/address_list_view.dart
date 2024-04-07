@@ -9,7 +9,7 @@ class AddressListView extends GetView<AddressListController> {
   const AddressListView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+   return Scaffold(
         appBar: AppBar(
           title: const Text('收货地址'),
           centerTitle: true,
@@ -22,17 +22,22 @@ class AddressListView extends GetView<AddressListController> {
             children: [
               Obx(() => controller.addressList.isNotEmpty
                   ? ListView(
+                    //要是有默认地址就不显示对钩
                       children: controller.addressList.map((value) {
-                      return Column(
+                      return value.defaultAddress==1?Column(
                         children: [
                           ListTile(
-                            leading: const Icon(
+                            onTap: (){
+                              //修改默认地址
+                              controller.changeDefaultAddress(value.sId);
+                            },
+                            leading:const Icon(
                               Icons.check,
                               color: Colors.red,
                             ),
                             title: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
+                              children: [                               
                                 Text(
                                   "${value.address}",
                                   style: TextStyle(
@@ -48,14 +53,41 @@ class AddressListView extends GetView<AddressListController> {
                               color: Colors.blue,
                             ),
                           ),
-                          Divider(),
+                          const Divider(),
+                          SizedBox(height: ScreenAdapter.height(30))
+                        ],
+                      ):Column(
+                        children: [
+                          ListTile(         
+                             onTap: (){
+                              controller.changeDefaultAddress(value.sId);
+                            },                 
+                            title: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [                               
+                                Text(
+                                  "${value.address}",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: ScreenAdapter.fontSize(48)),
+                                ),
+                                SizedBox(height: ScreenAdapter.height(24)),
+                                Text("${value.name}  ${value.phone}"),
+                              ],
+                            ),
+                            trailing: const Icon(
+                              Icons.edit,
+                              color: Colors.blue,
+                            ),
+                          ),
+                          const Divider(),
                           SizedBox(height: ScreenAdapter.height(30))
                         ],
                       );
                     }).toList())
                   : const Center(
-                      child: Text("请添加收货地址哦"),
-                    )),
+                    child: Text("请添加收货地址哦"),
+                  )),
               Positioned(
                   bottom: 0,
                   left: 0,

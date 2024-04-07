@@ -2,7 +2,7 @@
  * @ Author: kiko
  * @ Create Time: 2024-04-01 15:41:33
  * @ Modified by: kiko
- * @ Modified time: 2024-04-05 16:32:31
+ * @ Modified time: 2024-04-07 23:41:31
  * @ Description:
  */
 
@@ -32,7 +32,7 @@ class CheckoutView extends GetView<CheckoutController> {
     );
   }
 
-  Widget _checkoutItem(value) {
+ Widget _checkoutItem(value) {
     return Container(
       padding: EdgeInsets.only(
           top: ScreenAdapter.height(20),
@@ -52,18 +52,18 @@ class CheckoutView extends GetView<CheckoutController> {
               child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-               Text(
+              Text(
                 "${value["title"]}",
-                style: const TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(fontWeight: FontWeight.bold),
               ),
               SizedBox(height: ScreenAdapter.height(10)),
-               Text("${value["selectedAttr"]}"),
+              Text("${value["selectedAttr"]}",),
               SizedBox(height: ScreenAdapter.height(10)),
-               Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("￥${value["price"]}", style: const TextStyle(color: Colors.red)),
-                  Text("x${value["count"]}", style: const TextStyle(color: Colors.black87))
+                children:  [
+                  Text("￥${value["price"]}", style: TextStyle(color: Colors.red)),
+                  Text("x${value["count"]}", style: TextStyle(color: Colors.black87))
                 ],
               )
             ],
@@ -77,44 +77,45 @@ class CheckoutView extends GetView<CheckoutController> {
     return ListView(
       padding: EdgeInsets.all(ScreenAdapter.width(40)),
       children: [
-        Container(
+        Obx(()=>controller.addressList.isEmpty?Container(
           padding: EdgeInsets.only(
               top: ScreenAdapter.height(20), bottom: ScreenAdapter.height(20)),
           decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(ScreenAdapter.width(20))),
           child:  ListTile(
-            leading: const Icon(Icons.add_location),
             onTap: (){
-              Get.toNamed("/address-list");
+              Get.toNamed("/address-add");
             },
-            title: const Text("增加收货地址"),
+            leading: const Icon(Icons.add_location),
+            title: const Text("新建收货地址"),
             trailing: const Icon(Icons.navigate_next),
           ),
-        ),
-        SizedBox(
-          height: ScreenAdapter.height(40),
-        ),
-        Container(
+        ):Container(
           padding: EdgeInsets.only(
               top: ScreenAdapter.height(20), bottom: ScreenAdapter.height(20)),
           decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(ScreenAdapter.width(20))),
           child: ListTile(
+            onTap: (){
+              Get.toNamed("/address-list");
+            },
             title: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text("张三 15201681234"),
+                Text("${controller.addressList[0].name} ${controller.addressList[0].phone}"),
                 SizedBox(
                   height: ScreenAdapter.height(10),
                 ),
-                const Text("北京市海淀区西二旗"),
+                Text("${controller.addressList[0].address}"),
               ],
             ),
-            trailing: const Icon(Icons.navigate_next),
+            trailing: Icon(Icons.navigate_next),
           ),
-        ),
+        ))
+        
+        ,
         SizedBox(
           height: ScreenAdapter.height(40),
         ),
@@ -127,10 +128,9 @@ class CheckoutView extends GetView<CheckoutController> {
           child: Obx(() => controller.checkoutList.isNotEmpty
               ? Column(
                   children: 
-                     controller.checkoutList.map((value){
+                  controller.checkoutList.map((value){
                       return  _checkoutItem(value);
-                       }).toList()
-    
+                  }).toList()                 
                 )
               : const Text("")),
         ),
@@ -182,6 +182,7 @@ class CheckoutView extends GetView<CheckoutController> {
       ],
     );
   }
+
 
   Widget _bottom() {
     return Positioned(

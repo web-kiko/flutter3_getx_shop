@@ -5,10 +5,13 @@ import '../../../../models/user_model.dart';
 import '../../../../units/httpsClient.dart';
 import '../../../../units/signServices.dart';
 import '../../../../units/userServices.dart';
+import '../../../checkout/controllers/checkout_controller.dart';
 
 class AddressListController extends GetxController {
  HttpsClient httpsClient = HttpsClient();
   RxList<AddressItemModel> addressList=<AddressItemModel>[].obs;
+  
+  CheckoutController checkoutController=Get.find<CheckoutController>();
   @override
   void onInit() {
     getAddressList();
@@ -17,6 +20,7 @@ class AddressListController extends GetxController {
 
   @override
   void onClose() {
+    checkoutController.getDefaultAddress();
     super.onClose();
   }
 
@@ -34,6 +38,24 @@ class AddressListController extends GetxController {
       var tempAddressList= AddressModel.fromJson(response.data);
       addressList.value=tempAddressList.result!;
       update();
+    }
+  }
+//改变默认地址
+   changeDefaultAddress(id) async {
+    List userList = await UserServices.getUserInfo();
+    UserModel userInfo = UserModel.fromJson(userList[0]);
+    Map tempJson = {"uid": userInfo.sId,"id":id};
+    String sign = SignServices.getSign({
+      ...tempJson,
+      "salt": userInfo.salt //私钥
+    });
+    var response =
+        await httpsClient.post("api/changeDefaultAddress",data: {
+            ...tempJson,
+            "sign":sign
+        });
+    if(response!=null){
+      Get.back();
     }
   }
 }

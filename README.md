@@ -1,6 +1,6 @@
 # kiko_getx_xmshop
 
-一个真实企业级移动电商实战项目，最新3.16版本 flutter+getX，使用真实的接口；
+一个企业级移动电商实战项目，最新稳定版3.16版本 项目中通过 get_cli 集成 Getx（状态管理、依赖注入、路由管理、国际化），并且使用真实的接口；
 
 持续更新中，欢迎讨论，共同进步。
 
@@ -17,4 +17,3 @@ ps:来都来了，给个star吧🐶
 ![image](https://github.com/web-kiko/flutter3_getx_shop/blob/main/img/10%20%E6%8F%90%E4%BA%A4%E8%AE%A2%E5%8D%95.jpg)
 ![image](https://github.com/web-kiko/flutter3_getx_shop/blob/main/img/11%E6%94%B6%E8%B4%A7%E5%9C%B0%E5%9D%80.jpg)
 ![image](https://github.com/web-kiko/flutter3_getx_shop/blob/main/img/13%E7%94%A8%E6%88%B7.jpg)
-![image](https://github.com/web-kiko/flutter3_getx_shop/blob/main/img/14%E7%94%A8%E6%88%B7.jpg)
