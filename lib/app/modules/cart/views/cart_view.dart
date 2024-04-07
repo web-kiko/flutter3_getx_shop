@@ -113,11 +113,11 @@ class CartView extends GetView {
                                   ):Row(
                                     children: [
                                       Text("合计: "),
-                                      Text("¥98.9",
+                                       Obx(()=> Text("¥${controller.allPrice.value}",
                                           style: TextStyle(
                                               fontSize:
                                                   ScreenAdapter.fontSize(58),
-                                              color: Colors.red)),
+                                              color: Colors.red))),
                                       SizedBox(width: ScreenAdapter.width(20)),
                                       ElevatedButton(
                                           style: ButtonStyle(
