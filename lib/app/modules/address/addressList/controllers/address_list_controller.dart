@@ -41,7 +41,7 @@ class AddressListController extends GetxController {
     }
   }
 //改变默认地址
-   changeDefaultAddress(id) async {
+    changeDefaultAddress(id) async {
     List userList = await UserServices.getUserInfo();
     UserModel userInfo = UserModel.fromJson(userList[0]);
     Map tempJson = {"uid": userInfo.sId,"id":id};
@@ -56,6 +56,25 @@ class AddressListController extends GetxController {
         });
     if(response!=null){
       Get.back();
+    }
+  }
+   //删除收货地址
+  deleteAddress(id) async {
+    List userList = await UserServices.getUserInfo();
+    UserModel userInfo = UserModel.fromJson(userList[0]);
+    Map tempJson = {"uid": userInfo.sId,"id":id};
+    String sign = SignServices.getSign({
+      ...tempJson,
+      "salt": userInfo.salt //私钥
+    });
+    var response =
+        await httpsClient.post("api/deleteAddress",data: {
+            ...tempJson,
+            "sign":sign
+        });
+    if(response!=null){
+      //删除成功重新更新当前页面的数据
+      getAddressList();
     }
   }
 }
