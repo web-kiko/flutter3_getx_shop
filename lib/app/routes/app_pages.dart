@@ -6,6 +6,8 @@ import '../modules/address/addressEdit/bindings/address_edit_binding.dart';
 import '../modules/address/addressEdit/views/address_edit_view.dart';
 import '../modules/address/addressList/bindings/address_list_binding.dart';
 import '../modules/address/addressList/views/address_list_view.dart';
+import '../modules/buy/bindings/buy_binding.dart';
+import '../modules/buy/views/buy_view.dart';
 import '../modules/cart/views/cart_view.dart';
 import '../modules/checkout/bindings/checkout_binding.dart';
 import '../modules/checkout/views/checkout_view.dart';
@@ -130,6 +132,11 @@ class AppPages {
       name: _Paths.ADDRESS_EDIT,
       page: () => const AddressEditView(),
       binding: AddressEditBinding(),
+    ),
+    GetPage(
+      name: _Paths.BUY,
+      page: () => const BuyView(),
+      binding: BuyBinding(),
     ),
   ];
 }

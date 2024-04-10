@@ -2,7 +2,7 @@
  * @ Author: kiko
  * @ Create Time: 2024-04-01 15:41:33
  * @ Modified by: kiko
- * @ Modified time: 2024-04-07 23:41:31
+ * @ Modified time: 2024-04-10 16:30:30
  * @ Description:
  */
 
@@ -205,11 +205,11 @@ class CheckoutView extends GetView<CheckoutController> {
               Row(
                 children: [
                   SizedBox(width: ScreenAdapter.width(20)),
-                  const Text("共1件,合计:"),
-                  Text("¥699",
+                 Obx(() => Text("共${controller.allNum.value}件,合计:")),
+                  Obx(() => Text("${controller.allPrice.value}",
                       style: TextStyle(
                           fontSize: ScreenAdapter.fontSize(58),
-                          color: Colors.red)),
+                          color: Colors.red))),
                   SizedBox(width: ScreenAdapter.width(20)),
                 ],
               ),
@@ -226,6 +226,7 @@ class CheckoutView extends GetView<CheckoutController> {
                     //判断用户有没有登录
 
                     // Get.toNamed("/checkout");
+                    controller.doCheckOut();
                   },
                   child: const Text("去付款"))
             ],

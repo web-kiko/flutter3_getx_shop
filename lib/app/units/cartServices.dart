@@ -2,11 +2,9 @@
  * @ Author: kiko
  * @ Create Time: 2024-03-28 15:07:14
  * @ Modified by: kiko
- * @ Modified time: 2024-03-29 03:03:30
+ * @ Modified time: 2024-04-10 16:14:35
  * @ Description:
  */
-
-
 
 //本地存储购物车数据
 import '../models/pcontent_model.dart';
@@ -59,7 +57,8 @@ class CartServices {
         //购物车里的ID是不是等于当前传入的ID
         return v["_id"] == pcontent.sId && v["selectedAttr"] == selectedAttr;
       });
-      if (hasData) {//让购物车中的当前数据数量 等于以前的 数量+现在的数量
+      if (hasData) {
+        //让购物车中的当前数据数量 等于以前的 数量+现在的数量
         for (var i = 0; i < cartListData.length; i++) {
           if (cartListData[i]["_id"] == pcontent.sId &&
               cartListData[i]["selectedAttr"] == selectedAttr) {
@@ -67,7 +66,8 @@ class CartServices {
           }
         }
         await Storage.setData("cartList", cartListData);
-      } else {//有购物车数据但是没有当前数据就拼接在从新加入数据
+      } else {
+        //有购物车数据但是没有当前数据就拼接在从新加入数据
         cartListData.add({
           "_id": pcontent.sId,
           "title": pcontent.title,
@@ -79,7 +79,8 @@ class CartServices {
         });
         await Storage.setData("cartList", cartListData);
       }
-    } else {//一条数据都没有就从新加入数据
+    } else {
+      //一条数据都没有就从新加入数据
       List tempList = [];
       tempList.add({
         "_id": pcontent.sId,
@@ -104,7 +105,6 @@ class CartServices {
     }
   }
 
-
   // 获取选中的CartList数据
   static getCheckedCartData() async {
     List tempList = [];
@@ -120,12 +120,61 @@ class CartServices {
       return [];
     }
   }
+
   //清空购物车
   static clearCartData() async {
     await Storage.clear('cartList');
   }
+
 //保存+-数据
-   static void setCartList(cartListData) async {
-      await Storage.setData("cartList", cartListData);
+  static void setCartList(cartListData) async {
+    await Storage.setData("cartList", cartListData);
+  }
+
+  /*//结算后删除购物车中要结算的商品
+  static deleteCheckOutData(){
+      List cartList=["1","2","3","4"];
+      var tempList=[];
+      for (var i = 0; i < cartList.length; i++) {
+          if(!hasCheckOutData(cartList[i])){
+            tempList.add(cartList[i]);
+          }
+      }
+      print(tempList);       //[1, 4]
+  }
+  
+  static hasCheckOutData(cartItem){
+    List checkOutList=["2","3"];
+    for (var i = 0; i < checkOutList.length; i++) {
+        if(checkOutList[i]==cartItem){
+          return true;
+        }
+    }
+    return false;
+  }
+ */
+  //结算后删除购物车中要结算的商品
+  static deleteCheckOutData(checkOutList) async {
+    List? cartListData = await Storage.getData("cartList");
+    if (cartListData != null) {
+      var tempList = [];
+      for (var i = 0; i < cartListData.length; i++) {
+        if (!hasCheckOutData(checkOutList, cartListData[i])) {
+          tempList.add(cartListData[i]);
+        }
+      }
+      //保存数据到购物车
+      setCartList(tempList);
+    }
+  }
+
+  static hasCheckOutData(checkOutList, cartItem) {
+    for (var i = 0; i < checkOutList.length; i++) {
+      if (checkOutList[i]["_id"] == cartItem["_id"] &&
+          checkOutList[i]["selectedAttr"] == cartItem["selectedAttr"]) {
+        return true;
+      }
+    }
+    return false;
   }
 }
