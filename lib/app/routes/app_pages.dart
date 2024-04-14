@@ -6,6 +6,7 @@ import '../modules/address/addressEdit/bindings/address_edit_binding.dart';
 import '../modules/address/addressEdit/views/address_edit_view.dart';
 import '../modules/address/addressList/bindings/address_list_binding.dart';
 import '../modules/address/addressList/views/address_list_view.dart';
+
 import '../modules/buy/bindings/buy_binding.dart';
 import '../modules/buy/views/buy_view.dart';
 import '../modules/cart/views/cart_view.dart';
@@ -25,6 +26,7 @@ import '../modules/login/registerStepThree/bindings/register_step_three_binding.
 import '../modules/login/registerStepThree/views/register_step_three_view.dart';
 import '../modules/login/registerStepTwo/bindings/register_step_two_binding.dart';
 import '../modules/login/registerStepTwo/views/register_step_two_view.dart';
+
 import '../modules/productContent/bindings/product_content_binding.dart';
 import '../modules/productContent/views/product_content_view.dart';
 import '../modules/productList/bindings/product_list_binding.dart';
@@ -138,5 +140,8 @@ class AppPages {
       page: () => const BuyView(),
       binding: BuyBinding(),
     ),
+   
   ];
 }
+
+

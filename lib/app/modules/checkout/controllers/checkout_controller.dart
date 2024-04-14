@@ -39,6 +39,7 @@ class CheckoutController extends GetxController {
   getCheckoutData() async {
     List tempList = await Storage.getData("checkoutList");
     checkoutList.value = tempList;
+    computedAllPrice();
     update();
   }
 

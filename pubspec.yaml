@@ -17,6 +17,7 @@ dependencies:
   pin_code_fields: ^7.4.0 #验证码
   city_pickers: ^1.1.3 # 城市
   crypto: ^3.0.2
+  tobias: ^2.4.1 #支付宝支付插件
   flutter: 
     sdk: flutter
 

@@ -2,7 +2,7 @@
  * @ Author: kiko
  * @ Create Time: 2024-04-01 15:41:33
  * @ Modified by: kiko
- * @ Modified time: 2024-04-10 16:30:30
+ * @ Modified time: 2024-04-15 01:39:47
  * @ Description:
  */
 
@@ -16,22 +16,7 @@ import '../controllers/checkout_controller.dart';
 
 class CheckoutView extends GetView<CheckoutController> {
   const CheckoutView({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color.fromRGBO(246, 246, 246, 1),
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        title: const Text('确认订单'),
-        centerTitle: true,
-      ),
-      body: Stack(
-        children: [_body(), _bottom()],
-      ),
-    );
-  }
-
+  
  Widget _checkoutItem(value) {
     return Container(
       padding: EdgeInsets.only(
@@ -54,16 +39,20 @@ class CheckoutView extends GetView<CheckoutController> {
             children: [
               Text(
                 "${value["title"]}",
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: const TextStyle(fontWeight: FontWeight.bold),
               ),
               SizedBox(height: ScreenAdapter.height(10)),
-              Text("${value["selectedAttr"]}",),
+              Text(
+                "${value["selectedAttr"]}",
+              ),
               SizedBox(height: ScreenAdapter.height(10)),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children:  [
-                  Text("￥${value["price"]}", style: TextStyle(color: Colors.red)),
-                  Text("x${value["count"]}", style: TextStyle(color: Colors.black87))
+                children: [
+                  Text("￥${value["price"]}",
+                      style: const TextStyle(color: Colors.red)),
+                  Text("x${value["count"]}",
+                      style: const TextStyle(color: Colors.black87))
                 ],
               )
             ],
@@ -77,45 +66,50 @@ class CheckoutView extends GetView<CheckoutController> {
     return ListView(
       padding: EdgeInsets.all(ScreenAdapter.width(40)),
       children: [
-        Obx(()=>controller.addressList.isEmpty?Container(
-          padding: EdgeInsets.only(
-              top: ScreenAdapter.height(20), bottom: ScreenAdapter.height(20)),
-          decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(ScreenAdapter.width(20))),
-          child:  ListTile(
-            onTap: (){
-              Get.toNamed("/address-add");
-            },
-            leading: const Icon(Icons.add_location),
-            title: const Text("新建收货地址"),
-            trailing: const Icon(Icons.navigate_next),
-          ),
-        ):Container(
-          padding: EdgeInsets.only(
-              top: ScreenAdapter.height(20), bottom: ScreenAdapter.height(20)),
-          decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(ScreenAdapter.width(20))),
-          child: ListTile(
-            onTap: (){
-              Get.toNamed("/address-list");
-            },
-            title: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("${controller.addressList[0].name} ${controller.addressList[0].phone}"),
-                SizedBox(
-                  height: ScreenAdapter.height(10),
+        Obx(() => controller.addressList.isEmpty
+            ? Container(
+                padding: EdgeInsets.only(
+                    top: ScreenAdapter.height(20),
+                    bottom: ScreenAdapter.height(20)),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius:
+                        BorderRadius.circular(ScreenAdapter.width(20))),
+                child: ListTile(
+                  onTap: () {
+                    Get.toNamed("/address-add");
+                  },
+                  leading: const Icon(Icons.add_location),
+                  title: const Text("新建收货地址"),
+                  trailing: const Icon(Icons.navigate_next),
                 ),
-                Text("${controller.addressList[0].address}"),
-              ],
-            ),
-            trailing: Icon(Icons.navigate_next),
-          ),
-        ))
-        
-        ,
+              )
+            : Container(
+                padding: EdgeInsets.only(
+                    top: ScreenAdapter.height(20),
+                    bottom: ScreenAdapter.height(20)),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius:
+                        BorderRadius.circular(ScreenAdapter.width(20))),
+                child: ListTile(
+                  onTap: () {
+                    Get.toNamed("/address-list");
+                  },
+                  title: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                          "${controller.addressList[0].name} ${controller.addressList[0].phone}"),
+                      SizedBox(
+                        height: ScreenAdapter.height(10),
+                      ),
+                      Text("${controller.addressList[0].address}"),
+                    ],
+                  ),
+                  trailing: const Icon(Icons.navigate_next),
+                ),
+              )),
         SizedBox(
           height: ScreenAdapter.height(40),
         ),
@@ -127,11 +121,9 @@ class CheckoutView extends GetView<CheckoutController> {
               borderRadius: BorderRadius.circular(ScreenAdapter.width(20))),
           child: Obx(() => controller.checkoutList.isNotEmpty
               ? Column(
-                  children: 
-                  controller.checkoutList.map((value){
-                      return  _checkoutItem(value);
-                  }).toList()                 
-                )
+                  children: controller.checkoutList.map((value) {
+                  return _checkoutItem(value);
+                }).toList())
               : const Text("")),
         ),
         SizedBox(
@@ -183,7 +175,6 @@ class CheckoutView extends GetView<CheckoutController> {
     );
   }
 
-
   Widget _bottom() {
     return Positioned(
         left: 0,
@@ -205,7 +196,7 @@ class CheckoutView extends GetView<CheckoutController> {
               Row(
                 children: [
                   SizedBox(width: ScreenAdapter.width(20)),
-                 Obx(() => Text("共${controller.allNum.value}件,合计:")),
+                  Obx(() => Text("共${controller.allNum.value}件,合计:")),
                   Obx(() => Text("${controller.allPrice.value}",
                       style: TextStyle(
                           fontSize: ScreenAdapter.fontSize(58),
@@ -223,14 +214,27 @@ class CheckoutView extends GetView<CheckoutController> {
                           RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)))),
                   onPressed: () {
-                    //判断用户有没有登录
-
-                    // Get.toNamed("/checkout");
                     controller.doCheckOut();
                   },
                   child: const Text("去付款"))
             ],
           ),
         ));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color.fromRGBO(246, 246, 246, 1),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        title: const Text('确认订单'),
+        centerTitle: true,
+      ),
+      body: Stack(
+        children: [_body(), _bottom()],
+      ),
+    );
   }
 }
