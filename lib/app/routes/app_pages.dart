@@ -6,12 +6,12 @@ import '../modules/address/addressEdit/bindings/address_edit_binding.dart';
 import '../modules/address/addressEdit/views/address_edit_view.dart';
 import '../modules/address/addressList/bindings/address_list_binding.dart';
 import '../modules/address/addressList/views/address_list_view.dart';
-
 import '../modules/buy/bindings/buy_binding.dart';
 import '../modules/buy/views/buy_view.dart';
 import '../modules/cart/views/cart_view.dart';
 import '../modules/checkout/bindings/checkout_binding.dart';
 import '../modules/checkout/views/checkout_view.dart';
+
 import '../modules/login/codeLoginStepOne/bindings/code_login_step_one_binding.dart';
 import '../modules/login/codeLoginStepOne/views/code_login_step_one_view.dart';
 import '../modules/login/codeLoginStepTwo/bindings/code_login_step_two_binding.dart';
@@ -26,13 +26,22 @@ import '../modules/login/registerStepThree/bindings/register_step_three_binding.
 import '../modules/login/registerStepThree/views/register_step_three_view.dart';
 import '../modules/login/registerStepTwo/bindings/register_step_two_binding.dart';
 import '../modules/login/registerStepTwo/views/register_step_two_view.dart';
-
 import '../modules/productContent/bindings/product_content_binding.dart';
 import '../modules/productContent/views/product_content_view.dart';
 import '../modules/productList/bindings/product_list_binding.dart';
 import '../modules/productList/views/product_list_view.dart';
 import '../modules/serach/bindings/serach_binding.dart';
 import '../modules/serach/views/serach_view.dart';
+import '../modules/service/jiPush/bindings/ji_push_binding.dart';
+import '../modules/service/jiPush/views/ji_push_view.dart';
+import '../modules/service/lanya/bindings/lanya_binding.dart';
+import '../modules/service/lanya/views/lanya_view.dart';
+import '../modules/service/live/bindings/live_binding.dart';
+import '../modules/service/live/views/live_view.dart';
+import '../modules/service/watch/bindings/watch_binding.dart';
+import '../modules/service/watch/views/watch_view.dart';
+import '../modules/service/wift/bindings/wift_binding.dart';
+import '../modules/service/wift/views/wift_view.dart';
 import '../modules/tabs/bindings/tabs_binding.dart';
 import '../modules/tabs/views/tabs_view.dart';
 
@@ -141,7 +150,31 @@ class AppPages {
       binding: BuyBinding(),
     ),
    
+    GetPage(
+      name: _Paths.WATCH,
+      page: () => const WatchView(),
+      binding: WatchBinding(),
+    ),
+    GetPage(
+      name: _Paths.JI_PUSH,
+      page: () => const JiPushView(),
+      binding: JiPushBinding(),
+    ),
+    GetPage(
+      name: _Paths.LIVE,
+      page: () => const LiveView(),
+      binding: LiveBinding(),
+    ),
+   
+    GetPage(
+      name: _Paths.LANYA,
+      page: () => const LanyaView(),
+      binding: LanyaBinding(),
+    ),
+    GetPage(
+      name: _Paths.WIFT,
+      page: () => const WiftView(),
+      binding: WiftBinding(),
+    ),
   ];
 }
-
-

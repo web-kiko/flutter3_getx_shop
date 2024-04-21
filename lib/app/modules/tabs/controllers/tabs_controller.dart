@@ -19,7 +19,7 @@ class TabsController extends GetxController {
   final List<Widget> pages =  [
     const HomeView(),
     const CategoryView(),
-    const ServiceView(),
+     ServiceView(),
     CartView(),
     const UserView()
   ];

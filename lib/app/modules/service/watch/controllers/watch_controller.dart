@@ -1,7 +1,8 @@
 import 'package:get/get.dart';
 
-class ServiceController extends GetxController {
-  
+class WatchController extends GetxController {
+  //TODO: Implement WatchController
+
   final count = 0.obs;
   @override
   void onInit() {
@@ -20,4 +21,3 @@ class ServiceController extends GetxController {
 
   void increment() => count.value++;
 }
-

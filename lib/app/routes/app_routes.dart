@@ -30,7 +30,13 @@ abstract class Routes {
   static const BUY = _Paths.BUY;
   static const ORDER = _Paths.ORDER;
   static const ORDER_INFO = _Paths.ORDER_INFO;
-  
+  static const J_PUSH = _Paths.J_PUSH;
+  static const WATCH =  _Paths.WATCH;
+  static const JI_PUSH =  _Paths.JI_PUSH;
+  static const LIVE = _Paths.LIVE;
+  static const ONE_CLICK_LOGIN = _Paths.ONE_CLICK_LOGIN;
+  static const LANYA =  _Paths.LANYA;
+  static const WIFT =  _Paths.WIFT;
 }
 
 abstract class _Paths {
@@ -55,5 +61,11 @@ abstract class _Paths {
   static const BUY = '/buy';
   static const ORDER = '/order';
   static const ORDER_INFO = '/order-info';
-  
+  static const J_PUSH = '/j-push';
+  static const WATCH = '/watch';
+  static const JI_PUSH = '/ji-push';
+  static const LIVE = '/live';
+  static const ONE_CLICK_LOGIN = '/one-click-login';
+  static const LANYA = '/lanya';
+  static const WIFT = '/wift';
 }
